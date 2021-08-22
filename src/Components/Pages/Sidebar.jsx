@@ -1,18 +1,22 @@
+import logo from "../Assets/logo-no-bg.png";
 function Sidebar() {
   return (
     <div className="bg-white sidebar-wrapper">
       {/* ----------- Logo -----------*/}
-      <div className="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
-        <i className="fas fa-user-secret me-2"></i>Codersbite
+      <div className="sidebar-heading">
+        <a>
+          <img src={logo} alt="logo" className="logo" />
+        </a>
       </div>
       {/* ----------- Links -----------*/}
       <div className="list-group list-group-flush my-3">
-        <a
+      <a
           href="#"
           className="list-group-item list-group-item-action bg-transparent second-text fw-bold"
         >
           <i className="fas fa-tachometer-alt me-2"></i>Dashboard
         </a>
+       <Link_sidebar/>
         <a
           href="#"
           className="list-group-item list-group-item-action bg-transparent second-text fw-bold"

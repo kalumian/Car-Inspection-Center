@@ -9,14 +9,32 @@
     margin-left: 0;
   }
   & .list-group-item {
-    border: none;
+    position: relative;
     padding: 20px 30px;
     transition: $trns;
+    border-top: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
     &.active {
       background-color: transparent;
       color: $main-text-color;
       font-weight: bold;
       border: none;
+    }
+    &:hover {
+      border-top: 1px solid rgb(226, 226, 226);
+      border-bottom: 1px solid rgb(226, 226, 226);
+      &::after {
+        right: 0;
+      }
+    }
+    &:after {
+      @extend %after;
+      height: 100%;
+      width: 5px;
+      right: -5px;
+      transition: $trns;
+      top: 0;
+      background-color: $main-bg-color;
     }
   }
   & .sidebar-heading {
@@ -25,5 +43,8 @@
   }
   & .list-group {
     width: 15rem;
+  }
+  & .logo {
+    width: 200px;
   }
 }

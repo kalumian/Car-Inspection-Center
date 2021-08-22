@@ -9,3 +9,11 @@ $m: 768px;
 
 // Anmition
 $trns: 0.4s;
+
+// After Beffoer
+
+%after {
+  position: absolute;
+  content: "";
+  display: block;
+}
