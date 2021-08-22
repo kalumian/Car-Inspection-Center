@@ -1,4 +1,9 @@
-import logo from "../Assets/logo-no-bg.png";
+// import images
+import logo from "../../Assets/logo-no-bg.png";
+
+// import components
+import Link_sidebar from "../Childe/Sidebar-components/Link_sidebar";
+
 function Sidebar() {
   return (
     <div className="bg-white sidebar-wrapper">
@@ -10,13 +15,13 @@ function Sidebar() {
       </div>
       {/* ----------- Links -----------*/}
       <div className="list-group list-group-flush my-3">
-      <a
+        <a
           href="#"
           className="list-group-item list-group-item-action bg-transparent second-text fw-bold"
         >
           <i className="fas fa-tachometer-alt me-2"></i>Dashboard
         </a>
-       <Link_sidebar/>
+        <Link_sidebar />
         <a
           href="#"
           className="list-group-item list-group-item-action bg-transparent second-text fw-bold"
