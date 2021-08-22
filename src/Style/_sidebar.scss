@@ -1,0 +1,29 @@
+.sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+  @media (min-width: 768px) {
+    margin-left: 0;
+  }
+  & .list-group-item {
+    border: none;
+    padding: 20px 30px;
+    transition: $trns;
+    &.active {
+      background-color: transparent;
+      color: $main-text-color;
+      font-weight: bold;
+      border: none;
+    }
+  }
+  & .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+  }
+  & .list-group {
+    width: 15rem;
+  }
+}
