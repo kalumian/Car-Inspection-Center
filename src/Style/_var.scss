@@ -1,5 +1,6 @@
 // Color
 $main-bg-color: #29375a;
+$main-bg-color-hover: #29375acc;
 $main-text-color: #29375a;
 $second-text-color: #bbbec5;
 $second-bg-color: #c1efde;
@@ -10,6 +11,7 @@ $m: 768px;
 // Anmition
 $trns: 0.4s;
 $trns2: 0.2s;
+$trns-s: $trns ease-out;
 
 // After Beffoer
 

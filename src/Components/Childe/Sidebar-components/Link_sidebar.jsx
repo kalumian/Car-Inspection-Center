@@ -9,7 +9,7 @@ function Link_sidebar({ title, icon }) {
       }`}
     >
       <i className={icon + " me-2"}></i>
-      {title}
+      <span>{title}</span>
     </Link>
   );
 }

@@ -1,7 +1,7 @@
 function Home() {
   return (
     <div className="page-content-wrapper">
-      <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+      {/* <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
         <div className="d-flex align-items-center">
           <i className="fas fa-align-left primary-text fs-4 me-3 menu-toggle"></i>
           <h2 className="fs-2 m-0">Dashboard</h2>
@@ -188,7 +188,7 @@ function Home() {
             </table>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
