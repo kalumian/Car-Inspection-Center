@@ -1,0 +1,17 @@
+.login {
+  & button {
+    color: white;
+    &:hover {
+      background-color: $main-bg-color-hover;
+      color: white;
+    }
+  }
+  & input {
+    color: $main-bg-color;
+    font-size: 18px;
+    &:focus {
+      box-shadow: none;
+      border: 1px solid $main-bg-color;
+    }
+  }
+}

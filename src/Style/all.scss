@@ -1,4 +1,9 @@
 @import "./var";
 @import "./general";
-@import "../Components/Childe/Sidebar-components/style";
-@import "../Components/Childe/Loader-components/style";
+@import "../Components/Parents/Home/style";
+@import "../Components/Parents/Invoices/style";
+@import "../Components/Parents/Loader/style";
+@import "../Components/Parents/Login/style";
+@import "../Components/Parents/Error_Page/style";
+@import "../Components/Parents/Sections/style";
+@import "../Components/Childe/General-components/Sidebar-components/style";

@@ -3,9 +3,11 @@ function Link_sidebar({ title, icon }) {
   const location = useLocation();
   return (
     <Link
-      to={title.split(" ").join("-")}
+      to={`/dashboard/${title.split(" ").join("-")}`}
       className={`list-group-item list-group-item-action bg-transparent second-text fw-bold text-end ${
-        location.pathname === "/" + title.split(" ").join("-") ? "active" : ""
+        location.pathname === "/dashboard/" + title.split(" ").join("-")
+          ? "active"
+          : ""
       }`}
     >
       <i className={icon + " me-2"}></i>

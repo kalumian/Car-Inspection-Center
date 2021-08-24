@@ -2,19 +2,25 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Impoer Pages
-import Home from "./Components/Parents/Home";
-import Sidebar from "./Components/Parents/Sidebar";
+import Home from "./Components/Parents/Home/Home";
+import Login from "./Components/Parents/Login/Login";
+import Sections from "./Components/Parents/Sections/Sections";
 
 // Import Style
 import "./Style/all.scss";
+
 function App() {
+  const user = "الاستقبال";
   return (
-    <div className="d-flex wrapper flex-row-reverse">
-      <Router>
-        <Route path="/" component={Sidebar} />
-        <Route path="/" component={Home} exact/>
-      </Router>
-    </div>
+    <Router>
+      <Route path="/dashboard" exact>
+        <Home user={user} />
+      </Route>
+      <Route path="/dashboard/:section">
+        <Sections user={user} />
+      </Route>
+      <Route path="/login" component={Login} exact />
+    </Router>
   );
 }
 
