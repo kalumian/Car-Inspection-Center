@@ -3,7 +3,7 @@ $main-bg-color: #29375a;
 $main-bg-color-hover: #29375acc;
 $main-text-color: #29375a;
 $second-text-color: #92949a;
-$second-bg-color: #c1efde;
+$second-bg-color: lighten($main-bg-color, 60%);
 
 //  Responsive
 $m: 768px;
