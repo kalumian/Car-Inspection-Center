@@ -16,13 +16,21 @@
     border-top: 1px solid whitesmoke;
     border-bottom: 1px solid whitesmoke;
     font-size: 19px;
-
+    @media (max-width: $s) {
+      padding: 15px 5px;
+      font-size: 14px;
+    }
     &.active {
       color: $main-text-color;
       font-weight: bold;
       border-top: 1px solid rgb(226, 226, 226);
       border-bottom: 1px solid rgb(226, 226, 226);
+      padding: 20px 40px 20px 20px;
       position: relative;
+      @media (max-width: $s) {
+        padding: 15px 7px;
+        font-size: 14px;
+      }
       &::after {
         @extend %after;
         height: 100%;
@@ -31,11 +39,19 @@
         transition: $trns2;
         top: 0;
         background-color: $main-bg-color;
+        @media (max-width: $s) {
+          width: 3px;
+        }
       }
     }
     &:hover {
       border-top: 1px solid rgb(226, 226, 226);
       border-bottom: 1px solid rgb(226, 226, 226);
+      padding: 20px 40px 20px 20px;
+      @media (max-width: $s) {
+        padding: 15px 7px;
+        font-size: 14px;
+      }
       &::after {
         right: 0;
       }
@@ -48,12 +64,18 @@
       transition: $trns2;
       top: 0;
       background-color: $main-bg-color;
+      @media (max-width: $s) {
+        width: 3px;
+      }
     }
   }
   & .sidebar-heading {
     padding: 0.875rem 1.25rem;
     font-size: 1.2rem;
     transition: $trns-s;
+    @media (max-width: $s) {
+      padding: 0.675rem 1.2rem 0 1.2rem;
+    }
     &.sidebar-active {
       padding: 0;
       & img {
@@ -63,18 +85,31 @@
       & .button_sidebar {
         top: 15px;
         left: 18px;
+        @media (max-width: $s) {
+          left: 9px;
+        }
       }
     }
   }
   & .list-group {
     width: 15rem;
     transition: $trns-s;
+    @media (max-width: $s) {
+      width: 7rem;
+    }
     &.sidebar-active {
       width: 4rem;
+      @media (max-width: $s) {
+        width: 2rem;
+      }
       & .list-group-item {
         padding: 23px 0;
         font-size: 25px;
-        text-align: center;
+        text-align: center !important;
+        @media (max-width: $s) {
+          padding: 18px 0;
+          font-size: 17px;
+        }
         & span {
           font-size: 0px;
         }
@@ -87,13 +122,22 @@
   & .logo {
     width: 200px;
     height: 100px;
-    transition:  $trns-s;
+    transition: $trns-s;
+    @media (max-width: $s) {
+      width: 72px;
+      height: 38px;
+    }
   }
   & .button_sidebar {
     cursor: pointer;
     position: absolute;
     top: 10px;
     left: 12px;
+    @media (max-width: $s) {
+      top: 6px;
+      left: 8px;
+    }
+
     &:hover {
       & span {
         background-color: $main-bg-color-hover;
@@ -106,6 +150,11 @@
       height: 3px;
       margin-bottom: 4px;
       transition: $trns;
+      @media (max-width: $s) {
+        width: 16px;
+        height: 2px;
+        margin-bottom: 2px;
+      }
     }
   }
 }

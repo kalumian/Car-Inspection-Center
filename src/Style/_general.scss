@@ -26,10 +26,12 @@
 
 .wrapper {
   overflow-x: hidden;
-  background-color: lighten($main-bg-color, 60%);
+  background-color: lighten($main-bg-color, 54%);
+  animation: change-background 5s infinite;
 }
 
 .page-content-wrapper {
+  position: relative;
   min-width: 100vw;
   @media (min-width: 768px) {
     min-width: 0;

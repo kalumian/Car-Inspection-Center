@@ -1,3 +1,5 @@
+import Loader from "./Loader";
+
 function Home() {
   return (
     <div className="page-content-wrapper">
@@ -189,6 +191,7 @@ function Home() {
           </div>
         </div>
       </div> */}
+      <Loader/>
     </div>
   );
 }
