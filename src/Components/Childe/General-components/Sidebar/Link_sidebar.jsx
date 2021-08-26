@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-function Link_sidebar({ title, icon }) {
+function Link_sidebar({ title, icon, link }) {
   const location = useLocation();
   return (
     <Link
-      to={`/dashboard/${title.split(" ").join("-")}`}
+      to={`/dashboard/${link}`}
       className={`list-group-item list-group-item-action bg-transparent second-text fw-bold text-end ${
-        location.pathname === "/dashboard/" + title.split(" ").join("-")
+        location.pathname === "/dashboard/" + link
           ? "active"
           : ""
       }`}

@@ -156,4 +156,36 @@
       }
     }
   }
+  & .add-button {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 1%;
+    right: 1%;
+    text-decoration: none;
+
+    & i {
+      background: white;
+      color: $main-bg-color;
+      font-size: 38px;
+      padding: 10px 12px;
+      border-radius: 50%;
+      border: 2px solid $main-bg-color;
+      cursor: pointer;
+      transition: 0.4s;
+      text-decoration: underline rgba(0, 0, 0, 0);
+      @media (max-width: $s) {
+        font-size: 18px;
+        padding: 6px 8px;
+      }
+      &:hover {
+        background-color: $main-bg-color;
+        color: white;
+      }
+    }
+    &.sidebar-active {
+      display: none;
+    }
+  }
 }

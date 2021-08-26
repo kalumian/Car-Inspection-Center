@@ -4,11 +4,11 @@ import { useLocation } from "react-router-dom";
 // Import Components
 import Invoices from "../Invoices/Invoices";
 import Cards from "../Cards/Cards";
-import Sidebar from "../../Childe/General-components/Sidebar-components/Sidebar";
+import Sidebar from "../../Childe/General-components/Sidebar/Sidebar";
 import Error_Page from "../Error_Page/Error_Page";
 
 function Sections({ user }) {
-  const sections = ["الفواتير", "الكروت", "الموظفين"];
+  const sections = ["فواتير", "كروت", "موظفين"];
   const location = useLocation();
   const section = location.pathname.split("/")[2];
   console.log(section);

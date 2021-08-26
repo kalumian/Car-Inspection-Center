@@ -26,10 +26,28 @@
 
 .wrapper {
   overflow-x: hidden;
-  background-color: lighten($main-bg-color, 54%);
-  animation: change-background 5s infinite;
+  background-color: lighten($main-bg-color, 68%);
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #d3d3d3;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(199, 199, 199);
+}
+
+// Dirction 
+.rtl{
+  direction: rtl;
+}
 .page-content-wrapper {
   position: relative;
   min-width: 100vw;

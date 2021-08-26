@@ -35,15 +35,32 @@ function Sidebar({ user }) {
       >
         {user === "الاستقبال" ? (
           <>
-            <Link_sidebar title="الفواتير" icon="fas fa-file-invoice" />
+            <Link_sidebar
+              title="الفواتير"
+              icon="fas fa-file-invoice"
+              link="فواتير"
+            />
+            <Link_sidebar
+              title="انشاء فاتورة"
+              icon="fas fa-plus"
+              link="انشاء/فواتير"
+            />
           </>
         ) : user === "الفني" ? (
           <>
-            <Link_sidebar title="الكروت" icon="fas fa-file-invoice" />
+            <Link_sidebar
+              title="قائمة الكروت"
+              icon="fas fa-file-invoice"
+              link="الكروت"
+            />
           </>
         ) : user === "المشرف" ? (
           <>
-            <Link_sidebar title="الموظفين" icon="fas fa-file-invoice" />
+            <Link_sidebar
+              title="قائمة الموظفين"
+              icon="fas fa-file-invoice"
+              link="موظفين"
+            />
           </>
         ) : (
           <></>
@@ -54,6 +71,11 @@ function Sidebar({ user }) {
         >
           <i className="fas fa-sign-out-alt me-2"></i>
           <span>تسجيل الخروج</span>
+        </Link>
+      </div>
+      <div className={`add-button  ${!stateSidebar ? " sidebar-active" : " "}`}>
+        <Link to="/dashboard/انشاء/فواتير">
+          <i class="fas fa-plus"></i>
         </Link>
       </div>
     </div>
