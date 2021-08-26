@@ -17,6 +17,9 @@ header.header {
       margin-top: 10px;
       font-size: 12px;
     }
+    @media (max-width: $s) {
+      font-size: 16px;
+    }
   }
   & .info {
     display: flex;
@@ -58,6 +61,9 @@ header.header {
           @media (max-width: $m) {
             font-size: 11px;
           }
+          @media (max-width: $s) {
+            font-size: 14px;
+          }
         }
       }
     }
@@ -72,6 +78,9 @@ header.header {
     }
     @media (max-width: $m) {
       font-size: 13px;
+    }
+    @media (max-width: $s) {
+      font-size: 16px;
     }
     & i {
       padding: 0 10px;
@@ -122,7 +131,6 @@ header.header {
           font-size: 12px;
           @media (max-width: $s) {
             font-size: 10px;
-
           }
         }
       }

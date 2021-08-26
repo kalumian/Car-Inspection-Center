@@ -1,4 +1,15 @@
 .invoices {
   position: relative;
- 
+  & .row {
+    width: 32%;
+    @media (max-width: $l) {
+      width: 14rem;
+    }
+    @media (max-width: $m) {
+      width: 14rem;
+    }
+  }
+  & table {
+    font-size: 13px;
+  }
 }
