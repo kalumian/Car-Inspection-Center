@@ -15,7 +15,7 @@ function Sections({ user }) {
   return (
     <div className="d-flex wrapper flex-row-reverse">
       <Sidebar user={user} />
-      <div className="container-fluid px-4">
+      <div className="container-fluid">
         {section === sections[2] ? (
           <>موظفين</>
         ) : section === sections[1] ? (

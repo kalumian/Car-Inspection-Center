@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 function Header({ user }) {
   const [date, setDate] = useState(new Date());
   const [stateMenue, SetstateMenue] = useState(false);
-  useEffect(() => {
-    setDate(new Date());
-  });
   const time = date;
   const days = [
     "الاحد",
@@ -44,8 +41,8 @@ function Header({ user }) {
         </p>
       </div>
       <div className="icons">
-        <i class="fas fa-globe-americas"></i>
-        <i class="fas fa-bell" onClick={() => SetstateMenue(!stateMenue)}></i>
+        <i className="fas fa-globe-americas"></i>
+        <i className="fas fa-bell" onClick={() => SetstateMenue(!stateMenue)}></i>
         <ul className={stateMenue ? "active" : ""}>
           <li>
             اشعارات <span>2020/3/24/1</span>

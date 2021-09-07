@@ -1,6 +1,6 @@
 function form() {
     return (
-        <form action="" className="rtl mt-5">
+        <form action="" className="rtl mt-5  px-4">
         <div className="d-flex justify-content-around flex-wrap">
           <div className="row mx-1 my-2">
             <div class="input-group">

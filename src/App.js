@@ -9,24 +9,25 @@ import Form_invoices from "./Components/Parents/Form_invoices/Form_invoices";
 
 // Import Style
 import "./Style/all.scss";
+import { DataProider } from "./DataContext";
 
 function App() {
   const user = "الاستقبال";
   return (
-    <Router>
-      <Switch>
-        <Route path="/dashboard" exact>
-          <Home user={user} />
-        </Route>
-        <Route path="/dashboard/:section" exact>
-          <Sections user={user} />
-        </Route>
-        <Route path="/dashboard/انشاء/فواتير" exact>
-          <Form_invoices user={user} />
-        </Route>
-        <Route path="/login" component={Login} exact />
-      </Switch>
-    </Router>
+    <DataProider>
+      <Router>
+        <Switch>
+          <Route path="/dashboard" exact>
+            <Home user={user} />
+          </Route>
+          <Route path="/dashboard/:section" exact>
+            <Sections user={user} />
+          </Route>
+          <Route path="/dashboard/انشاء/فواتير" exact component={Form_invoices}/>
+          <Route path="/login" component={Login} exact />
+        </Switch>
+      </Router>
+    </DataProider>
   );
 }
 

@@ -10,6 +10,59 @@
     }
   }
   & table {
-    font-size: 13px;
+    font-size: 11px;
+    width: 60rem;
+    margin: auto;
+  }
+  & .section {
+    overflow-y: scroll;
+    width: 100%;
+    height: 100vh;
+    margin: 20px auto;
+    @media (max-width: 1216px) {
+      width: 51rem;
+      overflow-x: scroll;
+    }
+    @media (max-width: 1053px) {
+      width: 45rem;
+    }
+    @media (max-width: $l) {
+      width: 35rem;
+    }
+    @media (max-width: 800px) {
+      width: 30rem;
+    }
+    @media (max-width: 767px) {
+      width: 27rem;
+    }
+    @media (max-width: 672px) {
+      width: 23rem;
+    }
+    @media (max-width: $s) {
+      width: 24rem;
+    }
+    @media (max-width: 500px) {
+      width: 20rem;
+    }
+    @media (max-width: 432px) {
+      width: 17rem;
+    }
+  }
+  & tbody td {
+    cursor: pointer;
+  }
+  & tfoot {
+    display: flex;
+    margin-top: 5px;
+    font-size: 11px;
+    & span {
+      display: block;
+      width: 1px;
+    }
+    & div {
+      display: flex;
+      align-items: center;
+      margin: 0 2px;
+    }
   }
 }

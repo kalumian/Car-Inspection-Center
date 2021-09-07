@@ -2,7 +2,6 @@ import Header from "../../Childe/General-components/Header/Header";
 import Table from "../../Childe/Invoices-components/Table";
 import Form from "../../Childe/Invoices-components/Form";
 import Error_Page from "../Error_Page/Error_Page";
-
 function Invoices({ user }) {
   const Content = () => {
     return (
