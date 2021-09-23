@@ -42,9 +42,12 @@
       width: 24rem;
     }
     @media (max-width: 500px) {
-      width: 20rem;
+      width: 27rem;
     }
     @media (max-width: 432px) {
+      width: 20rem;
+    }
+    @media (max-width: 360px) {
       width: 17rem;
     }
   }

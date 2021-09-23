@@ -8,8 +8,12 @@ function Form_sm({
   select,
   message,
   setEditPage,
-  editPage
+  editPage,
 }) {
+  const OpenPage = (e) => {
+    e.preventDefault();
+    setEditPage(true);
+  };
   return (
     <div className="form-invoices primary-text rtl mobile">
       <h2 className="text-center mt-4 ">انشاء فاتورة</h2>
@@ -186,6 +190,60 @@ function Form_sm({
             />
           </div>
         </div>
+        <div className="row mt-4 primary-text">
+          <div className="col-8">
+            <label htmlFor="invoices_select_year" className="form-label">
+              نوع الخدمة<span className="text-danger">*</span>
+            </label>
+            <select
+              className="form-select"
+              id="motion_minutes"
+              aria-label="Default select example"
+              onChange={handleSelect}
+              value={select.motion_minutes}
+            >
+              <option selected>اختار نوع الخدمة</option>
+              <option value="1">ميكانيكي</option>
+              <option value="2">يدوي</option>
+              <option value="3">سريع</option>
+            </select>
+          </div>
+          <div className="col-4 text-center">
+            <label htmlFor="invoices_select_year" className="form-label ">
+              التكلفة
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="invoices_select_year"
+              onChange={handleInput}
+              value={input.invoices_select_year}
+            />
+          </div>
+        </div>
+        <div className="row mt-4 primary-text">
+          <div className="col-6">
+            <label htmlFor="invoices_select_year" className="form-label">
+              التكلفة النهائية<span className="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="invoices_select_year"
+              onChange={handleInput}
+              value={input.invoices_select_year}
+            />
+          </div>
+          <div className="col-4 mt-1">
+            <button
+              className="w-30 btn btn-lg primary-bg"
+              id="invoices_select_year"
+              onClick={OpenPage}
+            >
+              تعديل
+            </button>
+          </div>
+        </div>
         <div className="row mt-3 primary-text">
           <textarea
             className="form-control"
@@ -199,7 +257,11 @@ function Form_sm({
           </button>
         </div>
       </form>
-      {editPage ? <Edit_page setEditPage={setEditPage} editPage={editPage}/> : <></>}
+      {editPage ? (
+        <Edit_page setEditPage={setEditPage} editPage={editPage} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

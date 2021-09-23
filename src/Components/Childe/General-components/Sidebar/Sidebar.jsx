@@ -11,7 +11,7 @@ import Sidebar_button from "./Sidebar_button";
 
 function Sidebar({ user }) {
   // State
-  const [stateSidebar, setSidebarState] = useState(true);
+  const [stateSidebar, setSidebarState] = useState(false);
   //  Function
   const handleState = () => {
     setSidebarState(!stateSidebar);
@@ -74,9 +74,6 @@ function Sidebar({ user }) {
         </Link>
       </div>
       <div className={`add-button  ${!stateSidebar ? " sidebar-active" : " "}`}>
-        <Link to="/dashboard/انشاء/فواتير">
-          <i class="fas fa-plus"></i>
-        </Link>
       </div>
     </div>
   );

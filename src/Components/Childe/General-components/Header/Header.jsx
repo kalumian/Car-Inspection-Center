@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 function Header({ user }) {
   const [date, setDate] = useState(new Date());
-  const [stateMenue, SetstateMenue] = useState(false);
   const time = date;
   const days = [
     "الاحد",
@@ -42,27 +41,6 @@ function Header({ user }) {
       </div>
       <div className="icons">
         <i className="fas fa-globe-americas"></i>
-        <i className="fas fa-bell" onClick={() => SetstateMenue(!stateMenue)}></i>
-        <ul className={stateMenue ? "active" : ""}>
-          <li>
-            اشعارات <span>2020/3/24/1</span>
-          </li>
-          <li>
-            اشعارات <span>2020/3/24/1</span>
-          </li>
-          <li>
-            اشعارات <span>2020/3/24/1</span>
-          </li>
-          <li>
-            اشعارات <span>2020/3/24/1</span>
-          </li>
-          <li>
-            اشعارات <span>2020/3/24/1</span>
-          </li>
-          <li>
-            اشعارات <span>2020/3/24/1</span>
-          </li>
-        </ul>
       </div>
     </header>
   );

@@ -73,7 +73,7 @@
     font-size: 1.2rem;
     transition: $trns-s;
     @media (max-width: $s) {
-      padding: 0.675rem 1.2rem 0 1.2rem;
+      display: none;
     }
     &.sidebar-active {
       padding: 0;
@@ -133,8 +133,7 @@
     top: 10px;
     left: 12px;
     @media (max-width: $s) {
-      top: 6px;
-      left: 8px;
+      display: none;
     }
 
     &:hover {
@@ -154,38 +153,6 @@
         height: 2px;
         margin-bottom: 2px;
       }
-    }
-  }
-  & .add-button {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    bottom: 1%;
-    right: 1%;
-    text-decoration: none;
-
-    & i {
-      background: white;
-      color: $main-bg-color;
-      font-size: 38px;
-      padding: 10px 12px;
-      border-radius: 50%;
-      border: 2px solid $main-bg-color;
-      cursor: pointer;
-      transition: 0.4s;
-      text-decoration: underline rgba(0, 0, 0, 0);
-      @media (max-width: $s) {
-        font-size: 18px;
-        padding: 6px 8px;
-      }
-      &:hover {
-        background-color: $main-bg-color;
-        color: white;
-      }
-    }
-    &.sidebar-active {
-      display: none;
     }
   }
 }

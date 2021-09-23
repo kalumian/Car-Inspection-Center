@@ -42,7 +42,8 @@ function Table() {
                 <td>قيد التنفيذ</td>
                 <td>القطيف</td>
                 <td>2</td>
-                <td>{item.date}</td>
+                <td>{item.date_s}</td>
+                <td>{item.date_f}</td>
               </tr>
             );
           })}

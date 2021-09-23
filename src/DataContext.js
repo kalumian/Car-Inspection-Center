@@ -4,7 +4,7 @@ export const DataContext = React.createContext();
 export function DataProider(props) {
   const [cards, setCards] = useState([
     {
-      date: "01/2021/10 ",
+      date_s: "01/2021/10 ",
       id: 0.04525579248558831,
       invoices_VIN: "xzcxzc",
       invoices_customer_board_name: "س ا ي ر",
@@ -21,6 +21,7 @@ export function DataProider(props) {
       select_source: "2",
       select_type: "2",
       state: 1,
+      date_f: "--",
     },
   ]);
   const handleCard = (card) => {
