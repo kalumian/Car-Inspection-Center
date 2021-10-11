@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 function Error_Page({ kind }) {
+  const History = useHistory();
   return (
     <div className="error-page">
       {kind === 404 ? (
@@ -10,7 +11,7 @@ function Error_Page({ kind }) {
       ) : kind === 400 ? (
         <>
           <span>ليس لديك صلاحية لدخول هذه الصفحة</span>
-          <Link to="/dashboard">العودة الى الرئيسية</Link>
+          <Link onClick={() => History.goBack()}>العودة للصفحة السابقة</Link>
         </>
       ) : (
         <>

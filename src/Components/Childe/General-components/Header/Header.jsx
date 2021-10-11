@@ -12,6 +12,9 @@ function Header({ user }) {
     "الجمعة",
     "السبت",
   ];
+
+  setInterval(() => setDate(new Date()), 9999);
+
   return (
     <header className="header">
       <div className="info">

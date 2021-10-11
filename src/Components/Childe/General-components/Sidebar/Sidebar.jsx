@@ -1,5 +1,5 @@
 // import from NPM
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 // import images
@@ -8,31 +8,29 @@ import logo from "../../../../Assets/logo-no-bg.png";
 // import components
 import Link_sidebar from "./Link_sidebar";
 import Sidebar_button from "./Sidebar_button";
+import { DataContext } from "../../../../DataContext";
 
 function Sidebar({ user }) {
-  // State
-  const [stateSidebar, setSidebarState] = useState(false);
-  //  Function
-  const handleState = () => {
-    setSidebarState(!stateSidebar);
-  };
+  // Trans State Side bar To Context Storeg
+  const { stateSide, setStateSide } = useContext(DataContext);
   return (
     <div className="bg-white sidebar-wrapper">
       {/* ----------- Logo -----------*/}
       <div
-        className={`sidebar-heading ${!stateSidebar ? " sidebar-active" : " "}`}
+        className={`sidebar-heading ${!stateSide ? " sidebar-active" : " "}`}
       >
-        <Link to="/dashboard">
+        <Link to="/">
           <img src={logo} alt="logo" className="logo" />
         </Link>
-        <Sidebar_button handleState={handleState} />
+        <Sidebar_button setStateSide={setStateSide} stateSide={stateSide} />
       </div>
       {/* ----------- Links -----------*/}
       <div
         className={`list-group list-group-flush my-3 ${
-          !stateSidebar ? " sidebar-active" : " "
+          !stateSide ? " sidebar-active" : " "
         }`}
       >
+        {/* Link Bar With Kind Auth */}
         {user === "الاستقبال" ? (
           <>
             <Link_sidebar
@@ -50,12 +48,13 @@ function Sidebar({ user }) {
           <>
             <Link_sidebar
               title="قائمة الكروت"
-              icon="fas fa-file-invoice"
-              link="الكروت"
+              icon="far fa-credit-card"
+              link="قائمة-الكروت"
             />
           </>
         ) : user === "المشرف" ? (
           <>
+            <Link_sidebar title="الرئيسية" icon="fas fa-home" link="" />
             <Link_sidebar
               title="قائمة الموظفين"
               icon="fas fa-file-invoice"
@@ -72,8 +71,6 @@ function Sidebar({ user }) {
           <i className="fas fa-sign-out-alt me-2"></i>
           <span>تسجيل الخروج</span>
         </Link>
-      </div>
-      <div className={`add-button  ${!stateSidebar ? " sidebar-active" : " "}`}>
       </div>
     </div>
   );

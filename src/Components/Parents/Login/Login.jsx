@@ -30,7 +30,7 @@ function Login() {
             <input type="checkbox" value="remember-me" /> تذكرني
           </label>
         </div> */}
-        <Link to="/dashboard">
+        <Link to="/">
           <button class="w-100 btn btn-lg primary-bg" type="submit">
             تسجيل الدخول
           </button>

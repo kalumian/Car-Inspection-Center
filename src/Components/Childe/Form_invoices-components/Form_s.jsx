@@ -26,19 +26,17 @@ function Form_lg({ setEditPage, editPage }) {
     handleCard({
       ...data,
       Created_date: `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`,
-      by: "استقبال",
     });
     reset();
     setMessage(true);
     setTimeout(function () {
       setMessage(false);
     }, 3000);
-    console.log(data);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="row mt-5 ">
-        <div className="col-4">
+      <div className="row mt-3 ">
+        <div className="col">
           <Lable For="invoices_customer_name" title="اسم العميل" />
           <Input_Default
             name="name_customer"
@@ -47,7 +45,9 @@ function Form_lg({ setEditPage, editPage }) {
             register={register}
           />
         </div>
-        <div className="col-4">
+      </div>
+      <div className="row mt-3 ">
+        <div className="col">
           <Lable title="رقم الجوال" />
           <Input_Default
             name="number_customer"
@@ -56,7 +56,9 @@ function Form_lg({ setEditPage, editPage }) {
             register={register}
           />
         </div>
-        <div className="col-4">
+      </div>
+      <div className="row mt-3 ">
+        <div className="col">
           <Lable title="البريد الإلكتروني" active={false} />
           <Input_Default
             req={false}
@@ -67,8 +69,8 @@ function Form_lg({ setEditPage, editPage }) {
           />
         </div>
       </div>
-      <div className="row mt-4 primary-text">
-        <div className="col-3">
+      <div className="row mt-3 primary-text">
+        <div className="col">
           <Lable
             For="invoices_customer_board_number"
             title="رقم اللوحة (رقم)"
@@ -80,7 +82,7 @@ function Form_lg({ setEditPage, editPage }) {
             register={register}
           />
         </div>
-        <div className="col-3">
+        <div className="col">
           <Lable
             For="invoices_customer_board_number"
             title="رقم اللوحة (حرف)"
@@ -92,7 +94,9 @@ function Form_lg({ setEditPage, editPage }) {
             register={register}
           />
         </div>
-        <div className="col-3">
+      </div>
+      <div className="row mt-3 primary-text">
+        <div className="col">
           <Lable For="invoices_customer_crane" title="الرافعة" />
           <Input_Default
             name="customer_crane"
@@ -101,27 +105,33 @@ function Form_lg({ setEditPage, editPage }) {
             register={register}
           />
         </div>
-        <div className="col-3">
+      </div>
+      <div className="row mt-3 primary-text">
+        <div className="col">
           <Lable For="invoices_customer_factory" title="المصنع" />
-          <Input_Default
+          <Select
             name="customer_factory"
             id="invoices_customer_factory"
-            pler="المصنع"
             register={register}
+            select="اختار المصنع"
+            options={["ميكانيكي", "يدوي", "آلي"]}
           />
         </div>
       </div>
-      <div className="row mt-4 primary-text">
-        <div className="col-4">
+      <div className="row mt-3 primary-text">
+        <div className="col">
           <Lable For="invoices_customer_type" title="النوع" />
-          <Input_Default
+          <Select
             name="customer_type"
             id="invoices_customer_type"
-            pler="النوع"
             register={register}
+            select="النوع"
+            options={["ميكانيكي", "يدوي", "آلي"]}
           />
         </div>
-        <div className="col-4">
+      </div>
+      <div className="row mt-3 primary-text">
+        <div className="col">
           <Lable For="invoices_customer_speedometer" title="العدّاد" />
           <Input_Default
             name="customer_speedometer"
@@ -130,7 +140,10 @@ function Form_lg({ setEditPage, editPage }) {
             register={register}
           />
         </div>
-        <div className="col-4">
+      </div>
+      <div className="row mt-3 primary-text"></div>
+      <div className="row mt-3 primary-text">
+        <div className="col">
           <Lable For="invoices_customer_year" title="السنة" />
           <Select
             name="customer_motion_year"
@@ -141,8 +154,8 @@ function Form_lg({ setEditPage, editPage }) {
           />
         </div>
       </div>
-      <div className="row mt-4 primary-text">
-        <div className="col-4">
+      <div className="row mt-3 primary-text">
+        <div className="col">
           <Lable For="invoices_customer_VIN" title="#VIN" />
           <Input_Default
             name="customer_VIN"
@@ -151,14 +164,16 @@ function Form_lg({ setEditPage, editPage }) {
             register={register}
           />
         </div>
-        <div className="col-4">
+      </div>
+      <div className="row mt-4 primary-text">
+        <div className="col-8">
           <Lable For="invoices_customer_service" title="النوع الخدمة" />
           <Select
             name="customer_motion_service"
             id="invoices_customer_service"
             register={register}
             select="النوع الخدمة"
-            options={["فحص محركات شامل", "فحص جزئي"]}
+            options={getYears()}
           />
         </div>
         <div className="col-4 text-center">
@@ -170,9 +185,8 @@ function Form_lg({ setEditPage, editPage }) {
           />
         </div>
       </div>
-      <div className="row mt-4 primary-text"></div>
       <div className="row mt-4 primary-text">
-        <div className="col-4">
+        <div className="col-6">
           <Lable For="invoices_customer_final_cost" title="لتكلفة النهائية" />
           <Input_Default
             name="customer_final_cost"
@@ -192,7 +206,7 @@ function Form_lg({ setEditPage, editPage }) {
           </button>
         </div>
       </div>
-      <div className="row mt-4 primary-text">
+      <div className="row mt-3 primary-text">
         <textarea
           className="form-control"
           placeholder="ملاحظات"
@@ -226,7 +240,7 @@ function Form_lg({ setEditPage, editPage }) {
         <></>
       )}
       <div className="d-flex justify-content-center">
-        <button className="w-30 btn btn-lg primary-bg" type="submit">
+        <button className="w-15 btn btn-lg primary-bg" type="submit">
           انشاء
         </button>
       </div>

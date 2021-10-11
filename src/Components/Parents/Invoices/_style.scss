@@ -1,5 +1,6 @@
 .invoices {
   position: relative;
+  width: 100%;
   & .row {
     width: 32%;
     @media (max-width: $l) {
@@ -22,33 +23,59 @@
     @media (max-width: 1216px) {
       width: 51rem;
       overflow-x: scroll;
+      &.active {
+        width: 60rem;
+      }
     }
     @media (max-width: 1053px) {
       width: 45rem;
+      &.active {
+        width: 50rem;
+      }
     }
     @media (max-width: $l) {
       width: 35rem;
+      &.active {
+        width: 40rem;
+      }
     }
     @media (max-width: 800px) {
       width: 30rem;
+      &.active {
+        width: 35rem;
+      }
     }
     @media (max-width: 767px) {
       width: 27rem;
+      &.active {
+        width: 35rem;
+      }
     }
     @media (max-width: 672px) {
       width: 23rem;
+      &.active {
+        width: 30rem;
+      }
     }
     @media (max-width: $s) {
-      width: 24rem;
+      &.active {
+        width: 24rem;
+      }
     }
     @media (max-width: 500px) {
-      width: 27rem;
+      &.active {
+        width: 22rem;
+      }
     }
     @media (max-width: 432px) {
-      width: 20rem;
+      &.active {
+        width: 20rem;
+      }
     }
     @media (max-width: 360px) {
-      width: 17rem;
+      &.active {
+        width: 17rem;
+      }
     }
   }
   & tbody td {

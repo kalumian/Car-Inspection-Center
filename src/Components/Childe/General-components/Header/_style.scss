@@ -25,6 +25,7 @@ header.header {
     display: flex;
     flex-direction: row-reverse;
     align-items: baseline;
+    cursor: context-menu;
     & p {
       padding: 5px 25px;
       margin: 0;
@@ -73,6 +74,9 @@ header.header {
     flex-direction: row-reverse;
     font-size: 22px;
     position: relative;
+    & i {
+      cursor: pointer;
+    }
     @media (max-width: $l) {
       font-size: 16px;
     }

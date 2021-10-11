@@ -1,0 +1,58 @@
+.container-steps {
+  width: 90%;
+  margin: auto;
+}
+.steps {
+  width: 90%;
+  margin: auto;
+  & .info {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10vh;
+    text-align: center;
+    background: white;
+    border: 1px solid $main-text-color;
+    & ul {
+      direction: rtl;
+      justify-content: space-around;
+      margin-top: 20px;
+      margin-bottom: 1rem;
+      display: flex;
+      width: 80%;
+      padding: 0;
+      & a {
+        text-decoration: none;
+        font-weight: 900;
+        transition: 0.4s;
+        position: relative;
+        font-size: 19px;
+        color: black;
+        &:hover {
+          color: rgba(0, 0, 0, 0.795);
+        }
+      }
+    }
+  }
+  & .info-car {
+    font-size: 21px;
+    padding: 16px;
+    font-weight: 900;
+    & span {
+      padding: 0 20px;
+    }
+  }
+  & .section {
+    background: white;
+    border: 1px solid;
+    margin: 70px 0;
+    padding: 45px 40px;
+    direction: rtl;
+    & .section-title {
+      font-size: 26px;
+      text-decoration: underline;
+      padding-right: 10px;
+      margin-top: 15px;
+    }
+  }
+}

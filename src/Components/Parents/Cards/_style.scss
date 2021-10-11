@@ -1,0 +1,23 @@
+.cards {
+  & .card {
+    width: 280px;
+    text-align: center;
+    color: ($main-bg-color);
+    
+  }
+  & .card-text {
+    border-bottom: 1px solid #f7f7f7;
+    padding: 2px 0;
+  }
+  & .btn {
+    width: 160px;
+    background-color: $main-bg-color !important;
+    border: $main-bg-color-hover !important;
+    &:hover {
+      background-color: $main-bg-color-hover !important;
+    }
+  }
+  & .card-header {
+    font-weight: bold;
+  }
+}

@@ -4,6 +4,9 @@
   padding: 0;
   margin: 0;
 }
+body {
+  background-color: #e9ecf5;
+}
 .primary-text {
   color: $main-text-color;
 }
@@ -44,8 +47,8 @@
   background: rgb(199, 199, 199);
 }
 
-// Dirction 
-.rtl{
+// Dirction
+.rtl {
   direction: rtl;
 }
 .page-content-wrapper {
