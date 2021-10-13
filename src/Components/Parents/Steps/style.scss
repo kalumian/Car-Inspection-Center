@@ -13,6 +13,7 @@
     text-align: center;
     background: white;
     border: 1px solid $main-text-color;
+    box-shadow: 1px 1px 6px 0px #000000b5;
     & ul {
       direction: rtl;
       justify-content: space-around;
@@ -48,6 +49,13 @@
     margin: 70px 0;
     padding: 45px 40px;
     direction: rtl;
+    transition: 0.6s;
+    height: 25vh;
+    box-shadow: 0px 0px 0px black;
+    &:hover {
+      height: 75vh;
+      box-shadow: 1px 1px 6px 0px #000000b5;
+    }
     & .section-title {
       font-size: 26px;
       text-decoration: underline;

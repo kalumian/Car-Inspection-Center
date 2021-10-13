@@ -11,7 +11,12 @@ function Error_Page({ kind }) {
       ) : kind === 400 ? (
         <>
           <span>ليس لديك صلاحية لدخول هذه الصفحة</span>
-          <Link onClick={() => History.goBack()}>العودة للصفحة السابقة</Link>
+          <Link onClick={() => History.goBack()} className="my-2">
+            العودة للصفحة السابقة
+          </Link>
+          <Link to="/login">
+              تسجيل الخروج
+          </Link>
         </>
       ) : (
         <>

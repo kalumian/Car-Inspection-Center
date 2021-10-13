@@ -20,14 +20,16 @@ import "./Style/all.scss";
 // Get Data From Context
 import { DataProider } from "./DataContext";
 import Sidebar from "./Components/Childe/General-components/Sidebar/Sidebar";
+import { useState } from "react";
 
 function App() {
-  const user = "الفني";
+  const [users, setUsers] = useState("");
   function Trans() {
+    console.log(users);
     const history = useHistory();
-    if (user === "الاستقبال") {
+    if (users === "الاستقبال") {
       history.push("/dashboard/فواتير");
-    } else if (user === "الفني") {
+    } else if (users === "الفني") {
       history.push("/dashboard/قائمة-الكروت");
     } else {
       history.push("/dashboard");
@@ -40,7 +42,7 @@ function App() {
         <Switch>
           {/* المشرف*/}
           <Route path="/dashboard" exact>
-            <Home user={user} />
+            <Home user={users} />
           </Route>
 
           {/* Trans To Home Page */}
@@ -49,24 +51,26 @@ function App() {
           {/* الاستقبال */}
 
           <Route path="/dashboard/فواتير" exact>
-            <Invoices user={user} />
+            <Invoices user={users} />
           </Route>
 
           <Route path="/dashboard/انشاء/فواتير" exact>
-            <Form_invoices user={user} />
+            <Form_invoices user={users} />
           </Route>
 
           {/* الفني */}
           <Route path="/dashboard/قائمة-الكروت" exact>
-            <Cards user={user} />
+            <Cards user={users} />
           </Route>
 
           <Route path="/dashboard/قائمة-الكروت/:id" exact>
-            <Steps user={user} />
+            <Steps user={users} />
           </Route>
 
           {/* عام */}
-          <Route path="/login" component={Login} exact />
+          <Route path="/login" exact>
+            <Login setUsers={setUsers} users={users} />
+          </Route>
         </Switch>
       </Router>
     </DataProider>

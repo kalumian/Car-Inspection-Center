@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../../../Assets/logo-no-bg.png";
-function Login() {
+function Login({ setUsers, users }) {
   const year = new Date().getFullYear();
   return (
     <section className="login d-flex justify-content-center align-items-center vh-100">
@@ -12,6 +12,9 @@ function Login() {
             class="form-control"
             id="floatingInput"
             placeholder="name@example.com"
+            onChange={({ target }) => {
+              setUsers(target.value);
+            }}
           />
           <label for="floatingInput">رقم الهوية</label>
         </div>
@@ -31,7 +34,7 @@ function Login() {
           </label>
         </div> */}
         <Link to="/">
-          <button class="w-100 btn btn-lg primary-bg" type="submit">
+          <button className="w-100 btn btn-lg primary-bg" type="submit">
             تسجيل الدخول
           </button>
         </Link>
