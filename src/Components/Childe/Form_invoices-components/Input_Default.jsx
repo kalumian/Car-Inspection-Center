@@ -9,7 +9,6 @@ function Input_Default({
 }) {
   return (
     <input
-    list="false"
       type={type}
       {...register(`${name}`, req ? { required: true } : { required: false })}
       className={`form-control ${classs}`}

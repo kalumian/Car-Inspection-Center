@@ -1,10 +1,10 @@
 import Header from "../../Childe/General-components/Header/Header";
 import Section from "../../Childe/Steps-Components/Section";
 import { Link } from "react-router-dom";
-import Computer from "../../Childe/Steps-Components/Computer";
-import UnderCar from "../../Childe/Steps-Components/UnderCar";
-import Body from "../../Childe/Steps-Components/Body";
-import FieldTrial from "../../Childe/Steps-Components/FieldTrial";
+import Computer from "../../Childe/Steps-Components/Computer/Computer";
+import UnderCar from "../../Childe/Steps-Components/UnderCar/UnderCar";
+import Body from "../../Childe/Steps-Components/Body/Body";
+import FieldTrial from "../../Childe/Steps-Components/FieldTrial/FieldTrial";
 function Steps() {
   return (
     <div className="container-steps">
