@@ -27,6 +27,8 @@ function Form_lg({ setEditPage, editPage }) {
       ...data,
       Created_date: `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`,
       by: "استقبال",
+      invoicesNumber:"",
+      invoicesNumberBransh:""
     });
     reset();
     setMessage(true);

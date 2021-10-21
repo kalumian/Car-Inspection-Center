@@ -11,64 +11,72 @@ function Body() {
       ...input,
       ...data,
     });
+    console.log(input);
   };
   return (
-    <div className="body-step">
-      <div className="content">
+    <div className="body-step text-center content">
+      <div className="body-content">
         <header>
           <Body_Steps_Section
             name="car-type"
             select="تحديد نوع السيارة"
             handleInputs={handleInputs}
             options={["HATCHBACK", "SEDAN", "SUV", "Crossover"]}
-            id="car-type"
+            id="car_type"
             header={true}
           />
         </header>
         <Body_Steps_Section
-          name="the-front"
+          name="the_front"
           handleInputs={handleInputs}
-          id="the-front"
+          id="the_front"
           select="الجهة الأمامية"
-          type="front"
+          type={input.car_type}
         />
         <Body_Steps_Section
-          name="the-back"
-          id="the-back"
+          name="the_back"
+          id="the_back"
           select="الجهة الخلفية"
-          type="back"
           handleInputs={handleInputs}
+          type={input.car_type}
         />
         <Body_Steps_Section
-          name="the-left"
+          name="the_top"
+          id="the_top"
+          select="الجهة العلوية"
           handleInputs={handleInputs}
-          id="the-left"
+          type={input.car_type}
+        />
+        <Body_Steps_Section
+          name="the_left"
+          handleInputs={handleInputs}
+          id="the_left"
           select="الجهة الجانبية اليسرى"
-          type="left"
+          type={input.car_type}
         />
         <Body_Steps_Section
-          name="the-right"
-          id="the-right"
+          name="the_right"
+          id="the_right"
           handleInputs={handleInputs}
           select="الجهة الجانبية اليمنى"
-          type="right"
+          type={input.car_type}
         />
         <Body_Steps_Section
-          name="the-left-base"
-          id="the-left-base"
+          name="the_left_base"
+          id="the_left_base"
           handleInputs={handleInputs}
           select="القواعد اليسرى"
-          type="left-base"
+          type={input.car_type}
         />
         <Body_Steps_Section
-          name="the-right-base"
-          id="the-right-base"
+          name="the_right_base"
+          id="the_right_base"
           handleInputs={handleInputs}
           select="القواعد اليمنى"
-          type="right-base"
+          type={input.car_type}
         />
       </div>
-      <button className="Save">حفظ</button>
+      <button className="save">حفظ</button>
     </div>
   );
 }

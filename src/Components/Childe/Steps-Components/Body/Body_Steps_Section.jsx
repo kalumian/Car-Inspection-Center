@@ -8,6 +8,7 @@ function Body_Steps_Section({
   name,
   header = false,
   options,
+  type
 }) {
   const [input, setInput] = useState();
   const handleInput = ({ target }) => {

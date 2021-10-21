@@ -53,14 +53,28 @@
     box-shadow: 0px 0px 0px black;
     overflow: hidden;
     height: 25vh;
+    & .content {
+      opacity: 0;
+      justify-content: center;
+      align-items: center;
+      & .check {
+        align-items: center;
+      }
+    }
+    &:hover {
+      & .content {
+        opacity: 1;
+      }
+    }
+    & .section-title {
+      font-size: 26px;
+      text-decoration: underline;
+      padding-right: 10px;
+      margin-top: 15px;
+    }
     & .body-step {
       & header {
         margin-top: 30px;
-      }
-      & .content {
-        margin: 40px 0;
-        opacity: 0;
-        transition: 0.4s;
       }
       & .body-step-section {
         justify-content: space-around;
@@ -75,18 +89,28 @@
         }
       }
     }
-    &:hover {
-      box-shadow: 1px 1px 6px 0px #000000b5;
-      height: 1850px;
-      & .content {
-        opacity: 1;
+    & .computer-step {
+      & .check {
+        margin: auto;
       }
     }
-    & .section-title {
-      font-size: 26px;
-      text-decoration: underline;
-      padding-right: 10px;
-      margin-top: 15px;
+    &:hover {
+      box-shadow: 1px 1px 6px 0px #000000b5;
+      height: auto;
+    }
+  }
+  & button.save {
+    height: 40px;
+    border: 1px solid;
+    font-weight: 700;
+    color: white;
+    font-size: 16px;
+    padding: 0 50px;
+    border-radius: 10px;
+    background: #29375a;
+    transition: 0.4s;
+    &:hover {
+      background-color: $main-bg-color-hover;
     }
   }
 }
