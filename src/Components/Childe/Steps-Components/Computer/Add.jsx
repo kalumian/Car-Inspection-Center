@@ -2,8 +2,8 @@ import Lable from "../../Form_invoices-components/Lable";
 function Add({ statePage, setStatePage }) {
   return (
     <dic className="content-computer w-100 ">
-      <div className="check mt-4 w-75 justify-content-around d-flex">
-        <div className="w-25 ms-4 text-center">
+      <div className="check mt-4 justify-content-around d-flex">
+        <div className="code text-center">
           <Lable
             For="invoices_customer_name"
             title="اضافة كود المشكلة"
@@ -33,9 +33,7 @@ function Add({ statePage, setStatePage }) {
         <button className="save mx-2" onClick={() => setStatePage("كنترول")}>
           عودة
         </button>
-        <button className="save mx-2">
-          اضافة
-        </button>
+        <button className="save mx-2">اضافة</button>
       </div>
     </dic>
   );
