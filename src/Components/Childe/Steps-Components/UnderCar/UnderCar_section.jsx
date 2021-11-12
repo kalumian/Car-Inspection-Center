@@ -16,7 +16,7 @@ function UnderCar_section({ title, options }) {
 
       <div className="checks d-flex flex-column rtl">
         <button
-          className="save my-4"
+          className="save my-4 text-start"
           onClick={() => {
             console.log({
               title,

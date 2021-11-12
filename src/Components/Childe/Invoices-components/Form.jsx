@@ -1,4 +1,4 @@
-function form() {
+function form({ user }) {
   return (
     <form action="" className="rtl mt-5  px-4">
       <div className="d-flex justify-content-center flex-wrap">
@@ -16,13 +16,17 @@ function form() {
             />
           </div>
         </div>
-        {/* <div className="row mx-1 my-2">
-          <select className="form-select" aria-label="Default select example">
-            <option selected>الفرع</option>
-            <option value="1">الدمام</option>
-            <option value="2">الرياض</option>
-          </select>
-        </div> */}
+        {user === "المشرف" ? (
+          <div className="row mx-1 my-2">
+            <select className="form-select" aria-label="Default select example">
+              <option selected>الفرع</option>
+              <option value="1">الدمام</option>
+              <option value="2">الرياض</option>
+            </select>
+          </div>
+        ) : (
+          <></>
+        )}
         <div className="row mx-1 my-2">
           <select className="form-select" aria-label="Default select example">
             <option selected>الحالة</option>

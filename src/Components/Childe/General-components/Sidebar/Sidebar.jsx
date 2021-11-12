@@ -54,11 +54,40 @@ function Sidebar({ user }) {
           </>
         ) : user === "المشرف" ? (
           <>
-            <Link_sidebar title="الرئيسية" icon="fas fa-home" link="" />
+            <Link_sidebar
+              title="الرئيسية"
+              icon="fas fa-home"
+              link="الرئيسية"
+            />
             <Link_sidebar
               title="قائمة الموظفين"
-              icon="fas fa-file-invoice"
+              icon="fas fa-user-tie"
               link="موظفين"
+            />
+            <Link_sidebar
+              title="إدارة الحسابات"
+              icon="fas fa-users-cog"
+              link="حسابات"
+            />
+            <Link_sidebar
+              title="اعدادات الموقع"
+              icon="fas fa-sliders-h"
+              link="اعدادات"
+            />
+            <Link_sidebar
+              title="الفواتير"
+              icon="fas fa-file-invoice"
+              link="فواتير"
+            />
+            <Link_sidebar
+              title="انشاء فاتورة"
+              icon="fas fa-plus"
+              link="انشاء/فواتير"
+            />
+            <Link_sidebar
+              title="قائمة الكروت"
+              icon="far fa-credit-card"
+              link="قائمة-الكروت"
             />
           </>
         ) : (

@@ -12,14 +12,22 @@ function Invoices({ user }) {
           <div className="invoices">
             <Header user={user} />
             <h2 className="text-center mt-4 ">قائمة الفواتير</h2>
-            <Form />
+            <Form user={user} />
             <Table />
           </div>
         </div>
       </>
     );
   };
-  return <>{user === "الاستقبال" ? <Content /> : <Error_Page kind={400} />}</>;
+  return (
+    <>
+      {user === "الاستقبال" || user === "المشرف" ? (
+        <Content />
+      ) : (
+        <Error_Page kind={400} />
+      )}
+    </>
+  );
 }
 
 export default Invoices;

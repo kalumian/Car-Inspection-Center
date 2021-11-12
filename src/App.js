@@ -13,6 +13,9 @@ import Form_invoices from "./Components/Parents/Form_invoices/Form_invoices";
 import Invoices from "./Components/Parents/Invoices/Invoices";
 import Cards from "./Components/Parents/Cards/Cards";
 import Steps from "./Components/Parents/Steps/Steps";
+import Staff from "./Components/Parents/Staff/Staff";
+import Users from "./Components/Parents/Users/Users";
+import Web_Setting from "./Components/Parents/Web_setting/Web_Setting";
 
 // Import Style
 import "./Style/all.scss";
@@ -23,16 +26,17 @@ import Sidebar from "./Components/Childe/General-components/Sidebar/Sidebar";
 import { useState } from "react";
 
 function App() {
-  const [users, setUsers] = useState("");
+  const [users, setUsers] = useState("المشرف");
   function Trans() {
-    console.log(users);
     const history = useHistory();
     if (users === "الاستقبال") {
       history.push("/dashboard/فواتير");
     } else if (users === "الفني") {
       history.push("/dashboard/قائمة-الكروت");
+    } else if (users === "المشرف") {
+      history.push("/dashboard/الرئيسية");
     } else {
-      history.push("/dashboard");
+      history.push("/dashboard/الرئيسية");
     }
     return <></>;
   }
@@ -41,8 +45,17 @@ function App() {
       <Router>
         <Switch>
           {/* المشرف*/}
-          <Route path="/dashboard" exact>
+          <Route path="/dashboard/الرئيسية" exact>
             <Home user={users} />
+          </Route>
+          <Route path="/dashboard/موظفين" exact>
+            <Staff user={users} />
+          </Route>
+          <Route path="/dashboard/حسابات" exact>
+            <Users user={users} />
+          </Route>
+          <Route path="/dashboard/اعدادات" exact>
+            <Web_Setting user={users} />
           </Route>
 
           {/* Trans To Home Page */}
