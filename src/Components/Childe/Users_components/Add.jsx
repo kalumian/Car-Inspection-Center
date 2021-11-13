@@ -29,7 +29,7 @@ function Add() {
             </select>
           </div>
           <div className="col-4">
-           <button className="add">اضاف</button>
+           <button className="min">اضاف</button>
           </div>
         </div>
       </div>

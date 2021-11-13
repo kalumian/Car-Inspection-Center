@@ -29,8 +29,8 @@ function Edit() {
             </select>
           </div>
           <div className="col-4">
-            <button className="add">تحديد</button>
-            <button className="add">تعديل</button>
+            <button className="min mx-1">تحديد</button>
+            <button className="min mx-1">تعديل</button>
           </div>
         </div>
       </div>

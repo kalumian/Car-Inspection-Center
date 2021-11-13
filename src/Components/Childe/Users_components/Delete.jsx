@@ -16,7 +16,7 @@ function Delete() {
           </select>
         </div>
         <div className="col-4">
-          <button className="add">حذف</button>
+          <button className="min">حذف</button>
         </div>
       </div>
     </>

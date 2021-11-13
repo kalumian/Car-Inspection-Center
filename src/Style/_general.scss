@@ -66,3 +66,25 @@ body {
     margin-left: -15rem;
   }
 }
+
+// Button
+button.min {
+  height: 40px;
+  border: 1px solid;
+  font-weight: 700;
+  color: white;
+  font-size: 16px;
+  padding: 0 50px;
+  border-radius: 10px;
+  background: #29375a;
+  transition: 0.4s;
+  @media (max-width: $m) {
+    height: 35px;
+    font-size: 15px;
+    padding: 0 40px;
+    margin: 5px 0;
+  }
+  &:hover {
+    background-color: $main-bg-color-hover;
+  }
+}
