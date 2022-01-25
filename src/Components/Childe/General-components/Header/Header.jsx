@@ -20,7 +20,7 @@ function Header({ user }) {
       <div className="info">
         <p>
           <span>
-            احمد علي جابر <i class="fas fa-user"></i>
+            مصطفى سعيد <i class="fas fa-user"></i>
           </span>
           <span>{user}</span>
         </p>

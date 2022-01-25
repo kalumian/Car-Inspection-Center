@@ -13,6 +13,7 @@ function form({ user }) {
               placeholder="البحث"
               aria-label="Username"
               aria-describedby="basic-addon1"
+              autoComplete="off"
             />
           </div>
         </div>

@@ -17,7 +17,7 @@ function Form_sm({
   return (
     <div className="form-invoices primary-text rtl mobile">
       <h2 className="text-center mt-4 ">انشاء فاتورة</h2>
-      <form action="">
+      <form action="" autocomplete="off">
         <div className="row mt-3 ">
           <div className="col">
             <label htmlFor="invoices-customer-name" className="form-label">

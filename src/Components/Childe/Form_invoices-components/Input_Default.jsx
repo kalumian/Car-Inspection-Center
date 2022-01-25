@@ -14,6 +14,7 @@ function Input_Default({
       className={`form-control ${classs}`}
       id={id}
       placeholder={pler}
+      autoComplete="off"
     />
   );
 }

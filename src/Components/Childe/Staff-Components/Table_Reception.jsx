@@ -4,10 +4,9 @@ function Table_Reception() {
       <thead className="fw-bolder">
         <tr>
           <td>الاسم</td>
-          <td>الرقم الوظيفي</td>
+          <td>الرقم الهوية</td>
           <td>رقم الجوال</td>
-          <td>اجمالي الفواتير</td>
-          <td>آخر ظهور</td>
+          <td>الفواتير المنجزة</td>
         </tr>
       </thead>
       <tbody>
@@ -16,7 +15,6 @@ function Table_Reception() {
           <td>10115896476</td>
           <td>+965784255</td>
           <td>6481</td>
-          <td>2021/5/6</td>
         </tr>
       </tbody>
     </>

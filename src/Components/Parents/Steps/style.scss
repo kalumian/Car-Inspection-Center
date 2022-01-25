@@ -209,6 +209,12 @@
           font-size: 20px;
         }
       }
+      .form-range {
+        cursor: e-resize !important;
+        & :active {
+          cursor: e-resize !important;
+        }
+      }
     }
     &:hover {
       box-shadow: 1px 1px 6px 0px #000000b5;

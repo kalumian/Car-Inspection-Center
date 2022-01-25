@@ -4,9 +4,9 @@ function Technician() {
       <thead className="fw-bolder">
         <tr>
           <td>الاسم</td>
-          <td>الرقم الوظيفي</td>
-          <td>عدد الفحوصات</td>
-          <td>رقم الجوال</td> <td>آخر ظهور</td>
+          <td>رقم الجوال</td>
+          <td>الفحوصات المنجزة</td>
+          <td>عدد اجمالي الساعات</td>
         </tr>
       </thead>
       <tbody>

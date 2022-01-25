@@ -11,6 +11,7 @@ function Login({ setUsers, users }) {
             type="email"
             class="form-control"
             id="floatingInput"
+            autoComplete="off"
             placeholder="name@example.com"
             onChange={({ target }) => {
               setUsers(target.value);
@@ -24,6 +25,7 @@ function Login({ setUsers, users }) {
             class="form-control"
             id="floatingPassword"
             placeholder="Password"
+            autoComplete="off"
           />
           <label for="floatingPassword">كلمة المرور</label>
         </div>
@@ -40,6 +42,12 @@ function Login({ setUsers, users }) {
         </Link>
         <p class="mt-4 mb-3 text-muted">&copy; 2020 - {year}</p>
       </form>
+      <ul>
+        الحسابات المتوفرة<br/>ادخلها في خانة رقم الهوية
+        <li>الاستقبال</li>
+        <li>المشرف</li>
+        <li>الفني</li>
+      </ul>
     </section>
   );
 }

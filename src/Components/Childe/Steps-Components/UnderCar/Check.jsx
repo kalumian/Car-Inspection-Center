@@ -9,7 +9,7 @@ function Check({ name, key, section, handleCheck}) {
         onChange={handleCheck}
         section={section}
       />
-      <label className="form-check-label" for="flexCheckDefault">
+      <label className="form-check-label" htmlFor="flexCheckDefault">
         {name}
       </label>
     </div>

@@ -26,7 +26,7 @@ import Sidebar from "./Components/Childe/General-components/Sidebar/Sidebar";
 import { useState } from "react";
 
 function App() {
-  const [users, setUsers] = useState("المشرف");
+  const [users, setUsers] = useState("");
   function Trans() {
     const history = useHistory();
     if (users === "الاستقبال") {

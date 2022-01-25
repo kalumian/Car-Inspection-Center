@@ -38,7 +38,7 @@ function Form_lg({ setEditPage, editPage }) {
     console.log(data);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} autocomplete="off">
       <div className="row mt-5 ">
         <div className="col-4">
           <Lable For="invoices_customer_name" title="اسم العميل" />
