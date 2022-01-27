@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 
 // Impoert Functions
-import { getYears } from "./Functions";
+import { getYears, GetFullDateString } from "../../../Function/Times";
 import { DataContext } from "../../../DataContext";
 
 function Form_lg({ setEditPage, editPage }) {
@@ -22,10 +22,9 @@ function Form_lg({ setEditPage, editPage }) {
 
   // Functions
   const onSubmit = (data) => {
-    const date = new Date();
     handleCard({
       ...data,
-      Created_date: `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`,
+      Created_date: GetFullDateString(),
     });
     reset();
     setMessage(true);

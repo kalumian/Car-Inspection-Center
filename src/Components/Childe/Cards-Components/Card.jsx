@@ -8,6 +8,7 @@ function Card({
   customer_VIN,
   customer_type,
   customer_factory,
+  user,
 }) {
   return (
     <div class="card my-4">
@@ -24,9 +25,15 @@ function Card({
           {String(customer_board_letters).split("").join(" ")} -{" "}
           {String(customer_board_number).split("").join(" ")}
         </p>
-        <Link to="/dashboard/قائمة-الكروت/sd123" class="btn btn-primary">
-          بدء الفحص
-        </Link>
+        {user !== "المشرف" ? (
+          <>
+            <Link to="/dashboard/قائمة-الكروت/sd123" class="btn btn-primary">
+              بدء الفحص
+            </Link>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

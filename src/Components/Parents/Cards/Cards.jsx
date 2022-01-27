@@ -26,6 +26,7 @@ function Cards({ user }) {
                   customer_VIN={item.customer_VIN}
                   customer_type={item.customer_type}
                   customer_factory={item.customer_factory}
+                  user={user}
                 />
               );
             })}

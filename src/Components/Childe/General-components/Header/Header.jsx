@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
+// Import From Lib
+import { useState } from "react";
 
-function Header({ user }) {
+// Import Data Fromt useContext
+import { useContext } from "react";
+import { DataContext } from "../../../../DataContext";
+
+// import Function
+import { GettoDayArabic, GetHours, GetMin } from "../../../../Function/Times";
+function Header() {
+  // Import User
+  const { user } = useContext(DataContext);
+
+  // useState
   const [date, setDate] = useState(new Date());
-  const time = date;
-  const days = [
-    "الاحد",
-    "الاثنين",
-    "الثلاثاء",
-    "الاربعاء",
-    "الخميس",
-    "الجمعة",
-    "السبت",
-  ];
 
+  const time = date;
   setInterval(() => setDate(new Date()), 9999);
 
   return (
@@ -28,16 +30,12 @@ function Header({ user }) {
           <span>{time.getDate()}</span> :التاريخ
         </p>
         <p>
-          اليوم: <span>{days[time.getDay()]}</span>
+          اليوم: <span>{GettoDayArabic(time)}</span>
         </p>
         <p>
           <span>
-            {(time.getHours() + 24) % 12 || 12}:
-            {time.getMinutes() === 0
-              ? "00"
-              : time.getMinutes() >= 10
-              ? time.getMinutes()
-              : "0" + time.getMinutes()}
+            {GetHours(time)}:
+            {GetMin(time)}
           </span>{" "}
           :التوقيت
         </p>

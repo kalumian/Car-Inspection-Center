@@ -5,14 +5,20 @@ import Sidebar from "../../Childe/General-components/Sidebar/Sidebar";
 import Error_Page from "../Error_Page/Error_Page";
 import Notifications from "../../Childe/Home-components/Notifications";
 
-function Home({ user }) {
+// Import Data Fromt useContext
+import { useContext } from "react";
+import { DataContext } from "../../../DataContext";
+
+
+function Home() {
+  const { user } = useContext(DataContext);
   return (
     <>
       {user === "المشرف" ? (
         <div className="d-flex wrapper flex-row-reverse">
-          <Sidebar user={user} />
+          <Sidebar />
           <div className="container-fluid px-4 home">
-            <Header user={user} />
+            <Header />
             {/* Stats Components */}
             <div className="row g-3 my-2">
               <Card_stats

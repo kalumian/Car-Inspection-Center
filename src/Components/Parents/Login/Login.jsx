@@ -1,6 +1,15 @@
+// Import from Lib
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+
+// Import Images
 import logo from "../../../Assets/logo-no-bg.png";
-function Login({ setUsers, users }) {
+
+// Import DataContext
+import { DataContext } from "../../../DataContext";
+
+function Login() {
+  const { setUser } = useContext(DataContext);
   const year = new Date().getFullYear();
   return (
     <section className="login d-flex justify-content-center align-items-center vh-100">
@@ -13,8 +22,9 @@ function Login({ setUsers, users }) {
             id="floatingInput"
             autoComplete="off"
             placeholder="name@example.com"
+            // ---- Set User ---
             onChange={({ target }) => {
-              setUsers(target.value);
+              setUser(target.value);
             }}
           />
           <label for="floatingInput">رقم الهوية</label>
@@ -29,12 +39,7 @@ function Login({ setUsers, users }) {
           />
           <label for="floatingPassword">كلمة المرور</label>
         </div>
-
-        {/* <div class="checkbox mb-3 ">
-          <label>
-            <input type="checkbox" value="remember-me" /> تذكرني
-          </label>
-        </div> */}
+        {/* ------------ Link ---------------- */}
         <Link to="/">
           <button className="w-100 btn btn-lg primary-bg" type="submit">
             تسجيل الدخول
@@ -42,12 +47,6 @@ function Login({ setUsers, users }) {
         </Link>
         <p class="mt-4 mb-3 text-muted">&copy; 2020 - {year}</p>
       </form>
-      <ul>
-        الحسابات المتوفرة<br/>ادخلها في خانة رقم الهوية
-        <li>الاستقبال</li>
-        <li>المشرف</li>
-        <li>الفني</li>
-      </ul>
     </section>
   );
 }

@@ -1,12 +1,13 @@
-// Import From NPM
+// Import From Lib
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   useHistory,
 } from "react-router-dom";
+import { useState, useContext } from "react";
 
-// Impoer Pages
+// Impoer Components
 import Home from "./Components/Parents/Home/Home";
 import Login from "./Components/Parents/Login/Login";
 import Form_invoices from "./Components/Parents/Form_invoices/Form_invoices";
@@ -21,72 +22,72 @@ import Web_Setting from "./Components/Parents/Web_setting/Web_Setting";
 import "./Style/all.scss";
 
 // Get Data From Context
-import { DataProider } from "./DataContext";
-import Sidebar from "./Components/Childe/General-components/Sidebar/Sidebar";
-import { useState } from "react";
+import { DataContext, DataProider } from "./DataContext";
+
+// Import Functions
+import { DefaultLinks } from "./Function/UsersControl";
 
 function App() {
-  const [users, setUsers] = useState("");
+  const { user } = useContext(DataContext);
+
+  // For Transfer
   function Trans() {
     const history = useHistory();
-    if (users === "الاستقبال") {
-      history.push("/dashboard/فواتير");
-    } else if (users === "الفني") {
-      history.push("/dashboard/قائمة-الكروت");
-    } else if (users === "المشرف") {
-      history.push("/dashboard/الرئيسية");
-    } else {
-      history.push("/dashboard/الرئيسية");
-    }
+    history.push(DefaultLinks(user));
     return <></>;
   }
   return (
-    <DataProider>
       <Router>
         <Switch>
           {/* المشرف*/}
-          <Route path="/dashboard/الرئيسية" exact>
-            <Home user={users} />
-          </Route>
-          <Route path="/dashboard/موظفين" exact>
-            <Staff user={users} />
-          </Route>
-          <Route path="/dashboard/حسابات" exact>
-            <Users user={users} />
-          </Route>
-          <Route path="/dashboard/اعدادات" exact>
-            <Web_Setting user={users} />
-          </Route>
+          <Route path="/dashboard/الرئيسية" children={<Home />} exact />
+          <Route
+            path="/dashboard/موظفين"
+            children={<Staff user={user} />}
+            exact
+          />
+          <Route
+            path="/dashboard/حسابات"
+            exact
+            children={<Users user={user} />}
+          />
+          <Route
+            path="/dashboard/اعدادات"
+            exact
+            children={<Web_Setting user={user} />}
+          />
 
           {/* Trans To Home Page */}
           <Route path="/" component={Trans} exact />
 
           {/* الاستقبال */}
-
-          <Route path="/dashboard/فواتير" exact>
-            <Invoices user={users} />
-          </Route>
-
-          <Route path="/dashboard/انشاء/فواتير" exact>
-            <Form_invoices user={users} />
-          </Route>
+          <Route
+            path="/dashboard/فواتير"
+            exact
+            children={<Invoices user={user} />}
+          />
+          <Route
+            path="/dashboard/انشاء/فواتير"
+            exact
+            children={<Form_invoices user={user} />}
+          />
 
           {/* الفني */}
-          <Route path="/dashboard/قائمة-الكروت" exact>
-            <Cards user={users} />
-          </Route>
-
-          <Route path="/dashboard/قائمة-الكروت/:id" exact>
-            <Steps user={users} />
-          </Route>
+          <Route
+            path="/dashboard/قائمة-الكروت"
+            exact
+            children={<Cards user={user} />}
+          />
+          <Route
+            path="/dashboard/قائمة-الكروت/:id"
+            exact
+            children={<Steps user={user} />}
+          />
 
           {/* عام */}
-          <Route path="/login" exact>
-            <Login setUsers={setUsers} users={users} />
-          </Route>
+          <Route path="/login" exact children={<Login/>} />
         </Switch>
       </Router>
-    </DataProider>
   );
 }
 

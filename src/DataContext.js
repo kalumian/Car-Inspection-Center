@@ -1,161 +1,21 @@
-import React, { useState } from "react";
+// Import Lib
+import React, { useState, createContext } from "react";
+export const DataContext = createContext();
 
-export const DataContext = React.createContext();
 export function DataProider(props) {
+  // use State
   const [stateSide, setStateSide] = useState(false);
-  const [cards, setCards] = useState([
-    {
-      customer_VIN: "2134",
-      customer_board_letters: "2134",
-      customer_board_number: "يسبس",
-      customer_cost: "200",
-      customer_crane: "5",
-      customer_factory: "فورد",
-      customer_final_cost: "150",
-      customer_motion_service: "فحص محركات شاملة",
-      customer_motion_year: "1988",
-      customer_speedometer: "213",
-      customer_type: "ربع",
-      email_customer: "asdas@gmail.com",
-      name_customer: "محمد فيصل",
-      notes: "",
-      number_customer: "054312314",
-      Created_date: "2021/5/2",
-    },
-    {
-      customer_VIN: "2134",
-      customer_board_letters: "2134",
-      customer_board_number: "يسبس",
-      customer_cost: "200",
-      customer_crane: "5",
-      customer_factory: "فورد",
-      customer_final_cost: "150",
-      customer_motion_service: "فحص محركات شاملة",
-      customer_motion_year: "1988",
-      customer_speedometer: "213",
-      customer_type: "ربع",
-      email_customer: "asdas@gmail.com",
-      name_customer: "محمد فيصل",
-      notes: "",
-      number_customer: "054312314",
-      Created_date: "2021/5/2",
-    },
-    {
-      customer_VIN: "2134",
-      customer_board_letters: "2134",
-      customer_board_number: "يسبس",
-      customer_cost: "200",
-      customer_crane: "5",
-      customer_factory: "فورد",
-      customer_final_cost: "150",
-      customer_motion_service: "فحص محركات شاملة",
-      customer_motion_year: "1988",
-      customer_speedometer: "213",
-      customer_type: "ربع",
-      email_customer: "asdas@gmail.com",
-      name_customer: "محمد فيصل",
-      notes: "",
-      number_customer: "054312314",
-      Created_date: "2021/5/2",
-    },
-    {
-      customer_VIN: "2134",
-      customer_board_letters: "2134",
-      customer_board_number: "يسبس",
-      customer_cost: "200",
-      customer_crane: "5",
-      customer_factory: "فورد",
-      customer_final_cost: "150",
-      customer_motion_service: "فحص محركات شاملة",
-      customer_motion_year: "1988",
-      customer_speedometer: "213",
-      customer_type: "ربع",
-      email_customer: "asdas@gmail.com",
-      name_customer: "محمد فيصل",
-      notes: "",
-      number_customer: "054312314",
-      Created_date: "2021/5/2",
-    },
-    {
-      customer_VIN: "2134",
-      customer_board_letters: "2134",
-      customer_board_number: "يسبس",
-      customer_cost: "200",
-      customer_crane: "5",
-      customer_factory: "فورد",
-      customer_final_cost: "150",
-      customer_motion_service: "فحص محركات شاملة",
-      customer_motion_year: "1988",
-      customer_speedometer: "213",
-      customer_type: "ربع",
-      email_customer: "asdas@gmail.com",
-      name_customer: "محمد فيصل",
-      notes: "",
-      number_customer: "054312314",
-      Created_date: "2021/5/2",
-    },
-    {
-      customer_VIN: "2134",
-      customer_board_letters: "2134",
-      customer_board_number: "يسبس",
-      customer_cost: "200",
-      customer_crane: "5",
-      customer_factory: "فورد",
-      customer_final_cost: "150",
-      customer_motion_service: "فحص محركات شاملة",
-      customer_motion_year: "1988",
-      customer_speedometer: "213",
-      customer_type: "ربع",
-      email_customer: "asdas@gmail.com",
-      name_customer: "محمد فيصل",
-      notes: "",
-      number_customer: "054312314",
-      Created_date: "2021/5/2",
-    },
-    {
-      customer_VIN: "2134",
-      customer_board_letters: "2134",
-      customer_board_number: "يسبس",
-      customer_cost: "200",
-      customer_crane: "5",
-      customer_factory: "فورد",
-      customer_final_cost: "150",
-      customer_motion_service: "فحص محركات شاملة",
-      customer_motion_year: "1988",
-      customer_speedometer: "213",
-      customer_type: "ربع",
-      email_customer: "asdas@gmail.com",
-      name_customer: "محمد فيصل",
-      notes: "",
-      number_customer: "054312314",
-      Created_date: "2021/5/2",
-    },
-    {
-      customer_VIN: "2134",
-      customer_board_letters: "2134",
-      customer_board_number: "يسبس",
-      customer_cost: "200",
-      customer_crane: "5",
-      customer_factory: "فورد",
-      customer_final_cost: "150",
-      customer_motion_service: "فحص محركات شاملة",
-      customer_motion_year: "1988",
-      customer_speedometer: "213",
-      customer_type: "ربع",
-      email_customer: "asdas@gmail.com",
-      name_customer: "محمد فيصل",
-      notes: "",
-      number_customer: "054312314",
-      Created_date: "2021/5/2",
-    },
-  ]);
+  const [user, setUser] = useState("");
+
+  // Cards
+  const [cards, setCards] = useState([]);
   const handleCard = (card) => {
     setCards([...cards, card]);
   };
 
   return (
     <DataContext.Provider
-      value={{ cards, handleCard, stateSide, setStateSide }}
+      value={{ cards, handleCard, stateSide, setStateSide, user, setUser }}
     >
       {props.children}
     </DataContext.Provider>

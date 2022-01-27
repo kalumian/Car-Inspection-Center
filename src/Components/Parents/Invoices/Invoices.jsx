@@ -1,8 +1,13 @@
+// Import Components
 import Header from "../../Childe/General-components/Header/Header";
 import Sidebar from "../../Childe/General-components/Sidebar/Sidebar";
 import Table from "../../Childe/Invoices-components/Table";
 import Form from "../../Childe/Invoices-components/Form";
 import Error_Page from "../Error_Page/Error_Page";
+
+// Import Functions
+import { WhatThisAccount } from "../../../Function/UsersControl";
+
 function Invoices({ user }) {
   const Content = () => {
     return (
@@ -21,7 +26,8 @@ function Invoices({ user }) {
   };
   return (
     <>
-      {user === "الاستقبال" || user === "المشرف" ? (
+      {WhatThisAccount(user) === "الاستقبال" ||
+      WhatThisAccount(user) === "المشرف" ? (
         <Content />
       ) : (
         <Error_Page kind={400} />
