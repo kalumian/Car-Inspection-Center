@@ -1,0 +1,243 @@
+.container-steps {
+  width: 80%;
+  margin: auto;
+}
+.steps {
+  margin: auto;
+  & .info {
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 10vh auto;
+    text-align: center;
+    background: white;
+    width: 600px;
+    justify-content: space-around;
+    text-align: left;
+    @media (max-width: $m) {
+      width: 500px;
+    }
+    @media (max-width: $s) {
+      width: 320px;
+    }
+    & ul {
+      direction: rtl;
+      margin-top: 20px;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      list-style: none;
+      & a {
+        text-decoration: none;
+        font-weight: 900;
+        transition: 0.4s;
+        position: relative;
+        font-size: 19px;
+        color: $main-bg-color;
+        @media (max-width: $s) {
+          font-size: 12px;
+        }
+        & li {
+          padding: 6px;
+        }
+        &:hover {
+          color: rgba(0, 0, 0, 0.795);
+        }
+      }
+    }
+  }
+  & .info-car {
+    text-align: right;
+    font-size: 21px;
+    font-weight: 900;
+    flex-direction: column;
+    display: flex;
+    & span {
+      justify-content: flex-end;
+      display: flex;
+      color: $main-bg-color;
+      padding: 10px;
+      align-items: center;
+      @media (max-width: $s) {
+        font-size: 15px;
+        padding: 3px;
+      }
+      & i {
+        font-size: 30px;
+        padding: 0 12px;
+        @media (max-width: $s) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  & .section {
+    background: white;
+    margin: 100px 0;
+    padding: 45px 40px;
+    direction: rtl;
+    @media (max-width: $m) {
+      padding: 20px 20px;
+    }
+    @media (max-width: $s) {
+      padding: 5px 5px;
+    }
+
+    & .content {
+      justify-content: center;
+      align-items: center;
+      & .check {
+        align-items: center;
+      }
+    }
+
+    & .section-title {
+      font-size: 26px;
+      text-decoration: underline;
+      padding-right: 10px;
+      margin-top: 15px;
+    }
+    & .body-step {
+      & header {
+        margin-top: 30px;
+      }
+      & .body-step-section {
+        justify-content: space-around;
+        display: flex;
+        border-bottom: 1px solid whitesmoke;
+        align-items: center;
+        margin: 20px 0;
+        padding: 25px 0;
+        width: 100%;
+        @media (max-width: $s) {
+          flex-direction: column;
+        }
+        & .informition {
+          width: 50%;
+          @media (max-width: $s) {
+            margin-bottom: 20px;
+            width: 100%;
+          }
+        }
+        & img {
+          width: 40%;
+          @media (max-width: $s) {
+            width: 90%;
+          }
+        }
+      }
+    }
+    & .computer-step {
+      & .check {
+        margin: auto;
+      }
+      & .check {
+        width: 80%;
+        @media (max-width: $m) {
+          flex-direction: column;
+          width: 100%;
+        }
+      }
+      .code {
+        width: 25%;
+        margin-left: 5px;
+        @media (max-width: $m) {
+          width: 50%;
+        }
+      }
+      & textarea {
+        @media (max-width: $m) {
+          width: 100% !important;
+          margin: 15px 0 0 0 !important;
+        }
+      }
+    }
+    & .underCar {
+      direction: ltr;
+      & .field {
+        padding: 45px 50px;
+        margin: 40px 25px;
+        & .sellect-title {
+          list-style: none;
+          padding: 0;
+          align-items: center;
+          & li {
+            width: calc(380px / 5);
+            font-size: 14px;
+            text-align: center;
+          }
+        }
+        & .form-check,
+        & .search-bar {
+          width: 50%;
+          @media (max-width: $m) {
+            width: 80%;
+          }
+          @media (max-width: $s) {
+            width: 100%;
+          }
+        }
+        & .form-check {
+          padding: 15px 0;
+          margin: 13px 0;
+          @media (max-width: $m) {
+            font-size: 14px;
+          }
+        }
+        & .search-bar,
+        & .checks {
+          display: none !important;
+        }
+        &:hover {
+          & .search-bar {
+            display: flex !important;
+          }
+          & .checks {
+            display: block !important;
+          }
+        }
+      }
+
+      & .title-field {
+        text-align: right;
+        color: black;
+        font-size: 28px;
+        text-decoration: underline;
+        font-weight: 500;
+        @media (max-width: $s) {
+          font-size: 20px;
+        }
+      }
+      .form-range {
+        cursor: e-resize !important;
+        & :active {
+          cursor: e-resize !important;
+        }
+      }
+    }
+    &:hover {
+      box-shadow: 1px 1px 6px 0px #000000b5;
+    }
+  }
+  & button.save {
+    height: 40px;
+    border: 1px solid;
+    font-weight: 700;
+    color: white;
+    font-size: 16px;
+    padding: 0 50px;
+    border-radius: 10px;
+    background: #29375a;
+    transition: 0.4s;
+    @media (max-width: $m) {
+      height: 35px;
+      font-size: 15px;
+      padding: 0 40px;
+      margin: 5px 0;
+    }
+    &:hover {
+      background-color: $main-bg-color-hover;
+    }
+  }
+}

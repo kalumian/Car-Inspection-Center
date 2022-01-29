@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  font-family: "El Messiri", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #e9ecf5;
+}
+.primary-text {
+  color: $main-text-color;
+}
+
+.second-text {
+  color: $second-text-color;
+}
+
+.primary-bg {
+  background-color: $main-bg-color;
+}
+
+.secondary-bg {
+  background-color: $second-bg-color;
+}
+
+.rounded-full {
+  border-radius: 100%;
+}
+
+.wrapper {
+  overflow-x: hidden;
+  background-color: lighten($main-bg-color, 68%);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #d3d3d3;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(199, 199, 199);
+}
+
+// Dirction
+.rtl {
+  direction: rtl;
+}
+.page-content-wrapper {
+  position: relative;
+  min-width: 100vw;
+  @media (min-width: 768px) {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.wrapper.toggled .sidebar-wrapper {
+  margin-left: 0;
+  @media (min-width: 768px) {
+    margin-left: -15rem;
+  }
+}
+
+// Button
+button.min {
+  height: 40px;
+  border: 1px solid;
+  font-weight: 700;
+  color: white;
+  font-size: 16px;
+  padding: 0 50px;
+  border-radius: 10px;
+  background: #29375a;
+  transition: 0.4s;
+  @media (max-width: $m) {
+    height: 35px;
+    font-size: 15px;
+    padding: 0 40px;
+    margin: 5px 0;
+  }
+  &:hover {
+    background-color: $main-bg-color-hover;
+  }
+}

@@ -1,0 +1,14 @@
+.staff {
+  & thead {
+    & td {
+      font-weight: 700;
+      font-size: 14px;
+    }
+  }
+  & tbody {
+    & td {
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+}

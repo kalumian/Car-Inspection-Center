@@ -1,0 +1,54 @@
+// Color
+$main-bg-color: #29375a;
+$main-bg-color-hover: #29375ae0;
+$main-text-color: #29375a;
+$second-text-color: #92949a;
+$second-bg-color: lighten($main-bg-color, 60%);
+
+//  Responsive
+$l: 994px;
+$m: 768px;
+$s: 575px;
+// Anmition
+
+$trns: 0.4s;
+$trns2: 0.2s;
+$trns-s: $trns ease-out;
+
+@keyframes change-background {
+  0% {
+    background-color: lighten($main-bg-color, 50%);
+  }
+  25% {
+    background-color: lighten($main-bg-color, 59%);
+  }
+  100% {
+    background-color: lighten($main-bg-color, 50%);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotation-reverse {
+  0% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+// After Beffoer
+
+%after {
+  position: absolute;
+  content: "";
+  display: block;
+}
