@@ -13,7 +13,7 @@ export const DefaultLinks = (user) => {
       : user === "الفني"
       ? "/dashboard/قائمة-الكروت"
       : user === "المشرف"
-      ? "/dashboard/الرئيسية"
+      ? "/dashboard/حسابات"
       : "/login";
   } else {
     return "/login";
