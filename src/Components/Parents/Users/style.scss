@@ -12,5 +12,11 @@
         padding-right: 5px;
       }
     }
+    & button.rest {
+      opacity: 0.5;
+    }
+    & .message{
+      margin-top: 5px;
+    }
   }
 }

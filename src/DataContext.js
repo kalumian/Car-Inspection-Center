@@ -5,7 +5,7 @@ export const DataContext = createContext();
 export function DataProider(props) {
   // use State
   const [stateSide, setStateSide] = useState(false);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState("المشرف");
 
   // Cards
   const [cards, setCards] = useState([]);
