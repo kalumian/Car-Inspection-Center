@@ -27,7 +27,7 @@ function Staff({ user }) {
   };
   return (
     <>
-      {user === "الاستقبال" || user === "المشرف" ? (
+      {user.type === "الاستقبال" || user.type === "المشرف" ? (
         <Content />
       ) : (
         <Error_Page kind={400} />

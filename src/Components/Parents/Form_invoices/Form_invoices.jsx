@@ -15,7 +15,7 @@ function Form_invoices({user}) {
       <Sidebar user={user} />
       <div className="container-fluid px-4">
         <Header user={user} />
-        {user === "الاستقبال" || user === "المشرف" ? (
+        {user.type === "الاستقبال" || user.type === "المشرف" ? (
           <>
             <Form setEditPage={setEditPage} editPage={editPage} />
           </>

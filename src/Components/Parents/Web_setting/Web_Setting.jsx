@@ -12,7 +12,7 @@ function Web_Setting({ user }) {
       <Sidebar user={user} />
       <div className="container-fluid px-4">
         <Header user={user} />
-        {user === "المشرف" ? (
+        {user.type === "المشرف" ? (
           <div className="rtl">
             <Section Components={Add_branch} title="اعدادت فروع المركز"/>
           </div>

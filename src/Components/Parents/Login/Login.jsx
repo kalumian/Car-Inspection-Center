@@ -1,6 +1,6 @@
 // Import from Lib
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
 import base64 from "base-64";
 
 // Import Images
@@ -8,6 +8,9 @@ import logo from "../../../Assets/logo-no-bg.png";
 
 // Import DataContext
 import { DataContext } from "../../../DataContext";
+
+// Function
+import { DefaultLinks } from "../../../Function/UsersControl";
 
 function Login() {
   const year = new Date().getFullYear();
@@ -18,17 +21,21 @@ function Login() {
   const [message, setMessage] = useState();
   const [account, setAccount] = useState();
 
+  // Data Context
+  const { handleUser, user } = useContext(DataContext);
+
+  // Function
   const handleSubmit = (e) => {
     e.preventDefault();
     setAccount({ password, username });
   };
-
+  const history = useHistory()
   useEffect(async () => {
     if (Boolean(account) === true) {
       const headers = new Headers();
       headers.set(
         "Authorization",
-        "Basic " + base64.encode("Alwalead" + ":" + "12345")
+        "Basic " + base64.encode(username + ":" + password)
       );
       try {
         let res = await fetch(
@@ -40,8 +47,8 @@ function Login() {
         );
         let resJson = await res.json();
         if (res.status === 200) {
-          console.log(resJson);
-          setMessage("work");
+          handleUser(resJson.token);
+          history.push('/')
         }
       } catch (err) {
         setMessage(" حدث خطأ فضلاً تأكد من المدخلات او شبكة الانترنت");
@@ -51,6 +58,7 @@ function Login() {
       }
     }
   }, [account]);
+
   return (
     <section className="login d-flex justify-content-center align-items-center vh-100">
       <form
@@ -91,6 +99,11 @@ function Login() {
         <button className="w-100 btn btn-lg primary-bg" type="submit">
           تسجيل الدخول
         </button>
+        {/* {user.name
+          ? function Trans() {
+              history.push("/");
+            }
+          : ""} */}
         <div className="test-danger">{message}</div>
         <p class="mt-4 mb-3 text-muted">&copy; 2020 - {year}</p>
       </form>

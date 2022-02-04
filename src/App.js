@@ -26,68 +26,63 @@ import { DataContext, DataProider } from "./DataContext";
 
 // Import Functions
 import { DefaultLinks } from "./Function/UsersControl";
+import Trans from "./Function/Trans";
 
 function App() {
   const { user } = useContext(DataContext);
 
-  // For Transfer
-  function Trans() {
-    const history = useHistory();
-    history.push(DefaultLinks(user));
-    return <></>;
-  }
   return (
-      <Router>
-        <Switch>
-          {/* المشرف*/}
-          <Route path="/dashboard/الرئيسية" children={<Home />} exact />
-          <Route
-            path="/dashboard/موظفين"
-            children={<Staff user={user} />}
-            exact
-          />
-          <Route
-            path="/dashboard/حسابات"
-            exact
-            children={<Users user={user} />}
-          />
-          <Route
-            path="/dashboard/اعدادات"
-            exact
-            children={<Web_Setting user={user} />}
-          />
+    <Router>
+      <Switch>
+        {/* المشرف*/}
+        <Route path="/dashboard/الرئيسية" children={<Home />} exact />
+        <Route
+          path="/dashboard/موظفين"
+          children={<Staff user={user} />}
+          exact
+        />
+        <Route
+          path="/dashboard/حسابات"
+          exact
+          children={<Users user={user} />}
+        />
+        <Route
+          path="/dashboard/اعدادات"
+          exact
+          children={<Web_Setting user={user} />}
+        />
 
-          {/* Trans To Home Page */}
-          <Route path="/" component={Trans} exact />
+        {/* Trans To Home Page */}
+        <Route path="/" children={<Trans user={user} />} exact />
 
-          {/* الاستقبال */}
-          <Route
-            path="/dashboard/فواتير"
-            exact
-            children={<Invoices user={user} />}
-          />
-          <Route
-            path="/dashboard/انشاء/فواتير"
-            exact
-            children={<Form_invoices user={user} />}
-          />
+        {/* الاستقبال */}
+        <Route
+          path="/dashboard/فواتير"
+          exact
+          children={<Invoices user={user} />}
+        />
+        <Route
+          path="/dashboard/انشاء/فواتير"
+          exact
+          children={<Form_invoices user={user} />}
+        />
 
-          {/* الفني */}
-          <Route
-            path="/dashboard/قائمة-الكروت"
-            exact
-            children={<Cards user={user} />}
-          />
-          <Route
-            path="/dashboard/قائمة-الكروت/:id"
-            exact
-            children={<Steps user={user} />}
-          />
+        {/* الفني */}
+        <Route
+          path="/dashboard/قائمة-الكروت"
+          exact
+          children={<Cards user={user} />}
+        />
+        <Route
+          path="/dashboard/قائمة-الكروت/:id"
+          exact
+          children={<Steps user={user} />}
+        />
 
-          {/* عام */}
-          <Route path="/login" exact children={<Login/>} />
-        </Switch>
-      </Router>
+        {/* عام */}
+        <Route path="/login" exact children={<Login />} />
+      </Switch>
+    </Router>
   );
 }
 

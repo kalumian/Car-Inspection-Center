@@ -3,32 +3,38 @@ import Input_Default from "../Users_components/Input_Default";
 import Lable from "../Form_invoices-components/Lable";
 
 // Import From Lib
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState, useContext } from "react";
+
+// Import DataContext
+import { DataContext } from "../../../DataContext";
 
 function Add() {
+  const { user } = useContext(DataContext);
+
   // States & Fucnctions
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [identity, setIdentity] = useState("");
   const [password, setPassword] = useState("");
   const [account, setAccount] = useState({});
   const [message, setMessage] = useState("");
   const [type, setType] = useState("");
   const [styleButton, setStyleButton] = useState(false);
+
   const deletContent = () => {
-    setUsername("");
+    setName("");
     setPassword("");
     setIdentity("");
     setType("");
   };
+
   const handleSubmit = (e) => {
     setStyleButton(true);
     e.preventDefault();
     setAccount({
-      password:"12345",
-      name: "11223344",
-      type:"Reception",
-      identity:"Alwalead",
+      password,
+      name,
+      type,
+      identity,
     });
     setTimeout(() => {
       setStyleButton(false);
@@ -45,6 +51,7 @@ function Add() {
             body: JSON.stringify(account),
             headers: {
               "Content-Type": "application/json",
+              "x-access-tokens": user.token,
             },
           }
         );
@@ -78,14 +85,14 @@ function Add() {
               id="invoices_customer_name"
               type="text"
               className="form-control"
-              value={identity}
-              onChange={(e) => setIdentity(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="col-4">
             <Lable
               active={false}
-              For="invoices_customer_name"
+              For="invoices_customer_password"
               title="كلمة المرور"
             />
             <input
@@ -100,16 +107,16 @@ function Add() {
           <div className="col-4">
             <Lable
               active={false}
-              For="invoices_customer_name"
+              For="invoices_customer_identity"
               title="رقم الهوية"
             />
             <input
               name="password_customer"
-              id="invoices_customer_password"
+              id="invoices_customer_identity"
               type="password"
               className="form-control"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={identity}
+              onChange={(e) => setIdentity(e.target.value)}
             />
           </div>
 

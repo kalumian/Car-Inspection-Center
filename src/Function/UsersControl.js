@@ -7,28 +7,26 @@ export const CheckAccount = (user) => {
 
 // Control User / Default Links
 export const DefaultLinks = (user) => {
-  if (CheckAccount(user)) {
-    return user === "الاستقبال"
+  const Type = user.user.type;
+  if (CheckAccount(Type)) {
+    return Type === "الاستقبال"
       ? "/dashboard/فواتير"
-      : user === "الفني"
+      : Type === "الفني"
       ? "/dashboard/قائمة-الكروت"
-      : user === "المشرف"
-      ? "/dashboard/حسابات"
-      : "/login";
+      : Type === "المشرف"
+      ? "/dashboard/الرئيسية"
+      : "/loign";
   } else {
     return "/login";
   }
 };
+
 export const WhatThisAccount = (user) => {
-  if (CheckAccount(user)) {
-    return user === "الاستقبال"
-      ? "الاستقبال"
-      : user === "الفني"
-      ? "الفني"
-      : user === "المشرف"
-      ? "المشرف"
-      : "/login";
-  } else {
-    return "";
-  }
+  return user === "Reception"
+    ? "الاستقبال"
+    : user === "fitter"
+    ? "الفني"
+    : user === "SuperVisor"
+    ? "المشرف"
+    : "";
 };

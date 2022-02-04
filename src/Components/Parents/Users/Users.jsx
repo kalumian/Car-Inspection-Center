@@ -15,7 +15,7 @@ function Users({ user }) {
       <Sidebar user={user} />
       <div className="container-fluid px-4 ">
         <Header user={user} />
-        {user === "المشرف" ? (
+        {user.type === "المشرف" ? (
           <div className="users rtl">
             <Section Component={Add} title="اضافة حساب جديد" />
             <Section Component={Edit} title="تعديل حساب" />

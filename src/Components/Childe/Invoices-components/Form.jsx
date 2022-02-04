@@ -17,7 +17,7 @@ function form({ user }) {
             />
           </div>
         </div>
-        {user === "المشرف" ? (
+        {user.type === "المشرف" ? (
           <div className="row mx-1 my-2">
             <select className="form-select" aria-label="Default select example">
               <option selected>الفرع</option>

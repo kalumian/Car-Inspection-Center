@@ -25,7 +25,7 @@ function Card({
           {String(customer_board_letters).split("").join(" ")} -{" "}
           {String(customer_board_number).split("").join(" ")}
         </p>
-        {user !== "المشرف" ? (
+        {user.type !== "المشرف" ? (
           <>
             <Link to="/dashboard/قائمة-الكروت/sd123" class="btn btn-primary">
               بدء الفحص

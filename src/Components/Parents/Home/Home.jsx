@@ -9,12 +9,11 @@ import Notifications from "../../Childe/Home-components/Notifications";
 import { useContext } from "react";
 import { DataContext } from "../../../DataContext";
 
-
 function Home() {
   const { user } = useContext(DataContext);
   return (
     <>
-      {user === "المشرف" ? (
+      {user.type === "المشرف" ? (
         <div className="d-flex wrapper flex-row-reverse">
           <Sidebar />
           <div className="container-fluid px-4 home">

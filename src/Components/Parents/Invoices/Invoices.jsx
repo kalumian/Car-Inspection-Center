@@ -26,8 +26,7 @@ function Invoices({ user }) {
   };
   return (
     <>
-      {WhatThisAccount(user) === "الاستقبال" ||
-      WhatThisAccount(user) === "المشرف" ? (
+      {user.type === "الاستقبال" || user.type === "المشرف" ? (
         <Content />
       ) : (
         <Error_Page kind={400} />

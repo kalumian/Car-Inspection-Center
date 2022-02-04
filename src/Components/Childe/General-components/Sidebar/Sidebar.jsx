@@ -18,6 +18,8 @@ import { WhatThisAccount } from "../../../../Function/UsersControl";
 function Sidebar() {
   // Trans State Side bar To Context Storeg
   const { stateSide, setStateSide, user } = useContext(DataContext);
+
+  const Type = user.type
   return (
     <div className="bg-white sidebar-wrapper">
       {/* ----------- Logo -----------*/}
@@ -34,16 +36,16 @@ function Sidebar() {
         }`}
       >
         {/* Link Bar With Kind Auth */}
-        {WhatThisAccount(user) === "الاستقبال" ? (
+        {Type === "الاستقبال" ? (
           <>
             <Link_sidebar title="الفواتير" icon="fas fa-file-invoice" link="فواتير"/>
             <Link_sidebar title="انشاء فاتورة" icon="fas fa-plus" link="انشاء/فواتير"/>
           </>
-        ) : WhatThisAccount(user) === "الفني" ? (
+        ) : Type === "الفني" ? (
           <>
             <Link_sidebar title="قائمة الكروت" icon="far fa-credit-card" link="قائمة-الكروت" />
           </>
-        ) : WhatThisAccount(user) === "المشرف" ? (
+        ) : Type === "المشرف" ? (
           <>
             <Link_sidebar title="الرئيسية" icon="fas fa-home" link="الرئيسية" />
             <Link_sidebar title="قائمة الموظفين" icon="fas fa-user-tie" link="موظفين"/>

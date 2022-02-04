@@ -37,7 +37,7 @@ function Cards({ user }) {
   };
   return (
     <>
-      {user === "الفني" || user === "المشرف"? (
+      {user.type === "الفني" || user.type === "المشرف" ? (
         <>
           <div className="d-flex wrapper flex-row-reverse">
             <Sidebar user={user} /> <Content />

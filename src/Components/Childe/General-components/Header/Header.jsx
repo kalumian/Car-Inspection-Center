@@ -10,7 +10,6 @@ import { GettoDayArabic, GetHours, GetMin } from "../../../../Function/Times";
 function Header() {
   // Import User
   const { user } = useContext(DataContext);
-
   // useState
   const [date, setDate] = useState(new Date());
 
@@ -22,9 +21,9 @@ function Header() {
       <div className="info">
         <p>
           <span>
-            مصطفى سعيد <i class="fas fa-user"></i>
+            {user.name} <i class="fas fa-user"></i>
           </span>
-          <span>{user}</span>
+          <span>{user.type}</span>
         </p>
         <p>
           <span>{time.getDate()}</span> :التاريخ
