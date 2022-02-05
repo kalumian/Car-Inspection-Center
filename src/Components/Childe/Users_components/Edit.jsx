@@ -3,6 +3,8 @@ import Input_Default from "../Users_components/Input_Default";
 import Lable from "../Form_invoices-components/Lable";
 import Option from "./Option";
 import FormEdit from "./FormEdit";
+import Loader from "../../Parents/Loader/Loader";
+
 // Import From Lib
 import { useState, useEffect, useContext } from "react/cjs/react.development";
 
@@ -14,6 +16,7 @@ function Edit() {
   // State
   const [editState, setEditState] = useState(false);
   const [users, setUsers] = useState([]);
+  const [stateFetch, setStateFetch] = useState(false);
   const [id, setId] = useState(undefined);
 
   // Function
@@ -31,6 +34,7 @@ function Edit() {
       );
       let resJson = await res.json();
       setUsers(resJson["ALL USERS"]);
+      setStateFetch(true);
     } catch (err) {
       console.log(String(err));
     }
@@ -68,6 +72,7 @@ function Edit() {
                 })}
               </select>
             </div>
+            {!stateFetch ? <Loader /> : <></>}
             <div className="col-2">
               <button
                 className="min mx-1"

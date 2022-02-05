@@ -6,15 +6,14 @@ import Table_Admin from "../../Childe/Staff-Components/Table_Admin";
 import Table_Reception from "../../Childe/Staff-Components/Table_Reception";
 import Table_Technician from "../../Childe/Staff-Components/Table_Technician";
 import Table from "../../Childe/Staff-Components/Table";
-
+import Loader from "../Loader/Loader";
 // Import From Lib
 import { useState, useEffect, useContext } from "react";
 
 function Staff({ user }) {
-  
   // State
   const [users, setUsers] = useState([]);
-
+  const [usersState, setUsersState] = useState(false);
   // Effect
   useEffect(async () => {
     try {
@@ -30,6 +29,7 @@ function Staff({ user }) {
       );
       let resJson = await res.json();
       setUsers(resJson["ALL USERS"]);
+      setUsersState(true)
     } catch (err) {
       console.log(String(err));
     }
@@ -43,9 +43,19 @@ function Staff({ user }) {
             <Header user={user} />
             <div className="d-flex justify-content-center flex-column staff">
               <h2 className="text-center mt-3 mb-1">قائمة الموظفين</h2>
-              <Table Contents={Table_Admin} title="المشرفين" users={users}/>
-              <Table Contents={Table_Reception} title="الاستقبال" users={users}/>
-              <Table Contents={Table_Technician} title="الفنيين" users={users}/>
+              <Table Contents={Table_Admin} title="المشرفين" users={users} />
+              <Table
+                Contents={Table_Reception}
+                title="الاستقبال"
+                users={users}
+              />
+              <Table
+                Contents={Table_Technician}
+                title="الفنيين"
+                users={users}
+              />
+
+              {!usersState ? <Loader /> : <></>}
             </div>
           </div>
         </div>
