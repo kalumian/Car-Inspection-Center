@@ -1,18 +1,53 @@
-import Input_Default from "../Users_components/Input_Default";
-import Lable from "../Form_invoices-components/Lable";
+// Import From Lib
+import { useState, useEffect, useContext } from "react";
+
+// Import Components
+import Option from "./Option";
+
+// Import Context
+import { DataContext } from "../../../DataContext";
 
 function Delete() {
+  const { user } = useContext(DataContext);
+
+  // State
+  const [editState, setEditState] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [id, setId] = useState(undefined);
+  // Function
+  useEffect(async () => {
+    try {
+      let res = await fetch(
+        "https://peaceful-depths-13311.herokuapp.com/users",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-tokens": user.token,
+          },
+        }
+      );
+      let resJson = await res.json();
+      setUsers(resJson["ALL USERS"]);
+    } catch (err) {
+      console.log(String(err));
+    }
+  }, []);
+
+  const handleId = (ID) => {
+    setId(ID);
+  };
   return (
     <>
       <div className="row">
         <div className="col-4">
           <select className="form-select" id="">
             <option selected value={undefined}>
-              الحساب
+              اختيار الحساب المراد حذفه
             </option>
-            <option>فيصل</option>
-            <option>احمد</option>
-            <option>سلطان</option>
+            {users.map((item) => {
+              return <Option item={item} handleId={handleId} />;
+            })}
           </select>
         </div>
         <div className="col-4">

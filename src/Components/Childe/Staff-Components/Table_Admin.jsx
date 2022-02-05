@@ -1,17 +1,23 @@
-function Table_Admin() {
+function Table_Admin({ users }) {
+  const users_content = users.filter((item) => item.type === "SuperVisor");
+  
   return (
     <>
       <thead className="fw-bolder">
         <tr>
           <td>الاسم</td>
-          <td>رقم الجوال</td>
+          <td>رقم الهوية</td>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>احمد محمد العازمي</td>
-          <td>+966574625165</td>
-        </tr>
+          {users_content.map((item) => {
+            return (
+              <tr>
+                <td>{item.name}</td>
+                <td>{item.identity}</td>
+              </tr>
+            );
+          })}
       </tbody>
     </>
   );

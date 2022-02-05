@@ -1,21 +1,23 @@
-function Table_Reception() {
+function Table_Reception({ users }) {
+  const users_content = users.filter((item) => item.type === "Reception");
+
   return (
     <>
       <thead className="fw-bolder">
         <tr>
           <td>الاسم</td>
-          <td>الرقم الهوية</td>
-          <td>رقم الجوال</td>
-          <td>الفواتير المنجزة</td>
+          <td>رقم الهوية</td>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>سلطان مسعود</td>
-          <td>10115896476</td>
-          <td>+965784255</td>
-          <td>6481</td>
-        </tr>
+        {users_content.map((item) => {
+          return (
+            <tr>
+              <td>{item.name}</td>
+              <td>{item.identity}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </>
   );

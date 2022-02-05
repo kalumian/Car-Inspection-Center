@@ -1,21 +1,24 @@
-function Technician() {
+function Technician({users}) {
+  console.log(users);
+  const users_content = users.filter((item) => item.type === "Fitter");
+  
   return (
     <>
       <thead className="fw-bolder">
         <tr>
           <td>الاسم</td>
-          <td>رقم الجوال</td>
-          <td>الفحوصات المنجزة</td>
-          <td>عدد اجمالي الساعات</td>
+          <td>رقم الهوية</td>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>فيصل فرحان</td>
-          <td>2546820</td>
-          <td>698</td>
-          <td>0546521533</td>
-        </tr>
+          {users_content.map((item) => {
+            return (
+              <tr>
+                <td>{item.name}</td>
+                <td>{item.identity}</td>
+              </tr>
+            );
+          })}
       </tbody>
     </>
   );

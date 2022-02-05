@@ -62,7 +62,7 @@ function Add() {
           setMessage("");
         }, 3000);
       } catch (err) {
-        setMessage(String(err));
+        setMessage("تأكد من صحة المدخلات ومن شبكة الانترنت لديك");
         setTimeout(() => {
           setMessage("");
         }, 3000);
@@ -132,7 +132,7 @@ function Add() {
                 </option>
                 <option value={"SuperVisor"}>مشرف </option>
                 <option value={"Reception"}>استقبال</option>
-                <option value={"fitter"}>فني </option>
+                <option value={"Fitter"}>فني </option>
               </select>
             </div>
             <div className="col-4">
