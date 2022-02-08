@@ -22,20 +22,19 @@ function Form_lg({ setEditPage, editPage }) {
 
   // Functions
   const onSubmit = (data) => {
-    // handleCard({
-    //   ...data,
-    //   Created_date: GetFullDateString(),
-    //   by: "",
-    //   invoicesNumber: "",
-    //   invoicesNumberBransh: "",
-    // });
+    handleCard({
+      ...data,
+      Created_date: GetFullDateString(),
+      by: "",
+      invoicesNumber: "",
+      invoicesNumberBransh: "",
+    });
 
-    // reset();
-    // setMessage(true);
-    // setTimeout(function () {
-    //   setMessage(false);
-    // }, 3000);
-    console.log({ Created_date: GetFullDateString() });
+    reset();
+    setMessage(true);
+    setTimeout(function () {
+      setMessage(false);
+    }, 3000);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} autocomplete="off">

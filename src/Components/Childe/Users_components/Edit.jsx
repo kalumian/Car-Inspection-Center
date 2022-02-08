@@ -10,38 +10,16 @@ import { useState, useEffect, useContext } from "react/cjs/react.development";
 
 // Import DataContext
 import { DataContext } from "../../../DataContext";
-function Edit() {
+function Edit({ users }) {
   const { user } = useContext(DataContext);
 
   // State
   const [editState, setEditState] = useState(false);
-  const [users, setUsers] = useState([]);
-  const [stateFetch, setStateFetch] = useState(false);
   const [id, setId] = useState(undefined);
 
   // Function
-  useEffect(async () => {
-    try {
-      let res = await fetch(
-        "https://peaceful-depths-13311.herokuapp.com/users",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "x-access-tokens": user.token,
-          },
-        }
-      );
-      let resJson = await res.json();
-      setUsers(resJson["ALL USERS"]);
-      setStateFetch(true);
-    } catch (err) {
-      console.log(String(err));
-    }
-  }, []);
 
   const handleId = (ID) => {
-    console.log(id);
     setId(ID);
   };
   return (
@@ -49,10 +27,10 @@ function Edit() {
       <div className="row">
         {editState ? (
           <FormEdit
+            setId={setId}
             users={users}
             id={id}
             setEditState={setEditState}
-            editState={editState}
             token={user.token}
           />
         ) : (
@@ -72,7 +50,6 @@ function Edit() {
                 })}
               </select>
             </div>
-            {!stateFetch ? <Loader /> : <></>}
             <div className="col-2">
               <button
                 className="min mx-1"

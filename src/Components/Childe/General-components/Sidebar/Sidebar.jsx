@@ -17,7 +17,7 @@ import { WhatThisAccount } from "../../../../Function/UsersControl";
 
 function Sidebar() {
   // Trans State Side bar To Context Storeg
-  const { stateSide, setStateSide, user } = useContext(DataContext);
+  const { stateSide, setStateSide, user , setUser } = useContext(DataContext);
 
   const Type = user.type
   return (
@@ -59,6 +59,7 @@ function Sidebar() {
           <></>
         )}
         <Link
+          onClick={()=>setUser({})}
           to="/login"
           className="list-group-item list-group-item-action bg-transparent second-text fw-bold text-end text-danger"
         >

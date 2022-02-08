@@ -1,5 +1,14 @@
 import { useHistory, Link } from "react-router-dom";
+
+// import from NPM
+import { useContext} from "react";
+
+// Import DataContext
+import { DataContext } from "../../../DataContext";
+
 function Error_Page({ kind }) {
+  const { setUser } = useContext(DataContext);
+
   const History = useHistory();
   return (
     <div className="error-page">
@@ -14,8 +23,8 @@ function Error_Page({ kind }) {
           <Link onClick={() => History.goBack()} className="my-2">
             العودة للصفحة السابقة
           </Link>
-          <Link to="/login">
-              تسجيل الخروج
+          <Link to="/login" onClick={(e) => setUser({})}>
+            تسجيل الخروج
           </Link>
         </>
       ) : (

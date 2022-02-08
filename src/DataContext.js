@@ -14,6 +14,7 @@ export function DataProider(props) {
   const [cards, setCards] = useState([]);
 
   // Function
+
   const handleCard = (card) => {
     setCards([...cards, card]);
   };
@@ -22,12 +23,12 @@ export function DataProider(props) {
     setUser({
       name: data.identity,
       type: WhatThisAccount(data.type),
-      token: token,
+      token,
     });
   };
   return (
     <DataContext.Provider
-      value={{ cards, handleCard, stateSide, setStateSide, user, handleUser }}
+      value={{ cards, handleCard, stateSide, setStateSide, user, handleUser, setUser }}
     >
       {props.children}
     </DataContext.Provider>

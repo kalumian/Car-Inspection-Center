@@ -4,19 +4,25 @@ import Lable from "../Form_invoices-components/Lable";
 // Import From Lib
 import { useState, useEffect } from "react";
 
-function FormEdit({ setEditState, editState, id, token, users }) {
-  console.log(id);
-  const init = users.filter((item) => item.identity === id)
+function FormEdit({ setEditState, id, token, users, setId }) {
+  const init = users.filter((item) => item.identity === id);
 
   // States
   const [identity, setIdentity] = useState(init[0].identity);
   const [password, setPassword] = useState(init[0].password);
   const [name, setName] = useState(init[0].name);
   const [type, setType] = useState(init[0].type);
-  const [message, setMessage] = useState("ddddd");
+  const [message, setMessage] = useState("");
   const [account, setAccount] = useState({});
 
   // Functions
+
+  const clearInputs = () => {
+    setName("");
+    setPassword("");
+    setType("");
+    setIdentity("");
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     setAccount({
@@ -25,14 +31,11 @@ function FormEdit({ setEditState, editState, id, token, users }) {
       type,
       identity,
     });
-    setTimeout(() => {
-      setEditState(!editState);
-    }, 100000);
+    console.log(account);
   };
 
   useEffect(async () => {
     if (Boolean(account.name) === true) {
-      console.log(token);
       try {
         let res = await fetch(
           "https://peaceful-depths-13311.herokuapp.com/edit-user",
@@ -46,12 +49,18 @@ function FormEdit({ setEditState, editState, id, token, users }) {
           }
         );
         let resJson = await res.json();
-        setMessage(res.status === 200 ? "تم اضافة الحساب بنجاح." : "");
-        setTimeout(() => {
-          setMessage("");
-        }, 3000);
+        if (res.status === 200) {
+          console.log(res);
+          setMessage("تم تعديل الحساب بنجاح.");
+          clearInputs("");
+          setTimeout(() => {
+            setMessage("");
+            setEditState(false);
+          }, 4000);
+        }
       } catch (err) {
         setMessage(String(err));
+        console.log(err.Message);
         setTimeout(() => {
           setMessage("");
         }, 3000);
@@ -69,21 +78,6 @@ function FormEdit({ setEditState, editState, id, token, users }) {
           placeholder=""
           value={name}
           onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div className="col-4">
-        <Lable
-          active={false}
-          For="invoices_customer_id_edit"
-          title="رقم الهوية"
-        />
-        <input
-          type="text"
-          id="invoices_customer_id_edit"
-          className="form-control"
-          placeholder=""
-          value={identity}
-          onChange={(e) => setIdentity(e.target.value)}
         />
       </div>
       <div className="col-4">
@@ -113,22 +107,32 @@ function FormEdit({ setEditState, editState, id, token, users }) {
             </option>
             <option value={"SuperVisor"}>مشرف </option>
             <option value={"Reception"}>استقبال</option>
-            <option value={"fitter"}>فني </option>
+            <option value={"Fitter"}>فني </option>
           </select>
         </div>
         <div className="col-4">
           <button className="min mx-1" onClick={handleSubmit}>
             حفظ
           </button>
-          <div
-            className={`message mt-5 ${
-              message === "تم اضافة الحساب بنجاح."
-                ? "text-success"
-                : "text-danger"
-            }`}
+          <button
+            className="min mx-1"
+            onClick={() => {
+              clearInputs();
+              setId();
+              setEditState(false);
+            }}
           >
-            {message}
-          </div>
+            الغاء
+          </button>
+        </div>
+        <div
+          className={`message mt-5 ${
+            message === "تم تعديل الحساب بنجاح."
+              ? "text-success"
+              : "text-danger"
+          }`}
+        >
+          {message}
         </div>
       </div>
     </>

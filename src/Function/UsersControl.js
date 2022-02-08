@@ -24,7 +24,7 @@ export const DefaultLinks = (user) => {
 export const WhatThisAccount = (user) => {
   return user === "Reception"
     ? "الاستقبال"
-    : user === "fitter"
+    : user === "Fitter"
     ? "الفني"
     : user === "SuperVisor"
     ? "المشرف"

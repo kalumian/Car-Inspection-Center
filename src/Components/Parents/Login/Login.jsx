@@ -16,8 +16,8 @@ function Login() {
   const year = new Date().getFullYear();
 
   // Use State
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [message, setMessage] = useState();
   const [account, setAccount] = useState();
 
@@ -26,10 +26,15 @@ function Login() {
 
   // Function
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setAccount({ password, username });
+    if (password === "" || username === "") {
+      e.preventDefault();
+      setAccount({ password:" ", username:" " });
+    } else {
+      e.preventDefault();
+      setAccount({ password, username });
+    }
   };
-  const history = useHistory()
+  const history = useHistory();
   useEffect(async () => {
     if (Boolean(account) === true) {
       const headers = new Headers();
@@ -48,9 +53,11 @@ function Login() {
         let resJson = await res.json();
         if (res.status === 200) {
           handleUser(resJson.token);
-          history.push('/')
+          history.push("/");
         }
       } catch (err) {
+        console.log("WORK");
+        console.log(err);
         setMessage(" حدث خطأ فضلاً تأكد من المدخلات او شبكة الانترنت");
         setTimeout(() => {
           setMessage("");
@@ -99,12 +106,7 @@ function Login() {
         <button className="w-100 btn btn-lg primary-bg" type="submit">
           تسجيل الدخول
         </button>
-        {/* {user.name
-          ? function Trans() {
-              history.push("/");
-            }
-          : ""} */}
-        <div className="test-danger">{message}</div>
+        <div className="text-danger mt-3">{message}</div>
         <p class="mt-4 mb-3 text-muted">&copy; 2020 - {year}</p>
       </form>
     </section>

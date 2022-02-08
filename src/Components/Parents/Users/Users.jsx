@@ -5,10 +5,33 @@ import Section from "../../Childe/Users_components/Section";
 import Add from "../../Childe/Users_components/Add";
 import Delete from "../../Childe/Users_components/Delete";
 import Edit from "../../Childe/Users_components/Edit";
+import Loader from "../Loader/Loader";
 
-import { useState } from "react";
+// Import Lib
+import { useState, useEffect } from "react";
 
 function Users({ user }) {
+  const [users, setUsers] = useState([]);
+  const [stateFetch, setStateFetch] = useState(false);
+  const [active, setActive] = useState(1);
+  useEffect(async () => {
+    try {
+      setStateFetch(false);
+      let res = await fetch(
+        "https://peaceful-depths-13311.herokuapp.com/users",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-tokens": user.token,
+          },
+        }
+      );
+      let resJson = await res.json();
+      setUsers(resJson["ALL USERS"]);
+      setStateFetch(true);
+    } catch (err) {}
+  }, [active]);
   // Content
   return (
     <div className="d-flex wrapper flex-row-reverse">
@@ -16,11 +39,20 @@ function Users({ user }) {
       <div className="container-fluid px-4 ">
         <Header user={user} />
         {user.type === "المشرف" ? (
-          <div className="users rtl">
-            <Section Component={Add} title="اضافة حساب جديد" />
-            <Section Component={Edit} title="تعديل حساب" />
-            <Section Component={Delete} title="حذف حساب" />
-          </div>
+          <>
+            <div className="users rtl">
+              <Section Component={Add} title="اضافة حساب جديد" />
+              <button
+                className="mt-3 min re"
+                onClick={() => setActive(active + 1)}
+              >
+                <i className="fas fa-sync-alt"></i>
+              </button>
+              <Section users={users} Component={Edit} title="تعديل حساب" />
+              <Section users={users} Component={Delete} title="حذف حساب" />
+              {!stateFetch ? <Loader /> : <></>}
+            </div>
+          </>
         ) : (
           <Error_Page kind={400} />
         )}
