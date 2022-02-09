@@ -1,13 +1,13 @@
 import React from "react";
 
-function Select({ options, select, id, name, register }) {
+function Select({ options, select, id, name, handleChange }) {
   return (
     <select
       className="form-select"
       id={id}
-      {...register(`${name}`)}
       name={name}
       aria-label="Default select example"
+      onChange={handleChange}
     >
       <option selected value={undefined}>
         {select}

@@ -22,8 +22,8 @@ function Forms() {
       {/* For Small Screen */}
       <div className="form-invoices primary-text rtl mobile">
         <h2 className="text-center mt-4 ">انشاء فاتورة</h2>
-        <Form_s />
-        <Edit_page setEditPage={setEditPage} editPage={editPage} />
+        {/* <Form_s setEditPage={setEditPage} editPage={editPage}/>
+        <Edit_page setEditPage={setEditPage} editPage={editPage} /> */}
       </div>
       {/* For Small Screen */}
     </>

@@ -29,24 +29,24 @@ function Table() {
               <tr>
                 <td>4534</td>
                 <td>4534</td>
-                <td>{String(item.name_customer)}</td>
-                <td>{String(item.number_customer)}</td>
+                <td>{String(item.invoices_customer_name)}</td>
+                <td>{String(item.invoices_customer_number)}</td>
                 <td>
-                  {String(item.customer_board_number).split("").join(" ")},
-                  {String(item.customer_board_letters).split("").join(" ")}
+                  {String(item.invoices_customer_board_number).split("").join(" ")},
+                  {String(item.invoices_customer_board_letters).split("").join(" ")}
                 </td>
-                <td> {Number(item.customer_cost)}</td>
+                <td> {Number(item.invoices_customer_cost)}</td>
                 <td>
-                  {Number(item.customer_cost) -
-                    Number(item.customer_final_cost)}
+                  {Number(item.invoices_customer_cost) -
+                    Number(item.invoices_customer_final_cost)}
                 </td>
-                <td>{Number(item.customer_final_cost)}</td>
+                <td>{Number(item.invoices_customer_final_cost)}</td>
                 <td>230</td>
                 <td>قيد التنفيذ</td>
                 <td>القطيف</td>
                 <td>{item.by}</td>
-                <td>{item.Created_date}</td>
-                <td>{item.date_f}</td>
+                <td>{item.Created_date}2002/13/2</td>
+                <td>{item.date_f}2002/13/2</td>
               </tr>
             );
           })}

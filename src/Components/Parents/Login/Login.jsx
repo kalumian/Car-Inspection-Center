@@ -53,10 +53,10 @@ function Login() {
         let resJson = await res.json();
         if (res.status === 200) {
           handleUser(resJson.token);
+          console.log(resJson);
           history.push("/");
         }
       } catch (err) {
-        console.log("WORK");
         console.log(err);
         setMessage(" حدث خطأ فضلاً تأكد من المدخلات او شبكة الانترنت");
         setTimeout(() => {

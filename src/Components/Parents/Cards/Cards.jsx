@@ -19,13 +19,13 @@ function Cards({ user }) {
             {cards.map((item) => {
               return (
                 <Card
-                  Created_date={item.Created_date}
-                  customer_motion_service={item.customer_motion_service}
-                  customer_board_letters={item.customer_board_letters}
-                  customer_board_number={item.customer_board_number}
-                  customer_VIN={item.customer_VIN}
-                  customer_type={item.customer_type}
-                  customer_factory={item.customer_factory}
+                  Created_date={"2021/2/2"}
+                  customer_motion_service={item.invoices_customer_service}
+                  customer_board_letters={item.invoices_customer_board_letters}
+                  customer_board_number={item.invoices_customer_number}
+                  customer_VIN={item.invoices_customer_VIN}
+                  customer_type={item.invoices_customer_factor}
+                  customer_factory={item.invoices_customer_factory}
                   user={user}
                 />
               );
