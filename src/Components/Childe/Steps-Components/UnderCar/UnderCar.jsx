@@ -1,5 +1,5 @@
 import UnderCar_section from "./UnderCar_section";
-import checks from "./checks.json";
+import checks from "../../../../Json/checks.json";
 import { useState } from "react";
 
 function UnderCar() {

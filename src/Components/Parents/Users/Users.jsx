@@ -28,6 +28,7 @@ function Users({ user }) {
         }
       );
       let resJson = await res.json();
+      console.log(resJson["ALL USERS"]);
       setUsers(resJson["ALL USERS"]);
       setStateFetch(true);
     } catch (err) {}
@@ -49,7 +50,13 @@ function Users({ user }) {
                 <i className="fas fa-sync-alt"></i>
               </button>
               <Section users={users} Component={Edit} title="تعديل حساب" />
-              <Section users={users} Component={Delete} title="حذف حساب" />
+              <Section
+                setActive={setActive}
+                active={active}
+                users={users}
+                Component={Delete}
+                title="حذف حساب"
+              />
               {!stateFetch ? <Loader /> : <></>}
             </div>
           </>

@@ -7,17 +7,16 @@ import Option from "./Option";
 // Import Context
 import { DataContext } from "../../../DataContext";
 
-function Delete({ users }) {
+function Delete({ users, setActive, active }) {
   const { user } = useContext(DataContext);
 
   // State
-  const [message, setMessage] = useState(false);
+  const [message, setMessage] = useState("");
   const [id, setId] = useState(undefined);
   const [account, setAccount] = useState({});
   // Function
   const handleId = (e) => {
     setId(e.target.value);
-    console.log(id);
   };
   const submit = (e) => {
     e.preventDefault();
@@ -25,25 +24,29 @@ function Delete({ users }) {
   };
   useEffect(async () => {
     if (Boolean(account.identity)) {
-      console.log(account);
       try {
+        console.log(account);
         let res = await fetch(
           "https://peaceful-depths-13311.herokuapp.com/user",
           {
             method: "DELETE",
+            body: JSON.stringify(account),
             headers: {
               "Content-Type": "application/json",
               "x-access-tokens": user.token,
             },
-            body: { identity: id },
           }
         );
         let resJson = await res.json();
-        setMessage("تم حذف الحساب");
-        setId(undefined);
-        console.log(resJson);
+        if (resJson.success === true) {
+          setMessage(` تم حذف حساب ${resJson.deleted}`);
+          setActive(active + 1)
+        }
       } catch (err) {
         console.log(err);
+        setTimeout(() => {
+          setMessage("تأكد من شبكة الانترنت");
+        }, 3000);
       }
     }
   }, [account]);
@@ -65,6 +68,15 @@ function Delete({ users }) {
           <button className="min" onClick={submit}>
             حذف
           </button>
+        </div>
+        <div
+          className={`message mt-5 ${
+            !(message === "تأكد من شبكة الانترنت")
+              ? "text-success"
+              : "text-danger"
+          }`}
+        >
+          {message}
         </div>
       </div>
     </>

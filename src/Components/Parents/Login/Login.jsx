@@ -18,7 +18,7 @@ function Login() {
   // Use State
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState("");
   const [account, setAccount] = useState();
 
   // Data Context
@@ -28,7 +28,7 @@ function Login() {
   const handleSubmit = (e) => {
     if (password === "" || username === "") {
       e.preventDefault();
-      setAccount({ password:" ", username:" " });
+      setMessage("الرجاء التأكد من تعبئة المدخلات");
     } else {
       e.preventDefault();
       setAccount({ password, username });
@@ -51,17 +51,13 @@ function Login() {
           }
         );
         let resJson = await res.json();
+        
         if (res.status === 200) {
           handleUser(resJson.token);
-          console.log(resJson);
           history.push("/");
         }
       } catch (err) {
-        console.log(err);
         setMessage(" حدث خطأ فضلاً تأكد من المدخلات او شبكة الانترنت");
-        setTimeout(() => {
-          setMessage("");
-        }, 3000);
       }
     }
   }, [account]);
@@ -83,6 +79,7 @@ function Login() {
             placeholder="name@example.com"
             value={username}
             onChange={({ target }) => {
+              setMessage("");
               setUsername(target.value);
             }}
           />
@@ -97,6 +94,7 @@ function Login() {
             autoComplete="off"
             value={password}
             onChange={({ target }) => {
+              setMessage("");
               setPassword(target.value);
             }}
           />

@@ -1,3 +1,4 @@
+// import components
 import Lable from "./Lable";
 import Input_Default from "./Input_Default";
 import Select from "./Select";
@@ -7,6 +8,9 @@ import { useContext, useState } from "react";
 import { getYears, GetFullDateString } from "../../../Function/Times";
 import { DataContext } from "../../../DataContext";
 
+// Import Json
+import { factory } from "../../../Json/factory.json";
+import { types } from "../../../Json/type.json";
 const init = {
   invoices_customer_VIN: "",
   invoices_customer_board_letters: "",
@@ -31,14 +35,17 @@ function Form_lg({ setEditPage, editPage }) {
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
-    console.log(input);
   };
   // Functions
-  const onSubmit = (data) => {
-    handleCard(input);
-    input(init)
+  const onSubmit = (e) => {
+    e.preventDefault();
+    handleCard({
+      ...input,
+      created_date: GetFullDateString(),
+      date_finish: "2002/1/2",
+    });
+    setInput(init);
   };
-
   return (
     <form onSubmit={onSubmit} autocomplete="off">
       {/* Name & Number & Email */}
@@ -131,15 +138,13 @@ function Form_lg({ setEditPage, editPage }) {
         </div>
         <div className="col-3">
           <Lable For="invoices_customer_factory" title="المصنع" />
-          <input
-            type="text"
-            onChange={handleChange}
-            value={input.invoices_customer_factory}
-            className="form-control"
+          <Select
             name="invoices_customer_factory"
+            value={input.invoices_customer_factory}
             id="invoices_customer_factory"
-            placeholder=""
-            autoComplete="off"
+            select="المصنع"
+            options={factory}
+            handleChange={handleChange}
           />
         </div>
       </div>
@@ -147,15 +152,13 @@ function Form_lg({ setEditPage, editPage }) {
       <div className="row mt-4 primary-text">
         <div className="col-4">
           <Lable For="invoices_customer_type" title="النوع" />
-          <input
-            type="text"
-            onChange={handleChange}
-            className="form-control"
-            name="invoices_customer_factor"
-            value={input.invoices_customer_factor}
+          <Select
+            name="invoices_customer_type"
+            value={input.invoices_customer_type}
             id="invoices_customer_type"
-            placeholder=""
-            autoComplete="off"
+            select="النوع"
+            options={types.filter((i) => i.factory === input.invoices_customer_factory)[0].types}
+            handleChange={handleChange}
           />
         </div>
         <div className="col-4">

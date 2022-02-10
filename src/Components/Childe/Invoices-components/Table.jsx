@@ -45,8 +45,8 @@ function Table() {
                 <td>قيد التنفيذ</td>
                 <td>القطيف</td>
                 <td>{item.by}</td>
-                <td>{item.Created_date}2002/13/2</td>
-                <td>{item.date_f}2002/13/2</td>
+                <td>{item.created_date}</td>
+                <td>{item.date_finish}</td>
               </tr>
             );
           })}
