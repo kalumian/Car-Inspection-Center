@@ -2,7 +2,7 @@ import Sidebar from "../../Childe/General-components/Sidebar/Sidebar";
 import Error_Page from "../Error_Page/Error_Page";
 import Header from "../../Childe/General-components/Header/Header";
 import Section from "../../Childe/Web_setting_components/Section";
-import Add_branch from "../../Childe/Web_setting_components/Add_branch";
+import Branch from "../../Childe/Web_setting_components/Branch";
 import { useState } from "react";
 
 function Web_Setting({ user }) {
@@ -14,7 +14,7 @@ function Web_Setting({ user }) {
         <Header user={user} />
         {user.type === "المشرف" ? (
           <div className="rtl">
-            <Section Components={Add_branch} title="اعدادت فروع المركز"/>
+            <Section user={user} Components={Branch} title="اعدادت فروع المركز"/>
           </div>
         ) : (
           <Error_Page kind={400} />

@@ -1,0 +1,25 @@
+.branch {
+  & table {
+    margin: auto;
+  }
+  & .content {
+    display: flex;
+    @media (max-width: $s) {
+      flex-direction: column;
+    }
+  }
+  & .AddBranch {
+    width: 600px;
+    @media (max-width: $s) {
+      width: 400px;
+    }
+  }
+  & .row {
+    align-items: flex-end;
+    padding: 0 8px;
+  }
+  & .min {
+    width: 100px;
+    padding: 0;
+  }
+}
