@@ -1,4 +1,39 @@
+// Import from Lib
+import { useState, useEffect, useContext } from "react";
+
+// Import Components
+import Edit_services from "./Edit_services";
+import Add_services from "./Add_services";
+import Delete_services from "./Delete_services";
+import Loader from "../../Parents/Loader/Loader";
+import { DataContext } from "../../../DataContext";
 function Edit_page({ setEditPage, editPage }) {
+  const { user } = useContext(DataContext);
+  // State
+  const [services, setServices] = useState([]);
+  const [stateFetch, setStateFetch] = useState(true);
+  const [sections, setSections] = useState("control");
+  const [active, setActive] = useState(0);
+  useEffect(async () => {
+    console.log(user);
+    try {
+      let res = await fetch(
+        "https://peaceful-depths-13311.herokuapp.com/services",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-tokens": user.token,
+          },
+        }
+      );
+      let resJson = await res.json();
+      console.log(resJson);
+      // setBranches(resJson["ALL USERS"]);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [active]);
   return (
     <div className={`edit-page rtl shadow-lg ${editPage ? "active" : ""}`}>
       <header>
@@ -7,77 +42,68 @@ function Edit_page({ setEditPage, editPage }) {
         </span>
       </header>
       <form>
-        <div className="row mt-3 ">
-          <div className="col">
-            <label htmlFor="invoices-customer-name" className="form-label">
-              اضافة خدمة
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="invoices-customer-name"
-              placeholder="محمد عبد السميع"
-            />
+        {sections === "control" ? (
+          <div className="control d-flex justify-content-center">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setSections("add");
+              }}
+              className="min mx-2"
+            >
+              اضافة
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setSections("delete");
+              }}
+              className="min mx-2"
+            >
+              حذف
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setSections("edit");
+              }}
+              className="min mx-2"
+            >
+              تعديل
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setEditPage(false);
+              }}
+              className="min mx-2"
+            >
+              انهاء
+            </button>
           </div>
-          <div className="col">
-            <label htmlFor="invoices-customer-name" className="form-label">
-              السعر الإفتراضي
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="invoices-customer-name"
-              placeholder="محمد عبد السميع"
-            />
-          </div>
-        </div>
-        <div className="d-flex justify-content-center">
-          <button className="w-30 btn btn-lg primary-bg" type="submit">
-            انشاء
-          </button>
-        </div>
-        <div className="row mt-3 ">
-          <div className="col">
-            <label htmlFor="invoices-customer-name" className="form-label">
-              الخدمة
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="invoices-customer-name"
-              placeholder="محمد عبد السميع"
-            />
-          </div>
-          <div className="col">
-            <label htmlFor="invoices-customer-name" className="form-label">
-              السعر الإفتراضي
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="invoices-customer-name"
-              placeholder="محمد عبد السميع"
-            />
-          </div>
-        </div>
-        <div className="d-flex justify-content-center">
-          <button className="w-30 btn btn-lg primary-bg mx-2" type="submit">
-            تعديل
-          </button>
-          <button className="w-30 btn btn-lg primary-bg mx-2" type="submit">
-            حذف
-          </button>
-          <button
-            className="w-30 btn btn-lg primary-bg mx-2"
-            onClick={(e) => {
-              e.preventDefault();
-              setEditPage(false);
-            }}
-          >
-            انهاء
-          </button>
-        </div>
+        ) : sections === "edit" ? (
+          <Edit_services
+            setEditPage={setEditPage}
+            editPage={editPage}
+            setSections={setSections}
+          />
+        ) : sections === "delete" ? (
+          <Delete_services
+            setEditPage={setEditPage}
+            editPage={editPage}
+            setSections={setSections}
+          />
+        ) : sections === "add" ? (
+          <Add_services
+            setEditPage={setEditPage}
+            editPage={editPage}
+            setSections={setSections}
+          />
+        ) : (
+          <></>
+        )}
       </form>
+      {!stateFetch ? <Loader /> : <></>}
     </div>
   );
 }

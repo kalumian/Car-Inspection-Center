@@ -29,12 +29,11 @@ function Branch({ user }) {
         }
       );
       let resJson = await res.json();
-      console.log(resJson);
-      if (resJson.success === true) {
-        setBranches(resJson["ALL USERS"]);
-      }
+      setBranches(resJson["ALL USERS"]);
       setStateFetch(true);
-    } catch (err) {}
+    } catch (err) {
+      setStateFetch(false);
+    }
   }, [active]);
   return (
     <>

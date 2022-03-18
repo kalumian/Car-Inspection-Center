@@ -43,6 +43,7 @@ function AddBranch({ user, setActive, active }) {
           }
         );
         let resJson = await res.json();
+        console.log(resJson);
         if (resJson.success === true) {
           setStateFetch(true);
           setActiveButton(false);
@@ -55,6 +56,7 @@ function AddBranch({ user, setActive, active }) {
           setActive(active + 1);
         }
       } catch (err) {
+        console.log(err);
         setMessage("تأكد من المدخلات ومن شبكة الانترنت لديك");
       }
     }

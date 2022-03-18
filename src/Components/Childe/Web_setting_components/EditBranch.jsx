@@ -5,7 +5,7 @@ import DeleteBranch from "./DeleteBranch";
 // Import Lib
 import { useState, useEffect } from "react";
 
-function EditBranch({ branches, user , setActive , active }) {
+function EditBranch({ branches, user, setActive, active }) {
   const [editState, setEditState] = useState(true);
   const [name, setName] = useState();
   const [id, setId] = useState();
@@ -17,7 +17,7 @@ function EditBranch({ branches, user , setActive , active }) {
       try {
         console.log(account);
         let res = await fetch(
-          "https://peaceful-depths-13311.herokuapp.com/edit-user",
+          "https://peaceful-depths-13311.herokuapp.com/edit-branch",
           {
             method: "PATCH",
             body: JSON.stringify(account),
@@ -28,12 +28,11 @@ function EditBranch({ branches, user , setActive , active }) {
           }
         );
         let resJson = await res.json();
-        console.log(resJson);
         setMessage("تم تعديل الفرع بنجاح.");
-
-        // if (res.status === 200) {
-        //   setMessage("تم تعديل الحساب بنجاح.");
-        // }
+        // setTimeout(() => {
+        //   setActive(active + 1);
+        //   setEditState(true);
+        // }, 3000);
       } catch (err) {
         setMessage(String(err));
         console.log(err.Message);
@@ -117,7 +116,7 @@ function EditBranch({ branches, user , setActive , active }) {
               className="min col-2"
               onClick={(e) => {
                 e.preventDefault();
-                setAccount({ id:Number(id), name });
+                setAccount({ id: Number(id), name });
               }}
             >
               حفظ

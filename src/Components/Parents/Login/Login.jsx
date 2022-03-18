@@ -10,7 +10,7 @@ import logo from "../../../Assets/logo-no-bg.png";
 import { DataContext } from "../../../DataContext";
 
 // Function
-import { DefaultLinks } from "../../../Function/UsersControl";
+import Loader from "../Loader/Loader";
 
 function Login() {
   const year = new Date().getFullYear();
@@ -20,6 +20,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [account, setAccount] = useState();
+  const [stateFetch, setStateFetch] = useState(false);
 
   // Data Context
   const { handleUser, user } = useContext(DataContext);
@@ -37,6 +38,7 @@ function Login() {
   const history = useHistory();
   useEffect(async () => {
     if (Boolean(account) === true) {
+      setStateFetch(true);
       const headers = new Headers();
       headers.set(
         "Authorization",
@@ -51,13 +53,18 @@ function Login() {
           }
         );
         let resJson = await res.json();
-        
         if (res.status === 200) {
+          setStateFetch(false);
           handleUser(resJson.token);
           history.push("/");
         }
+        if (res.status === 404) {
+          setMessage(" حدث خطأ فضلاً تأكد من المدخلات او شبكة الانترنت");
+          setStateFetch(false);
+        }
       } catch (err) {
         setMessage(" حدث خطأ فضلاً تأكد من المدخلات او شبكة الانترنت");
+        setStateFetch(false);
       }
     }
   }, [account]);
@@ -107,6 +114,7 @@ function Login() {
         <div className="text-danger mt-3">{message}</div>
         <p class="mt-4 mb-3 text-muted">&copy; 2020 - {year}</p>
       </form>
+      {stateFetch ? <Loader /> : <></>}
     </section>
   );
 }

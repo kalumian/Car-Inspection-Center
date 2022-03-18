@@ -1,7 +1,6 @@
 import React from "react";
 
 function GetBranch({ branches }) {
-  console.log(branches);
   return (
     <table className="table table-striped table-hover text-center rtl my-4 w-75 ">
       <thead className="fw-bolder">
