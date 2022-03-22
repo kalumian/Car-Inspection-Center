@@ -1,6 +1,6 @@
 import React from "react";
 
-function Select({ options, select, id, name, handleChange }) {
+function Select({ options, select, id, name, handleChange, type }) {
   return (
     <select
       className="form-select"
@@ -12,11 +12,31 @@ function Select({ options, select, id, name, handleChange }) {
       <option selected value={undefined}>
         {select}
       </option>
-      {options.map((title, i) => (
-        <option key={i} value={title}>
-          {title}
-        </option>
-      ))}
+      {type === "branchs" ? (
+        <>
+          {options.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}
+            </option>
+          ))}
+        </>
+      ) : type === "services" ? (
+        <>
+          {options.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.type}
+            </option>
+          ))}
+        </>
+      ) : (
+        <>
+          {options.map((title, i) => (
+            <option key={i} value={title}>
+              {title}
+            </option>
+          ))}
+        </>
+      )}
     </select>
   );
 }

@@ -85,6 +85,7 @@ function Add() {
               id="invoices_customer_name"
               type="text"
               className="form-control"
+              autoComplete="off"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -100,6 +101,7 @@ function Add() {
               id="invoices_customer_password"
               type="password"
               className={`form-control`}
+              autoComplete="off"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -116,6 +118,7 @@ function Add() {
               type="password"
               className="form-control"
               value={identity}
+              autoComplete="off"
               onChange={(e) => setIdentity(e.target.value)}
             />
           </div>

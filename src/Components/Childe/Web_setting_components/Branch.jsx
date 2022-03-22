@@ -29,7 +29,7 @@ function Branch({ user }) {
         }
       );
       let resJson = await res.json();
-      setBranches(resJson["ALL USERS"]);
+      setBranches(resJson["ALL Branches"]);
       setStateFetch(true);
     } catch (err) {
       setStateFetch(false);

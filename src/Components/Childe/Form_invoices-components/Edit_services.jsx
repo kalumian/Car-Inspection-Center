@@ -1,14 +1,73 @@
 import React, { useState, useEffect } from "react";
 
-function Edit_services({ setEditPage, setSections }) {
+function Edit_services({
+  setEditPage,
+  setSections,
+  services,
+  user,
+  active,
+  setActive,
+}) {
+  // states
   const [message, setMessage] = useState("");
-  const [stateEdit, setStateEdit] = useState(false);
+  const [stateEdit, setStateEdit] = useState(true);
   const [checkSelect, setCheckSelect] = useState([]);
   const [title, setTitle] = useState("");
-  const [price, setPrice] = useState([]);
+  const [price, setPrice] = useState("");
+  const [id, setId] = useState(undefined);
+  const [newServices, setNewServices] = useState({});
+
+  // Functions
   const handleCheck = (d) => {
     setCheckSelect([...checkSelect, d.target.value]);
   };
+
+  const handleSetNewServices = (e) => {
+    e.preventDefault();
+    if (!(id === undefined) && !(price === "") && !(title.trim() === "")) {
+      setNewServices({
+        id,
+        type: title,
+        price,
+      });
+    } else {
+      setMessage("الرجاء التأكد من المدخلات او من شبكة الانترنت لديك");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+    }
+  };
+  // useEffect
+  useEffect(async () => {
+    if (newServices.type) {
+      try {
+        let res = await fetch(
+          "https://peaceful-depths-13311.herokuapp.com/edit-service",
+          {
+            method: "PATCH",
+            body: JSON.stringify(newServices),
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-tokens": user.token,
+            },
+          }
+        );
+        let resJson = await res.json();
+        console.log(resJson);
+        if (resJson.success === true) {
+          setTitle("");
+          setPrice("");
+          setMessage("تم تعديل الخدمة بنجاح");
+          setStateEdit(true);
+          setActive(active + 1);
+        }
+      } catch (err) {
+        console.log(err);
+        setMessage("الرجاء التأكد من المدخلات او من شبكة الانترنت لديك");
+      }
+    }
+  }, [newServices]);
+
   return (
     <>
       {stateEdit ? (
@@ -20,17 +79,16 @@ function Edit_services({ setEditPage, setSections }) {
               name="edit-delete-branch"
               id="edit-delete-branch"
               onChange={(e) => {
-                // setId(e.target.value);
-                // console.log(id);
+                setId(e.target.value);
               }}
             >
               <option selected value={undefined}>
                 الخدمات
               </option>
-              {[].map((item) => {
+              {services.map((item) => {
                 return (
                   <option key={item.id} value={item.id}>
-                    {item.name}
+                    {item.type}
                   </option>
                 );
               })}
@@ -42,7 +100,7 @@ function Edit_services({ setEditPage, setSections }) {
           <div className="row mt-3 ">
             <div className="col">
               <label htmlFor="invoices-customer-name" className="form-label">
-                 اضافة الخدمة الجديدة
+                اضافة الخدمة الجديدة
               </label>
               <input
                 onChange={(e) => setTitle(e.target.value)}
@@ -120,20 +178,17 @@ function Edit_services({ setEditPage, setSections }) {
           </div>
         </>
       )}
-
-      <div className="row mt-3 ">{message}</div>
+      <div
+        className={`message my-3 me-2 ${
+          message === "الرجاء التأكد من المدخلات او من شبكة الانترنت لديك"
+            ? "text-danger"
+            : "text-success"
+        }`}
+      >
+        {message}
+      </div>
       <div className="d-flex justify-content-center">
         {stateEdit ? (
-          <button
-            className="w-30 btn btn-lg primary-bg mx-2"
-            onClick={(e) => {
-              e.preventDefault();
-              setStateEdit(true);
-            }}
-          >
-            تعديل
-          </button>
-        ) : (
           <button
             className="w-30 btn btn-lg primary-bg mx-2"
             onClick={(e) => {
@@ -141,17 +196,26 @@ function Edit_services({ setEditPage, setSections }) {
               setStateEdit(false);
             }}
           >
-            حفظ
+            تعديل
+          </button>
+        ) : (
+          <button
+            className="w-30 btn btn-lg primary-bg mx-2"
+            onClick={handleSetNewServices}
+          >
+            حفظ التعديلات
           </button>
         )}
         <button
           className="w-30 btn btn-lg primary-bg mx-2"
           onClick={(e) => {
             e.preventDefault();
+            setId(undefined);
             setSections("control");
+            setStateEdit(true);
           }}
         >
-          عودة
+          الغاء
         </button>
         <button
           className="w-30 btn btn-lg primary-bg mx-2"
@@ -159,6 +223,7 @@ function Edit_services({ setEditPage, setSections }) {
             e.preventDefault();
             setSections("control");
             setEditPage(false);
+            setId(undefined);
           }}
         >
           انهاء

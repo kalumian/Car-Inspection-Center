@@ -1,7 +1,8 @@
 // import components
 import Lable from "./Lable";
 import Select from "./Select";
-import { useEffect,useContext, useState } from "react";
+import Branch_section from "./Branch_section";
+import { useEffect, useContext, useState } from "react";
 
 // Impoert Functions
 import { getYears, GetFullDateString } from "../../../Function/Times";
@@ -10,6 +11,7 @@ import { DataContext } from "../../../DataContext";
 // Import Json
 import { factory } from "../../../Json/factory.json";
 import { types } from "../../../Json/type.json";
+import Services_section from "./Services_section";
 
 const init = {
   invoices_customer_VIN: "",
@@ -20,31 +22,54 @@ const init = {
   invoices_customer_crane: "",
   invoices_customer_email: "",
   invoices_customer_factory: "",
-  invoices_customer_year:"",
-  invoices_customer_final_cost: "0",
+  invoices_customer_year: "",
+  invoices_customer_final_cost: "",
   invoices_customer_name: "",
   invoices_customer_number: "",
-  invoices_customer_type:"",
+  invoices_customer_type: "",
   invoices_customer_service: "فحص محركات شامل",
   invoices_customer_speedometer: "",
   invoices_notes: "",
 };
 function Form_lg({ setEditPage, editPage }) {
   //  Hooks
-  const [ card, setCard ] = useState({});
-  const [message, setMessage] = useState(false);
-  const {user} = useContext(DataContext);
-  const [input, setInput] = useState({});
-  const [activeButton , setActiveButton] = useState(true);
+  const [card, setCard] = useState({});
+  const [message, setMessage] = useState("");
+  const { user } = useContext(DataContext);
+  const [input, setInput] = useState(init);
+  const [activeButton, setActiveButton] = useState(true);
+  // useEffect
   useEffect(async () => {
+    console.log("fetch 1 is working");
+
     if (card.name) {
-      console.log("resJson");
+      console.log("fetch 2 is working");
       try {
         let res = await fetch(
           "https://peaceful-depths-13311.herokuapp.com/add-bill",
           {
             method: "POST",
-            body: JSON.stringify(card),
+            body: JSON.stringify({
+              name: "ali",
+              email: "ewfwedf@fewef",
+              phoneNum: "32423",
+              numOfLicense: "2332 dfv",
+              numCrane: "2314",
+              vactor: "ttt",
+              type: "dsfgsd",
+              numaCounter: "Fgdsgfds",
+              year: "2011",
+              numVin: "32423",
+              typeService: 7,
+              cost: "3777",
+              by: "alwaleed ",
+              totalCost: "3434",
+              StartDate: "2/2/2011",
+              endDate: "1221",
+              BillState: "UnderConstruction",
+              note: "fd",
+              branch_id: 1
+          }),
             headers: {
               "Content-Type": "application/json",
               "x-access-tokens": user.token,
@@ -52,12 +77,15 @@ function Form_lg({ setEditPage, editPage }) {
           }
         );
         let resJson = await res.json();
+        console.log(resJson);
         if (resJson.success === true) {
           setActiveButton(false);
           setMessage("تم اضافة الفاتورة بنجاح.");
-          setTimeout(()=>{
-            setActiveButton(true)
-          },4000)
+          setCard(init);
+          setInput(init);
+          setTimeout(() => {
+            setActiveButton(true);
+          }, 4000);
         }
       } catch (err) {
         console.log(err);
@@ -72,32 +100,55 @@ function Form_lg({ setEditPage, editPage }) {
   // Functions
   const onSubmit = (e) => {
     e.preventDefault();
+    if (
+      !(card.invoices_customer_VIN === "") &&
+      !(card.invoices_customer_board_letters === "") &&
+      !(card.invoices_customer_board_number === "") &&
+      !(card.invoices_customer_branch === "الفرع") &&
+      !(card.invoices_customer_cost === "") &&
+      !(card.invoices_customer_crane === "") &&
+      !(card.invoices_customer_email === "") &&
+      !(card.invoices_customer_factory === "") &&
+      !(card.invoices_customer_year === "") &&
+      !(card.invoices_customer_final_cost === "0") &&
+      !(card.invoices_customer_name === "") &&
+      !(card.invoices_customer_number === "") &&
+      !(card.invoices_customer_type === "") &&
+      !(card.invoices_customer_service === "فحص محركات شامل") &&
+      !(card.invoices_customer_speedometer === "") &&
+      !(card.invoices_notes === "")
+    ) {
     setCard({
-      name:input.invoices_customer_name,
-      email:input.invoices_customer_email,
-      phoneNum:input.invoices_customer_number,
-      numOfLicense:`${input.invoices_customer_board_number} - ${input.invoices_customer_cost}`,
-      numCrane:input.invoices_customer_crane,
-      vactor:input.invoices_customer_factory,
-      type:input.invoices_customer_type,
-      numaCounter:input.invoices_customer_speedometer,
-      year:input.invoices_customer_year,
-      numVin:input.invoices_customer_VIN,
-      typeService:2,
-      cost:input.invoices_customer_cost,
-      by:user.name,
-      totalCost:input.invoices_customer_final_cost,
-      StartDate:GetFullDateString(),
-      endDate:" -- ",
-      BillState:"UnderConstruction",
-      note:input.invoices_notes,
-      bransh_id:1
+      name: input.invoices_customer_name,
+      email: input.invoices_customer_email,
+      phoneNum: input.invoices_customer_number,
+      numOfLicense: `${input.invoices_customer_board_number} - ${input.invoices_customer_cost}`,
+      numCrane: input.invoices_customer_crane,
+      vactor: input.invoices_customer_factory,
+      type: input.invoices_customer_type,
+      numaCounter: input.invoices_customer_speedometer,
+      year: input.invoices_customer_year,
+      numVin: input.invoices_customer_VIN,
+      typeService: Number(input.invoices_customer_service),
+      cost: input.invoices_customer_cost,
+      by: user.name,
+      totalCost: input.invoices_customer_final_cost,
+      StartDate: GetFullDateString(),
+      endDate: " -- ",
+      BillState: "UnderConstruction",
+      note: input.invoices_notes,
+      branch_id: Number(input.invoices_customer_branch),
     });
+    } else {
+      setMessage("تأكد من المدخلات ومن شبكة الانترنت لديك");
+    }
   };
 
-
   return (
-    <form onSubmit={activeButton ? onSubmit : (e)=>e.preventDefault()} autocomplete="off">
+    <form
+      onSubmit={activeButton ? onSubmit : (e) => e.preventDefault()}
+      autocomplete="off"
+    >
       {/* Name & Number & Email */}
       <div className="row mt-5 ">
         <div className="col-4">
@@ -261,16 +312,7 @@ function Form_lg({ setEditPage, editPage }) {
             name="invoices_customer_VIN"
           />
         </div>
-        <div className="col-4">
-          <Lable For="invoices_customer_service" title="النوع الخدمة" />
-          <Select
-            name="invoices_customer_service"
-            id="invoices_customer_service"
-            handleChange={handleChange}
-            select="النوع الخدمة"
-            options={["فحص محركات شامل", "فحص جزئي"]}
-          />
-        </div>
+        <Services_section handleChange={handleChange} user={user} />
         <div className="col-4 text-center">
           <Lable For="invoices_customer_cost" title="التكلفة" />
           <input
@@ -285,7 +327,7 @@ function Form_lg({ setEditPage, editPage }) {
           />
         </div>
       </div>
-      {/*final_cost */}
+      {/*final_cost & bransh */}
       <div className="row mt-4 primary-text">
         <div className="col-4">
           <Lable For="invoices_customer_final_cost" title="لتكلفة النهائية" />
@@ -311,16 +353,7 @@ function Form_lg({ setEditPage, editPage }) {
             تعديل
           </button>
         </div>
-        <div className="col-4">
-          <Lable For="invoices_customer_branch" title="تحديد الفرع" />
-          <Select
-            name="invoices_customer_branch"
-            id="invoices_customer_branch"
-            handleChange={handleChange}
-            select="تحديد الفرع"
-            options={["فحص محركات شامل", "فحص جزئي"]}
-          />
-        </div>
+        <Branch_section handleChange={handleChange} user={user} />
       </div>
       <div className="row mt-4 primary-text">
         <textarea
@@ -333,10 +366,18 @@ function Form_lg({ setEditPage, editPage }) {
         ></textarea>
       </div>
       <div className="d-flex justify-content-center">
-      <div className="text-danger mt-3">{message}</div>
         <button className="w-30 btn btn-lg primary-bg" type="submit">
           انشاء
         </button>
+      </div>
+      <div
+        className={`message my-3 me-2 ${
+          message === "تأكد من المدخلات ومن شبكة الانترنت لديك"
+            ? "text-danger"
+            : "text-success"
+        }`}
+      >
+        {message}
       </div>
     </form>
   );
