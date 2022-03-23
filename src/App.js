@@ -12,6 +12,7 @@ import Home from "./Components/Parents/Home/Home";
 import Login from "./Components/Parents/Login/Login";
 import Form_invoices from "./Components/Parents/Form_invoices/Form_invoices";
 import Invoices from "./Components/Parents/Invoices/Invoices";
+import BillPage from "./Components/Childe/Invoices-components/BillPage";
 import Cards from "./Components/Parents/Cards/Cards";
 import Steps from "./Components/Parents/Steps/Steps";
 import Staff from "./Components/Parents/Staff/Staff";
@@ -60,6 +61,11 @@ function App() {
           path="/dashboard/فواتير"
           exact
           children={<Invoices user={user} />}
+        />
+        <Route
+          path="/dashboard/بيانات-الفاتورة/:id"
+          exact
+          children={<BillPage user={user} />}
         />
         <Route
           path="/dashboard/انشاء/فواتير"

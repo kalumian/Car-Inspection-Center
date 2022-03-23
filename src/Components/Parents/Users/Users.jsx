@@ -28,7 +28,6 @@ function Users({ user }) {
         }
       );
       let resJson = await res.json();
-      console.log(resJson["ALL USERS"]);
       setUsers(resJson["ALL USERS"]);
       setStateFetch(true);
     } catch (err) {}

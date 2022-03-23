@@ -19,7 +19,7 @@ function Home() {
           <div className="container-fluid px-4 home">
             <Header />
             {/* Stats Components */}
-            <div className="row g-3 my-2">
+            {/* <div className="row g-3 my-2">
               <Card_stats
                 title="الفحوصات المتبقية"
                 icon="fas fa-ellipsis-h"
@@ -35,7 +35,7 @@ function Home() {
                 icon="fas fa-file-invoice"
                 count="457423"
               />
-            </div>
+            </div> */}
             {/* قائمة الاشعارات */}
             <Notifications />
           </div>

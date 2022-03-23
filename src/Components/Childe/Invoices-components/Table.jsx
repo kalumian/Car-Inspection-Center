@@ -1,21 +1,31 @@
 import { DataContext } from "../../../DataContext";
 import { useContext } from "react";
-function Table() {
+import { Link , useHistory } from "react-router-dom";
+function Table({ invoices, input }) {
   const { cards, stateSide } = useContext(DataContext);
+  const history = useHistory()
+  const whatTheState = (state) => {
+    return state === "UnderConstruction"
+      ? "قيد التنفيذ"
+      : state === "Deleted"
+      ? "محذوفة"
+      : state === "Finished"
+      ? "منتهية"
+      : "";
+  };
   return (
     <div className={`section ${!stateSide ? "active" : ""}`}>
       <table className="table table-striped table-hover text-center rtl ">
         <thead className="fw-bolder">
           <tr>
             <td>الفاتورة</td>
-            <td>فاتورة الفرع</td>
             <td>الاسم</td>
             <td>الجوال</td>
             <td>اللوحة</td>
-            <td>المجموع</td>
+            <td>الخدمة</td>
+            <td>السعر</td>
             <td>الخصم</td>
             <td>إجمالي السعر</td>
-            <td>صافي الفاتورة</td>
             <td>الحالة</td>
             <td>الفرع</td>
             <td>بواسطة</td>
@@ -24,32 +34,67 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {cards.map((item) => {
-            return (
-              <tr>
-                <td>4534</td>
-                <td>4534</td>
-                <td>{String(item.invoices_customer_name)}</td>
-                <td>{String(item.invoices_customer_number)}</td>
-                <td>
-                  {String(item.invoices_customer_board_number).split("").join(" ")},
-                  {String(item.invoices_customer_board_letters).split("").join(" ")}
-                </td>
-                <td> {Number(item.invoices_customer_cost)}</td>
-                <td>
-                  {Number(item.invoices_customer_cost) -
-                    Number(item.invoices_customer_final_cost)}
-                </td>
-                <td>{Number(item.invoices_customer_final_cost)}</td>
-                <td>230</td>
-                <td>قيد التنفيذ</td>
-                <td>القطيف</td>
-                <td>{item.by}</td>
-                <td>{item.created_date}</td>
-                <td>{item.date_finish}</td>
-              </tr>
-            );
-          })}
+          {invoices
+            .filter((e) => {
+              return new RegExp(input.phoneNum, "ig").test(e.phoneNum);
+            })
+            .filter((e) => {
+              return new RegExp(input.serachWithName, "ig").test(e.name);
+            })
+            .filter((e) => {
+              return new RegExp(input.serachWithNumOfLicense, "ig").test(
+                e.numOfLicense
+              );
+            })
+            .filter((e) => {
+              return new RegExp(input.serachWithStartDate, "ig").test(
+                e.StartDate
+              );
+            })
+            .filter((e) => {
+              return new RegExp(input.serachWithEndDate, "ig").test(e.id);
+            })
+            .filter((e) => {
+              return new RegExp(input.serachWithState, "ig").test(e.BillState);
+            })
+            .filter((e) => {
+              return new RegExp(input.serachWithCreatedBill, "ig").test(e.by);
+            })
+            .filter((e) => {
+              return new RegExp(input.serachWithBranch, "ig").test(e.branch_id);
+            })
+            .filter((e) => {
+              return new RegExp(input.serachWithService, "ig").test(e.nameService);
+            })
+            .map((item) => {
+              return (
+                // <Link to={`/dashboard/بيانات-الفاتورة/${item.id}`}>
+                  <tr onClick={(e)=>{
+                    e.preventDefault()
+                    history.push(`/dashboard/بيانات-الفاتورة/${item.id}`)
+                  }}>
+                    <td>{item.id}</td>
+                    <td>{String(item.name)}</td>
+                    <td>{String(item.phoneNum)}</td>
+                    <td>
+                      {String(item.numOfLicense)
+                        .toUpperCase()
+                        .split(" ")
+                        .join(" - ")}
+                    </td>
+                    <td>{item.nameService}</td>
+                    <td> {Number(item.totalCost)}</td>
+                    <td>{Number(item.cost) - Number(item.totalCost)}</td>
+                    <td>{Number(item.cost)}</td>
+                    <td>{whatTheState(item.BillState)}</td>
+                    <td>{item.branch_id}</td>
+                    <td>{item.by}</td>
+                    <td>{item.StartDate}</td>
+                    <td>{item.endDate}</td>
+                  </tr>
+                // </Link>
+              );
+            })}
         </tbody>
       </table>
     </div>
@@ -57,19 +102,3 @@ function Table() {
 }
 
 export default Table;
-// customer_VIN: "2134"
-// customer_board_letters: "2134"
-// customer_board_number: "يسبس"
-// customer_cost: "200"
-// customer_crane: "5"
-// customer_factory: "فورد"
-// customer_final_cost: "150"
-// customer_motion_service: "فحص محركات شامل"
-// customer_motion_year: "1988"
-// customer_speedometer: "213"
-// customer_type: "ربع"
-// email_customer: "asdas@gmail.com"
-// name_customer: "محمد فيصل"
-// notes: ""
-// number_customer: "054312314"
-// Created_date: "2021/5/2"

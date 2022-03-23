@@ -40,7 +40,7 @@ function Delete({ users, setActive, active }) {
         let resJson = await res.json();
         if (resJson.success === true) {
           setMessage(` تم حذف حساب ${resJson.deleted}`);
-          setActive(active + 1)
+          setActive(active + 1);
         }
       } catch (err) {
         console.log(err);
@@ -59,9 +59,17 @@ function Delete({ users, setActive, active }) {
             <option selected value={undefined}>
               اختيار الحساب المراد حذفه
             </option>
-            {users.map((item) => {
-              return <Option item={item} />;
-            })}
+            {user.name === "ADMIN"
+              ? users.map((item) => {
+                  return <Option item={item} handleId={handleId} />;
+                })
+              : users
+                  .filter((i) => {
+                    return i.type !== "SuperVisor";
+                  })
+                  .map((item) => {
+                    return <Option item={item} handleId={handleId} />;
+                  })}
           </select>
         </div>
         <div className="col-4">

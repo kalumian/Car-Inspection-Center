@@ -27,7 +27,7 @@ const init = {
   invoices_customer_name: "",
   invoices_customer_number: "",
   invoices_customer_type: "",
-  invoices_customer_service: "فحص محركات شامل",
+  invoices_customer_service: "تحديد نوع الخدمة",
   invoices_customer_speedometer: "",
   invoices_notes: "",
 };
@@ -38,38 +38,16 @@ function Form_lg({ setEditPage, editPage }) {
   const { user } = useContext(DataContext);
   const [input, setInput] = useState(init);
   const [activeButton, setActiveButton] = useState(true);
+  const [cost, setCost] = useState();
   // useEffect
   useEffect(async () => {
-    console.log("fetch 1 is working");
-
     if (card.name) {
-      console.log("fetch 2 is working");
       try {
         let res = await fetch(
           "https://peaceful-depths-13311.herokuapp.com/add-bill",
           {
             method: "POST",
-            body: JSON.stringify({
-              name: "ali",
-              email: "ewfwedf@fewef",
-              phoneNum: "32423",
-              numOfLicense: "2332 dfv",
-              numCrane: "2314",
-              vactor: "ttt",
-              type: "dsfgsd",
-              numaCounter: "Fgdsgfds",
-              year: "2011",
-              numVin: "32423",
-              typeService: 7,
-              cost: "3777",
-              by: "alwaleed ",
-              totalCost: "3434",
-              StartDate: "2/2/2011",
-              endDate: "1221",
-              BillState: "UnderConstruction",
-              note: "fd",
-              branch_id: 1
-          }),
+            body: JSON.stringify(card),
             headers: {
               "Content-Type": "application/json",
               "x-access-tokens": user.token,
@@ -88,7 +66,6 @@ function Form_lg({ setEditPage, editPage }) {
           }, 4000);
         }
       } catch (err) {
-        console.log(err);
         setMessage("تأكد من المدخلات ومن شبكة الانترنت لديك");
       }
     }
@@ -114,31 +91,31 @@ function Form_lg({ setEditPage, editPage }) {
       !(card.invoices_customer_name === "") &&
       !(card.invoices_customer_number === "") &&
       !(card.invoices_customer_type === "") &&
-      !(card.invoices_customer_service === "فحص محركات شامل") &&
+      !(card.invoices_customer_service === "تحديد نوع الخدمة") &&
       !(card.invoices_customer_speedometer === "") &&
       !(card.invoices_notes === "")
     ) {
-    setCard({
-      name: input.invoices_customer_name,
-      email: input.invoices_customer_email,
-      phoneNum: input.invoices_customer_number,
-      numOfLicense: `${input.invoices_customer_board_number} - ${input.invoices_customer_cost}`,
-      numCrane: input.invoices_customer_crane,
-      vactor: input.invoices_customer_factory,
-      type: input.invoices_customer_type,
-      numaCounter: input.invoices_customer_speedometer,
-      year: input.invoices_customer_year,
-      numVin: input.invoices_customer_VIN,
-      typeService: Number(input.invoices_customer_service),
-      cost: input.invoices_customer_cost,
-      by: user.name,
-      totalCost: input.invoices_customer_final_cost,
-      StartDate: GetFullDateString(),
-      endDate: " -- ",
-      BillState: "UnderConstruction",
-      note: input.invoices_notes,
-      branch_id: Number(input.invoices_customer_branch),
-    });
+      setCard({
+        name: input.invoices_customer_name,
+        email: input.invoices_customer_email,
+        phoneNum: input.invoices_customer_number,
+        numOfLicense: `${input.invoices_customer_board_number} - ${input.invoices_customer_cost}`,
+        numCrane: input.invoices_customer_crane,
+        vactor: input.invoices_customer_factory,
+        type: input.invoices_customer_type,
+        numaCounter: input.invoices_customer_speedometer,
+        year: input.invoices_customer_year,
+        numVin: input.invoices_customer_VIN,
+        typeService: Number(input.invoices_customer_service),
+        cost,
+        by: user.name,
+        totalCost: input.invoices_customer_final_cost,
+        StartDate: GetFullDateString(),
+        endDate: " -- ",
+        BillState: "UnderConstruction",
+        note: input.invoices_notes,
+        branch_id: Number(input.invoices_customer_branch),
+      });
     } else {
       setMessage("تأكد من المدخلات ومن شبكة الانترنت لديك");
     }
@@ -312,33 +289,25 @@ function Form_lg({ setEditPage, editPage }) {
             name="invoices_customer_VIN"
           />
         </div>
-        <Services_section handleChange={handleChange} user={user} />
-        <div className="col-4 text-center">
-          <Lable For="invoices_customer_cost" title="التكلفة" />
-          <input
-            type="text"
-            name="invoices_customer_cost"
-            value={input.invoices_customer_cost}
-            onChange={handleChange}
-            className="form-control"
-            id="invoices_customer_cost"
-            placeholder=""
-            autoComplete="off"
-          />
-        </div>
+        <Services_section
+          handleChange={handleChange}
+          user={user}
+          serviceID={input.invoices_customer_service}
+          setCost={setCost}
+          cost={cost}
+        />
       </div>
       {/*final_cost & bransh */}
       <div className="row mt-4 primary-text">
         <div className="col-4">
           <Lable For="invoices_customer_final_cost" title="لتكلفة النهائية" />
           <input
-            value={input.invoices_customer_final_cost}
             type="text"
             onChange={handleChange}
             name="invoices_customer_final_cost"
             className="form-control"
             id="invoices_customer_final_cost"
-            placeholder=""
+            placeholder={`${cost}`}
             autoComplete="off"
           />
         </div>

@@ -45,9 +45,17 @@ function Edit({ users }) {
                 <option selected value={undefined}>
                   الموظف
                 </option>
-                {users.map((item) => {
-                  return <Option item={item} handleId={handleId} />;
-                })}
+                {user.name === "ADMIN"
+                  ? users.map((item) => {
+                      return <Option item={item} handleId={handleId} />;
+                    })
+                  : users
+                      .filter((i) => {
+                        return i.type !== "SuperVisor";
+                      })
+                      .map((item) => {
+                        return <Option item={item} handleId={handleId} />;
+                      })}
               </select>
             </div>
             <div className="col-2">

@@ -19,7 +19,7 @@ function Add() {
   const [message, setMessage] = useState("");
   const [type, setType] = useState("");
   const [styleButton, setStyleButton] = useState(false);
-
+  console.log(user);
   const deletContent = () => {
     setName("");
     setPassword("");
@@ -78,7 +78,7 @@ function Add() {
             <Lable
               active={false}
               For="invoices_customer_name"
-              title="اسم الموظف "
+              title="اسم الموظف"
             />
             <input
               name="name_customer"
@@ -133,9 +133,18 @@ function Add() {
                 <option selected value={"undefined"}>
                   الوظيفة
                 </option>
-                <option value={"SuperVisor"}>مشرف </option>
-                <option value={"Reception"}>استقبال</option>
-                <option value={"Fitter"}>فني </option>
+                {user.name === "ADMIN" ? (
+                  <>
+                    <option value="SuperVisor">مشرف </option>
+                    <option value="Reception">استقبال</option>
+                    <option value="Fitter">فني </option>
+                  </>
+                ) : (
+                  <>
+                    <option value="Reception">استقبال</option>
+                    <option value="Fitter">فني </option>
+                  </>
+                )}
               </select>
             </div>
             <div className="col-4">
