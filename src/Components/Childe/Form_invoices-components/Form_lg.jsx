@@ -38,7 +38,7 @@ function Form_lg({ setEditPage, editPage }) {
   const { user } = useContext(DataContext);
   const [input, setInput] = useState(init);
   const [activeButton, setActiveButton] = useState(true);
-  const [cost, setCost] = useState();
+  const [cost , setCost] = useState()
   // useEffect
   useEffect(async () => {
     if (card.name) {
@@ -78,44 +78,44 @@ function Form_lg({ setEditPage, editPage }) {
   const onSubmit = (e) => {
     e.preventDefault();
     if (
-      !(card.invoices_customer_VIN === "") &&
-      !(card.invoices_customer_board_letters === "") &&
-      !(card.invoices_customer_board_number === "") &&
-      !(card.invoices_customer_branch === "الفرع") &&
-      !(card.invoices_customer_cost === "") &&
-      !(card.invoices_customer_crane === "") &&
-      !(card.invoices_customer_email === "") &&
-      !(card.invoices_customer_factory === "") &&
-      !(card.invoices_customer_year === "") &&
-      !(card.invoices_customer_final_cost === "0") &&
-      !(card.invoices_customer_name === "") &&
-      !(card.invoices_customer_number === "") &&
-      !(card.invoices_customer_type === "") &&
-      !(card.invoices_customer_service === "تحديد نوع الخدمة") &&
-      !(card.invoices_customer_speedometer === "") &&
-      !(card.invoices_notes === "")
+      !(input.invoices_customer_VIN === "") &&
+      !(input.invoices_customer_board_letters === "") &&
+      !(input.invoices_customer_board_number === "") &&
+      !(input.invoices_customer_branch === "الفرع") &&
+      !(input.invoices_customer_cost === "") &&
+      !(input.invoices_customer_crane === "") &&
+      !(input.invoices_customer_email === "") &&
+      !(input.invoices_customer_factory === "") &&
+      !(input.invoices_customer_year === "") &&
+      !(input.invoices_customer_final_cost === "0") &&
+      !(input.invoices_customer_name === "") &&
+      !(input.invoices_customer_number === "") &&
+      !(input.invoices_customer_type === "") &&
+      !(input.invoices_customer_service === "تحديد نوع الخدمة") &&
+      !(input.invoices_customer_speedometer === "") &&
+      !(input.invoices_notes === "")
     ) {
-      setCard({
-        name: input.invoices_customer_name,
-        email: input.invoices_customer_email,
-        phoneNum: input.invoices_customer_number,
-        numOfLicense: `${input.invoices_customer_board_number} - ${input.invoices_customer_cost}`,
-        numCrane: input.invoices_customer_crane,
-        vactor: input.invoices_customer_factory,
-        type: input.invoices_customer_type,
-        numaCounter: input.invoices_customer_speedometer,
-        year: input.invoices_customer_year,
-        numVin: input.invoices_customer_VIN,
-        typeService: Number(input.invoices_customer_service),
-        cost,
-        by: user.name,
-        totalCost: input.invoices_customer_final_cost,
-        StartDate: GetFullDateString(),
-        endDate: " -- ",
-        BillState: "UnderConstruction",
-        note: input.invoices_notes,
-        branch_id: Number(input.invoices_customer_branch),
-      });
+    setCard({
+      name: input.invoices_customer_name,
+      email: input.invoices_customer_email,
+      phoneNum: input.invoices_customer_number,
+      numOfLicense: `${input.invoices_customer_board_number} - ${input.invoices_customer_cost}`,
+      numCrane: input.invoices_customer_crane,
+      vactor: input.invoices_customer_factory,
+      type: input.invoices_customer_type,
+      numaCounter: input.invoices_customer_speedometer,
+      year: input.invoices_customer_year,
+      numVin: input.invoices_customer_VIN,
+      typeService: Number(input.invoices_customer_service),
+      cost,
+      by: user.name,
+      totalCost:input.invoices_customer_final_cost,
+      StartDate: GetFullDateString(),
+      endDate: " -- ",
+      BillState: "UnderConstruction",
+      note: input.invoices_notes,
+      branch_id: Number(input.invoices_customer_branch),
+    });
     } else {
       setMessage("تأكد من المدخلات ومن شبكة الانترنت لديك");
     }
@@ -289,13 +289,7 @@ function Form_lg({ setEditPage, editPage }) {
             name="invoices_customer_VIN"
           />
         </div>
-        <Services_section
-          handleChange={handleChange}
-          user={user}
-          serviceID={input.invoices_customer_service}
-          setCost={setCost}
-          cost={cost}
-        />
+        <Services_section handleChange={handleChange} user={user} serviceID={input.invoices_customer_service} setCost={setCost} cost={cost}/>
       </div>
       {/*final_cost & bransh */}
       <div className="row mt-4 primary-text">
