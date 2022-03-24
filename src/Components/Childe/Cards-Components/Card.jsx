@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 function Card({
   Created_date,
   customer_motion_service,
-  customer_board_letters,
-  customer_board_number,
+  customer_board="SAFE 2134",
   customer_VIN,
   customer_type,
   customer_factory,
   user,
+  id,
+  bill_id,
 }) {
   return (
     <div class="card my-4">
@@ -22,12 +23,11 @@ function Card({
         </p>
         <p class="card-text">VIN: {customer_VIN}</p>
         <p class="card-text">
-          {String(customer_board_letters).split("").join(" ")} -{" "}
-          {String(customer_board_number).split("").join(" ")}
+          {String(customer_board).split(" ").join(" - ").toUpperCase()}
         </p>
         {user.type !== "المشرف" ? (
           <>
-            <Link to="/dashboard/قائمة-الكروت/sd123" class="btn btn-primary">
+            <Link to={`/dashboard/قائمة-الكروت/${id}-${bill_id}-${id}`} class="btn btn-primary">
               بدء الفحص
             </Link>
           </>

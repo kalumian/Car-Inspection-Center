@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Select from "../Body/Select";
 import Body_Steps_Section from "./Body_Steps_Section";
 
-function Body() {
+function Body({ snap, setSnap, control, setTimer , user}) {
   //  Hooks
   const [input, setInput] = useState([]);
   const handleInputs = (data) => {
@@ -11,7 +11,6 @@ function Body() {
       ...input,
       ...data,
     });
-    console.log(input);
   };
   return (
     <div className="body-step text-center content">
@@ -76,7 +75,17 @@ function Body() {
           type={input.car_type}
         />
       </div>
-      <button className="save">حفظ</button>
+      <button
+        className="save"
+        onClick={(e) => {
+          e.preventDefault();
+          setSnap(snap + 1);
+          setTimer(false)
+          control(false);
+        }}
+      >
+        حفظ
+      </button>
     </div>
   );
 }

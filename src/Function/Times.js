@@ -39,5 +39,11 @@ export const getYears = () => {
 // Get Full Date "String"
 export const GetFullDateString = () => {
   const date = new Date();
-  return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`
-}
+  return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
+};
+
+// Get Full Date with hour and min "String"
+export const GetFullDateStringWithHourAndMin = () => {
+  const date = new Date();
+  return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}/${date.getHours()}/${date.getMinutes()}`;
+};

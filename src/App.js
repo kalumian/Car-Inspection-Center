@@ -55,6 +55,7 @@ function App() {
 
         {/* Trans To Home Page */}
         <Route path="/" children={<Trans user={user} />} exact />
+        <Route path="/dashboard" children={<Trans user={user} />} exact />
 
         {/* الاستقبال */}
         <Route

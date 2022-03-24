@@ -1,8 +1,8 @@
 import { useState } from "react/cjs/react.development";
 
-function FieldTrial() {
+function FieldTrial({ snap, setSnap, control, setTimer, user }) {
   const [note, setNote] = useState("");
-  
+
   return (
     <div className="mt-6 text-center">
       <textarea
@@ -15,7 +15,17 @@ function FieldTrial() {
           setNote(e.target.value);
         }}
       ></textarea>
-      <button className="save mt-3">حفظ</button>
+      <button
+        className="save"
+        onClick={(e) => {
+          e.preventDefault();
+          setSnap(snap + 1);
+          setTimer(false);
+          control(false);
+        }}
+      >
+        حفظ
+      </button>
     </div>
   );
 }

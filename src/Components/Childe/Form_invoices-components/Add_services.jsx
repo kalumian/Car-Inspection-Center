@@ -20,11 +20,11 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
       setMessage("الرجاء التأكد من المدخلات او من شبكة الانترنت لديك");
     } else {
       setService({
-        type: title,
+        type: [... new Set(checkSelect)],
         price: Number(price),
+        name: title,
       });
     }
-    console.log(typeof service.price);
   };
   // useEffect
   useEffect(async () => {
@@ -42,7 +42,6 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
           }
         );
         let resJson = await res.json();
-        console.log(resJson);
         if (resJson.success === true) {
           setActiveButton(false);
           setTitle("");
@@ -92,11 +91,11 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
       <div className="row mt-1 ">
         <h6 className="mt-3 mb-1">انواع الفحوصات التي ستشملها:</h6>
         <div className="d-flex mt-3">
-          <div className="mx-2">
+        <div className="mx-2">
             <input
               className="form-check-input"
               type="checkbox"
-              value={"فحص كمبيوتر"}
+              value={"اسفل-السيارة"}
               id="selectCheck"
               onChange={handleCheck}
             />
@@ -108,7 +107,7 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
             <input
               className="form-check-input"
               type="checkbox"
-              value={"فحص كمبيوتر"}
+              value={"كمبيوتر"}
               id="selectCheck"
               onChange={handleCheck}
             />
@@ -120,7 +119,7 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
             <input
               className="form-check-input"
               type="checkbox"
-              value={"فحص كمبيوتر"}
+              value={"جسم-المركبة"}
               id="selectCheck"
               onChange={handleCheck}
             />
@@ -132,7 +131,7 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
             <input
               className="form-check-input"
               type="checkbox"
-              value={"فحص كمبيوتر"}
+              value={"ميداني"}
               id="selectCheck"
               onChange={handleCheck}
             />

@@ -31,6 +31,7 @@ function Edit_page({ setEditPage, editPage }) {
       );
       let resJson = await res.json();
       setServices(resJson["ALL Services"]);
+      
       setStateFetch(true);
     } catch (err) {
       console.log(err);

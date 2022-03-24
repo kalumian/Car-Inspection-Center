@@ -31,7 +31,6 @@ function Body_Steps_Section({
               ? options
               : ["سليم", "رش", "تعديل", "لحام", "معجون", "حكه", "ضربه", "تغيير"]
           }
-          select={select}
         />
         {!header ? (
           <textarea

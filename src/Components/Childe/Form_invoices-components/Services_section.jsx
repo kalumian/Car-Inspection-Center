@@ -4,7 +4,7 @@ import Select from "./Select";
 
 import React, { useState, useEffect } from "react";
 
-function Services_section({ handleChange, user, serviceID, setCost , cost }) {
+function Services_section({ handleChange, user, serviceID, setCost, cost }) {
   const [services, setServices] = useState([]);
   useEffect(async () => {
     try {

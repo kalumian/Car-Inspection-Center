@@ -69,7 +69,7 @@ export default function Delete_services({
           {services.map((item) => {
             return (
               <option key={item.id} value={item.id}>
-                {item.type} | {item.Price}
+                {item.name} | {item.price}
               </option>
             );
           })}

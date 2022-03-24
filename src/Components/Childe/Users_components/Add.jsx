@@ -19,7 +19,6 @@ function Add() {
   const [message, setMessage] = useState("");
   const [type, setType] = useState("");
   const [styleButton, setStyleButton] = useState(false);
-  console.log(user);
   const deletContent = () => {
     setName("");
     setPassword("");
@@ -56,11 +55,18 @@ function Add() {
           }
         );
         let resJson = await res.json();
-        deletContent();
-        setMessage(res.status === 200 ? "تم اضافة الحساب بنجاح." : "");
-        setTimeout(() => {
-          setMessage("");
-        }, 3000);
+        if (res.status === 200) {
+          deletContent();
+          setMessage("تم اضافة الحساب بنجاح.");
+          setTimeout(() => {
+            setMessage("");
+          }, 3000);
+        } else {
+          setMessage("تأكد من صحة المدخلات ومن شبكة الانترنت لديك");
+          setTimeout(() => {
+            setMessage("");
+          }, 3000);
+        }
       } catch (err) {
         setMessage("تأكد من صحة المدخلات ومن شبكة الانترنت لديك");
         setTimeout(() => {

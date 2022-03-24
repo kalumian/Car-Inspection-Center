@@ -2,7 +2,7 @@ import UnderCar_section from "./UnderCar_section";
 import checks from "../../../../Json/checks.json";
 import { useState } from "react";
 
-function UnderCar() {
+function UnderCar({ snap, setSnap, control, setTimer, user }) {
   // Functions
   function handleObjectsWithId(arr) {
     return arr.map((i) => {
@@ -11,7 +11,7 @@ function UnderCar() {
   }
 
   // -----------------------------
-
+  // function
   const brake = handleObjectsWithId(checks.brake);
   const suspension_and_steering = handleObjectsWithId(
     checks.suspension_and_steering
@@ -31,6 +31,17 @@ function UnderCar() {
       <UnderCar_section title="نظام القير والدفرنس" options={differential} />
       <UnderCar_section title="نظام التكييف" options={conditioner} />
       <UnderCar_section title="الاكسسوارات" options={accessories} />
+      <button
+        className="save"
+        onClick={(e) => {
+          e.preventDefault();
+          setSnap(snap + 1);
+          setTimer(false);
+          control(false);
+        }}
+      >
+        حفظ
+      </button>
     </div>
   );
 }

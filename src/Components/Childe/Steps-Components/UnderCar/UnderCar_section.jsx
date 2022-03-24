@@ -1,7 +1,7 @@
 import SearchBar from "./SearchBar";
 import { useState } from "react";
 import Check from "./Check";
-function UnderCar_section({ title, options }) {
+function UnderCar_section({ title, options, handleData, data }) {
   const [checks, setChecks] = useState([]);
   const [note, setNote] = useState("");
   const [radio1_1, setRadiu1_1] = useState("");

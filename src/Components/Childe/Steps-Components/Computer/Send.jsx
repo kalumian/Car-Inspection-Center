@@ -1,5 +1,5 @@
 import Lable from "../../Form_invoices-components/Lable";
-function Send({ statePage, setStatePage }) {
+function Send({ statePage, setStatePage ,snap, setSnap, control, setTimer , user}) {
   return (
     <dic className="content-computer w-100 ">
       <div className="check mt-4 justify-content-around d-flex">
@@ -28,7 +28,17 @@ function Send({ statePage, setStatePage }) {
         <button className="save mx-2" onClick={() => setStatePage("كنترول")}>
           عودة
         </button>
-        <button className="save mx-2">ارسال</button>
+        <button
+          className="save mx-2"
+          onClick={(e) => {
+            e.preventDefault();
+            setSnap(snap + 1);
+            setTimer(false);
+            control(false);
+          }}
+        >
+          ارسال
+        </button>
       </div>
     </dic>
   );

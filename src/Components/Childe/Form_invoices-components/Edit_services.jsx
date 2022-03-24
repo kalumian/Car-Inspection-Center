@@ -24,11 +24,17 @@ function Edit_services({
 
   const handleSetNewServices = (e) => {
     e.preventDefault();
-    if (!(id === undefined) && !(price === "") && !(title.trim() === "")) {
+    if (
+      !(id === undefined) &&
+      !(price === "") &&
+      !(title.trim() === "") &&
+      checkSelect[0]
+    ) {
       setNewServices({
         id,
-        type: title,
+        type: [...new Set(checkSelect)],
         price,
+        name: title,
       });
     } else {
       setMessage("الرجاء التأكد من المدخلات او من شبكة الانترنت لديك");
@@ -88,7 +94,7 @@ function Edit_services({
               {services.map((item) => {
                 return (
                   <option key={item.id} value={item.id}>
-                    {item.type}
+                    {item.name}
                   </option>
                 );
               })}
@@ -130,19 +136,19 @@ function Edit_services({
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value={"فحص كمبيوتر"}
+                  value={"اسفل-السيارة"}
                   id="selectCheck"
                   onChange={handleCheck}
                 />
                 <label className="form-check-label" htmlFor="selectCheck">
-                  فحص اسف السيارة
+                  فحص اسفل السيارة
                 </label>
               </div>
               <div className="mx-2">
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value={"فحص كمبيوتر"}
+                  value={"كمبيوتر"}
                   id="selectCheck"
                   onChange={handleCheck}
                 />
@@ -154,7 +160,7 @@ function Edit_services({
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value={"فحص كمبيوتر"}
+                  value={"جسم-المركبة"}
                   id="selectCheck"
                   onChange={handleCheck}
                 />
@@ -166,7 +172,7 @@ function Edit_services({
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value={"فحص كمبيوتر"}
+                  value={"ميداني"}
                   id="selectCheck"
                   onChange={handleCheck}
                 />

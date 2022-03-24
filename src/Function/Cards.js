@@ -7,7 +7,7 @@ export const DeleteBill = async (user, id) => {
       "https://peaceful-depths-13311.herokuapp.com/finsh-card",
       {
         method: "PATCH",
-        body: JSON.stringify({id}),
+        body: JSON.stringify({ id: 26 }),
         headers: {
           "Content-Type": "application/json",
           "x-access-tokens": user.token,
@@ -16,11 +16,29 @@ export const DeleteBill = async (user, id) => {
     );
     let resJson = await res.json();
     console.log(resJson);
-    console.log(user);
-    console.log(id);
   } catch (err) {
     console.log(err);
     console.log(user);
-    console.log(id);
+    console.log(typeof id);
+  }
+};
+export const FinishBill = async (id, user) => {
+  console.log(user.token);
+  try {
+    let res = await fetch(
+      "https://peaceful-depths-13311.herokuapp.com/finsh-card",
+      {
+        method: "PATCH",
+        body: JSON.stringify({ id }),
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-tokens": user.token,
+        },
+      }
+    );
+    let resJson = await res.json();
+    console.log(resJson);
+  } catch (err) {
+    console.log(err);
   }
 };

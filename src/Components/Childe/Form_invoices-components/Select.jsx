@@ -24,7 +24,7 @@ function Select({ options, select, id, name, handleChange, type }) {
         <>
           {options.map((item) => (
             <option key={item.id} value={item.id}>
-              {item.type}
+              {item.name}
             </option>
           ))}
         </>

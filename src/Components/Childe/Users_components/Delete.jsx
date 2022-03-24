@@ -40,7 +40,6 @@ function Delete({ users, setActive, active }) {
         let resJson = await res.json();
         if (resJson.success === true) {
           setMessage(` تم حذف حساب ${resJson.deleted}`);
-          setActive(active + 1);
         }
       } catch (err) {
         console.log(err);
