@@ -36,8 +36,8 @@ function Body_Steps_Section({
           <textarea
             className="form-control mt-3"
             placeholder="ملاحظات"
-            id={"note-" + id}
-            name={"note-" + name}
+            id={"note_" + id}
+            name={"note_" + name}
             onChange={handleInput}
           ></textarea>
         ) : (

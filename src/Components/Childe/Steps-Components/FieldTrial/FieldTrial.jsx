@@ -13,7 +13,7 @@ function FieldTrial({ snap, setSnap, control, setTimer, user, id }) {
   };
 
   useEffect(async () => {
-    if (check.test_drive_check.data) {
+    if (check.test_drive_check) {
       try {
         let res = await fetch(
           "https://peaceful-depths-13311.herokuapp.com/add-test-drive",

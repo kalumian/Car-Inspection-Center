@@ -30,6 +30,7 @@ const init = {
   invoices_customer_service: "تحديد نوع الخدمة",
   invoices_customer_speedometer: "",
   invoices_notes: "",
+  invoices_customer_pay_type: "اختيار طريقة الدفع",
 };
 function Form_lg({ setEditPage, editPage }) {
   //  Hooks
@@ -59,7 +60,7 @@ function Form_lg({ setEditPage, editPage }) {
           setActiveButton(false);
           setMessage("تم اضافة الفاتورة بنجاح.");
           setCard(init);
-          setInput(init);
+          // setInput(init);
           setTimeout(() => {
             setActiveButton(true);
           }, 4000);
@@ -72,26 +73,27 @@ function Form_lg({ setEditPage, editPage }) {
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
-    setMessage("")
+    setMessage("");
   };
   // Functions
   const onSubmit = (e) => {
     e.preventDefault();
     if (
-      !(input.invoices_customer_VIN === "") &&
-      !(input.invoices_customer_board_letters === "") &&
-      !(input.invoices_customer_board_number === "") &&
-      !(input.invoices_customer_branch === "الفرع") &&
-      !(input.invoices_customer_crane === "") &&
-      !(input.invoices_customer_email === "") &&
-      !(input.invoices_customer_factory === "") &&
-      !(input.invoices_customer_year === "") &&
-      !(input.invoices_customer_final_cost === "0") &&
-      !(input.invoices_customer_name === "") &&
-      !(input.invoices_customer_number === "") &&
-      !(input.invoices_customer_type === "") &&
-      !(input.invoices_customer_service === "تحديد نوع الخدمة") &&
-      !(input.invoices_customer_speedometer === "")
+      (!(input.invoices_customer_VIN === "") &&
+        !(input.invoices_customer_board_letters === "") &&
+        !(input.invoices_customer_board_number === "") &&
+        !(input.invoices_customer_branch === "الفرع") &&
+        !(input.invoices_customer_crane === "") &&
+        !(input.invoices_customer_email === "") &&
+        !(input.invoices_customer_factory === "") &&
+        !(input.invoices_customer_year === "") &&
+        !(input.invoices_customer_final_cost === "0") &&
+        !(input.invoices_customer_name === "") &&
+        !(input.invoices_customer_number === "") &&
+        !(input.invoices_customer_type === "") &&
+        !(input.invoices_customer_service === "تحديد نوع الخدمة") &&
+        !(input.invoices_customer_speedometer === ""),
+      !(input.invoices_customer_pay_type === "اختيار طريقة الدفع"))
     ) {
       setCard({
         name: input.invoices_customer_name,
@@ -321,6 +323,19 @@ function Form_lg({ setEditPage, editPage }) {
           </button>
         </div>
         <Branch_section handleChange={handleChange} user={user} />
+      </div>
+      <div className="row mt-4 primary-text">
+        <div className="col-4">
+          <Lable For="invoices_customer_pay_type" title="طريقة الدفع" />
+          <Select
+            name="invoices_customer_pay_type"
+            value={input.invoices_customer_pay_type}
+            id="invoices_customer_pay_type"
+            select="اختيار طريقة الدفع"
+            options={["كاش", "شبكة"]}
+            handleChange={handleChange}
+          />
+        </div>
       </div>
       <div className="row mt-4 primary-text">
         <textarea

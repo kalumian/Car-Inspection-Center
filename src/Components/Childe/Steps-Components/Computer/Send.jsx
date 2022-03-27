@@ -1,6 +1,6 @@
 import Lable from "../../Form_invoices-components/Lable";
 import { useState, useEffect } from "react/cjs/react.development";
-
+import Bar from "./Bar";
 function Send({
   statePage,
   setStatePage,
@@ -14,8 +14,8 @@ function Send({
 }) {
   const [check, setCheck] = useState({});
   const [message, setMessage] = useState("");
-  const [search, setSearch] = useState("");
-
+  const [count, setCount] = useState([0]);
+  const [codes, setCodes] = useState([]);
   useEffect(async () => {
     if (Boolean(check.id)) {
       try {
@@ -54,50 +54,31 @@ function Send({
       }
     }
   }, [check]);
-  let CODE = code.filter((e) => {
-    return search == e.en_code;
-  })[0];
 
+  // Functıions
   const handleData = () => {
-    setCheck({
-      id: Number(id),
-      computer_check: {
-        data: {
-          disA: CODE.ar_des,
-          disB: CODE.en_des,
-          Code: CODE.en_code,
+    if (codes[0]) {
+      setCheck({
+        id: Number(id),
+        computer_check: {
+          codes,
+          by: user.name,
         },
-        by: user.name,
-      },
-    });
+      });
+    }
+  };
+  const handleCodes = (code) => {
+    setCodes([...codes, code]);
   };
   return (
     <dic className="content-computer w-100 ">
-      <div className="check mt-4 justify-content-around d-flex">
-        <div className="code text-center">
-          <Lable
-            For="invoices_customer_name"
-            title="كود المشكلة"
-            active={false}
-          />
-          <input
-            type="text"
-            className="form-control text-center"
-            value={search}
-            onChange={({ target }) => setSearch(target.value)}
-          />
-        </div>
-        <textarea
-          className="form-control mt-3 w-75 me-4"
-          placeholder="وصف كود المشكلة(نص غير قابل للتعديل)"
-          id="computer-desc"
-          name="desc"
-          disabled="true"
-          value={
-            CODE ? `${CODE.en_des} | ${CODE.ar_des}` : "وصف كود المشكلة(نص غير قابل للتعديل)"
-          }
-        ></textarea>
-      </div>
+      {count.map((i) => {
+        return (
+          <>
+            <Bar code={code} handleCodes={handleCodes} id={i} />
+          </>
+        );
+      })}
       <div className="buttons mt-5 text-center">
         <button className="save mx-2" onClick={() => setStatePage("كنترول")}>
           عودة
@@ -106,10 +87,29 @@ function Send({
           className="save mx-2"
           onClick={(e) => {
             e.preventDefault();
-            handleData();
+            handleData(codes);
           }}
         >
           ارسال
+        </button>
+        <button
+          className="save mx-2"
+          onClick={(e) => {
+            e.preventDefault();
+            setCodes([]);
+            setCount([]);
+          }}
+        >
+          اعادة تعيين
+        </button>
+        <button
+          className="save mx-2"
+          onClick={(e) => {
+            e.preventDefault();
+            setCount([...count, count[count.length - 1]]);
+          }}
+        >
+          اضافة مساحة
         </button>
       </div>
       <div

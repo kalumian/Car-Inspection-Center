@@ -34,7 +34,7 @@ function Timer({ initialMinute = 30, initialSeconds = 0, start, user, type }) {
   }, [seconds, minutes, start]);
   return (
     <span className={`${!timeState ? "text-danger" : "text-success"} ps-2`}>
-      {minutes}:{seconds}
+      {/* {minutes}:{seconds} */}
     </span>
   );
 }

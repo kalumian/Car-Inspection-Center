@@ -244,7 +244,7 @@ function Steps({ user }) {
                     className="min mb-2"
                     onClick={() => {
                       if (card.typeService.length === snap) {
-                        // FinishBill(id, user)
+                        FinishBill(id, user)
                         history.push("/dashboard/قائمة-الكروت");
                         console.log("تم الفحص");
                       } else {
@@ -252,9 +252,6 @@ function Steps({ user }) {
                         setTimeout(() => {
                           setMessage("");
                         }, 3000);
-                        console.log(card.typeService.length);
-                        console.log(snap);
-                        console.log(card.typeService.length === snap);
                       }
                     }}
                   >

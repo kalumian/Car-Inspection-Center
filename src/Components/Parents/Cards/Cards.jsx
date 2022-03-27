@@ -25,6 +25,7 @@ function Cards({ user }) {
       );
       let resJson = await res.json();
       setStateFetch(true);
+      console.log(resJson);
       const NewTypeServices = resJson["ALL Cards"].map((i) => {
         const Ts = i.typeService
           .split("{")

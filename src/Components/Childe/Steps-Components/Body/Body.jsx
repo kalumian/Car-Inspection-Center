@@ -8,17 +8,10 @@ function Body({ snap, setSnap, control, setTimer, user, id }) {
   const [message, setMessage] = useState("");
 
   const handleData = () => {
-    if (input.length === 14) {
-      console.log({
-        id: Number(id),
-        body_check: { data: input, by: user.name },
-      });
-    } else {
-      setMessage("تأكد من الانتهاء من جميع اجراءات الفحص");
-      setTimeout(() => {
-        setMessage("");
-      }, 4000);
-    }
+    setCheck({
+      id: Number(id),
+      body_check: { data: input, by: user.name },
+    });
   };
 
   useEffect(async () => {
