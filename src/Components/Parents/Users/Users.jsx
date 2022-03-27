@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 
 function Users({ user }) {
   const [users, setUsers] = useState([]);
-  const [stateFetch, setStateFetch] = useState(false);
+  const [stateFetch, setStateFetch] = useState(true);
   const [active, setActive] = useState(1);
   useEffect(async () => {
     try {
@@ -32,7 +32,6 @@ function Users({ user }) {
       setStateFetch(true);
     } catch (err) {}
   }, [active]);
-  // Content
   return (
     <div className="d-flex wrapper flex-row-reverse">
       <Sidebar user={user} />

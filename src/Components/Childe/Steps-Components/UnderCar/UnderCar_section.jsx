@@ -1,7 +1,7 @@
 import SearchBar from "./SearchBar";
 import { useState } from "react";
 import Check from "./Check";
-function UnderCar_section({ title, options, handleData, data }) {
+function UnderCar_section({ title, options, handleData }) {
   const [checks, setChecks] = useState([]);
   const [note, setNote] = useState("");
   const [radio1_1, setRadiu1_1] = useState("");
@@ -21,23 +21,28 @@ function UnderCar_section({ title, options, handleData, data }) {
       <div className="checks d-flex flex-column rtl">
         <button
           className="save my-4 text-start"
-          onClick={() => {
-            console.log({
-              title,
-              data: [
-                ...checks,
-                radio1_1 === radio1_2 || radio1_1 === radio1_3
-                  ? radio1_1
-                  : radio1_1,
-                radio1_2,
-                radio1_3,
-                radio2_1 === radio2_2 || radio2_1 === radio2_3
-                  ? radio2_1
-                  : radio2_1,
-                radio2_2,
-                radio2_3,
-              ],
-              note,
+          onClick={(e) => {
+            e.preventDefault()
+            handleData({
+              data: {
+                data: [
+                  ...new Set([
+                    ...checks,
+                    radio1_1 === radio1_2 || radio1_1 === radio1_3
+                      ? radio1_1
+                      : radio1_1,
+                    radio1_2,
+                    radio1_3,
+                    radio2_1 === radio2_2 || radio2_1 === radio2_3
+                      ? radio2_1
+                      : radio2_1,
+                    radio2_2,
+                    radio2_3,
+                  ]),
+                ],
+                note,
+              },
+              type: title,
             });
           }}
         >

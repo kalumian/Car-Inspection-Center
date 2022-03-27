@@ -7,23 +7,38 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
   const [message, setMessage] = useState("");
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
+  const [comp, setComp] = useState(false);
+  const [body, setBody] = useState(false);
+  const [drive, setDrive] = useState(false);
+  const [down, setDown] = useState(false);
   const [service, setService] = useState({});
   const [activeButton, setActiveButton] = useState(true);
 
   // Functions
-  const handleCheck = (d) => {
-    setCheckSelect([...checkSelect, d.target.value]);
-  };
   const handleService = (e) => {
     e.preventDefault();
-    if (title.trim() === "" || price === "") {
-      setMessage("الرجاء التأكد من المدخلات او من شبكة الانترنت لديك");
-    } else {
-      setService({
-        type: [... new Set(checkSelect)],
-        price: Number(price),
-        name: title,
-      });
+    if (activeButton) {
+      if (
+        !(title.trim() === "") &&
+        !(price === "") &&
+        (body || comp || drive || down)
+      ) {
+        setService({
+          type: [
+            body ? "جسم-مركبة" : "--",
+            comp ? "كمبيوتر" : "--",
+            down ? "اسفل-سيارة" : "--",
+            drive ? "ميداني" : "--",
+          ],
+          price: Number(price),
+          name: title,
+        });
+      } else {
+        setMessage("الرجاء التأكد من المدخلات او من شبكة الانترنت لديك");
+        setTimeout(() => {
+          setMessage("");
+        }, 4000);
+      }
     }
   };
   // useEffect
@@ -42,7 +57,7 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
           }
         );
         let resJson = await res.json();
-        if (resJson.success === true) {
+        if (resJson.success   === true) {
           setActiveButton(false);
           setTitle("");
           setPrice("");
@@ -50,7 +65,7 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
           setTimeout(() => {
             setMessage("");
             setActiveButton(true);
-          }, 4000);
+          }, 3000);
           setActive(active + 1);
         }
       } catch (err) {
@@ -91,13 +106,13 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
       <div className="row mt-1 ">
         <h6 className="mt-3 mb-1">انواع الفحوصات التي ستشملها:</h6>
         <div className="d-flex mt-3">
-        <div className="mx-2">
+          <div className="mx-2">
             <input
               className="form-check-input"
               type="checkbox"
               value={"اسفل-السيارة"}
               id="selectCheck"
-              onChange={handleCheck}
+              onChange={() => setDown(!down)}
             />
             <label className="form-check-label" htmlFor="selectCheck">
               فحص اسفل السيارة
@@ -109,7 +124,7 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
               type="checkbox"
               value={"كمبيوتر"}
               id="selectCheck"
-              onChange={handleCheck}
+              onChange={() => setComp(!comp)}
             />
             <label className="form-check-label" htmlFor="selectCheck">
               فحص كمبيوتر
@@ -121,7 +136,7 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
               type="checkbox"
               value={"جسم-المركبة"}
               id="selectCheck"
-              onChange={handleCheck}
+              onChange={() => setBody(!body)}
             />
             <label className="form-check-label" htmlFor="selectCheck">
               فحص جسم المركبة
@@ -133,7 +148,7 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
               type="checkbox"
               value={"ميداني"}
               id="selectCheck"
-              onChange={handleCheck}
+              onChange={() => setDrive(!drive)}
             />
             <label className="form-check-label" htmlFor="selectCheck">
               فحص ميداني
@@ -159,6 +174,10 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
           className="w-30 btn btn-lg primary-bg mx-2"
           onClick={(e) => {
             e.preventDefault();
+            setBody(false);
+            setDrive(false);
+            setDown(false);
+            setComp(false);
             setSections("control");
           }}
         >
@@ -169,6 +188,10 @@ function Add_services({ setEditPage, setSections, user, setActive, active }) {
           onClick={(e) => {
             e.preventDefault();
             setSections("control");
+            setBody(false);
+            setDrive(false);
+            setDown(false);
+            setComp(false);
             setEditPage(false);
           }}
         >

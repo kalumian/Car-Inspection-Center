@@ -50,11 +50,18 @@ function Steps({ user }) {
       );
       let resJson = await res.json();
       if (resJson.success) {
-        setCard(
-          resJson["ALL Cards"].filter((i) => {
-            return i.bill_id == Number(bill_id) && i.id == Number(id);
-          })[0]
-        );
+        const cardAfterFilter = resJson["ALL Cards"].filter((i) => {
+          return i.bill_id == Number(bill_id) && i.id == Number(id);
+        })[0];
+        cardAfterFilter.typeService = cardAfterFilter.typeService
+          .split("{")
+          .join("")
+          .split("}")[0]
+          .split(",")
+          .filter((i) => {
+            return i !== "--";
+          });
+        setCard(cardAfterFilter);
         setCardsId(
           resJson["ALL Cards"]
             .map((i) => {
@@ -91,13 +98,13 @@ function Steps({ user }) {
                           2 1 3 4 - ي س ب س : <i className="fas fa-list-ol"></i>
                         </span>
                         <span>
-                          VIN: {card.NumVin} :{" "}
+                          {card.NumVin} :{" "}
                           <i className="fas fa-closed-captioning"></i>
                         </span>
                       </div>
                       <ul>
                         {card.typeService.map((i) => {
-                          if (i === "جسم-المركبة") {
+                          if (i === "جسم-مركبة") {
                             return (
                               <Link
                                 onClick={() =>
@@ -159,7 +166,7 @@ function Steps({ user }) {
                                 </li>
                               </Link>
                             );
-                          } else if (i === "اسفل-السيارة") {
+                          } else if (i === "اسفل-سيارة") {
                             return (
                               <Link onClick={() => setSteps("اسفل السيارة")}>
                                 <li
@@ -187,6 +194,7 @@ function Steps({ user }) {
 
                     {steps === "فحص جسم المركبة" && control_b === true ? (
                       <Section
+                        id={id}
                         Component={Body}
                         title="فحص جسم المركبة"
                         snap={snap}
@@ -197,6 +205,7 @@ function Steps({ user }) {
                       />
                     ) : steps === "فحص الكمبيوتر" && control_c === true ? (
                       <Section
+                        id={id}
                         Component={Computer}
                         title="فحص الكمبيوتر"
                         snap={snap}
@@ -207,6 +216,7 @@ function Steps({ user }) {
                       />
                     ) : steps === "اسفل السيارة" && control_u === true ? (
                       <Section
+                        id={id}
                         Component={UnderCar}
                         title="اسفل السيارة"
                         snap={snap}
@@ -217,6 +227,7 @@ function Steps({ user }) {
                       />
                     ) : steps === "التجريب الميداني" && control_s === true ? (
                       <Section
+                        id={id}
                         Component={FieldTrial}
                         title="التجريب الميداني"
                         snap={snap}
@@ -233,9 +244,17 @@ function Steps({ user }) {
                     className="min mb-2"
                     onClick={() => {
                       if (card.typeService.length === snap) {
-                        FinishBill(id, user).then(() => history.goBack());
+                        // FinishBill(id, user)
+                        history.push("/dashboard/قائمة-الكروت");
+                        console.log("تم الفحص");
                       } else {
-                        setMessage("لا يمكن انهاء الفحص قبل اجراء جميع الفحوص");
+                        setMessage("لا يمكن الانهاء  قبل اجراء جميع الفحوص");
+                        setTimeout(() => {
+                          setMessage("");
+                        }, 3000);
+                        console.log(card.typeService.length);
+                        console.log(snap);
+                        console.log(card.typeService.length === snap);
                       }
                     }}
                   >

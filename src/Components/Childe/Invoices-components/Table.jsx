@@ -1,9 +1,9 @@
 import { DataContext } from "../../../DataContext";
 import { useContext } from "react";
-import { Link , useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 function Table({ invoices, input }) {
   const { cards, stateSide } = useContext(DataContext);
-  const history = useHistory()
+  const history = useHistory();
   const whatTheState = (state) => {
     return state === "UnderConstruction"
       ? "قيد التنفيذ"
@@ -64,34 +64,42 @@ function Table({ invoices, input }) {
               return new RegExp(input.serachWithBranch, "ig").test(e.branch_id);
             })
             .filter((e) => {
-              return new RegExp(input.serachWithService, "ig").test(e.nameService);
+              return new RegExp(input.serachWithService, "ig").test(
+                e.nameService
+              );
             })
             .map((item) => {
               return (
                 // <Link to={`/dashboard/بيانات-الفاتورة/${item.id}`}>
-                  <tr onClick={(e)=>{
-                    e.preventDefault()
-                    history.push(`/dashboard/بيانات-الفاتورة/${item.id}`)
-                  }}>
-                    <td>{item.id}</td>
-                    <td>{String(item.name)}</td>
-                    <td>{String(item.phoneNum)}</td>
-                    <td>
-                      {String(item.numOfLicense)
-                        .toUpperCase()
-                        .split(" ")
-                        .join(" - ")}
-                    </td>
-                    <td>{item.nameService}</td>
-                    <td> {Number(item.totalCost)}</td>
-                    <td>{Number(item.cost) - Number(item.totalCost)}</td>
-                    <td>{Number(item.cost)}</td>
-                    <td>{whatTheState(item.BillState)}</td>
-                    <td>{item.branch_id}</td>
-                    <td>{item.by}</td>
-                    <td>{item.StartDate}</td>
-                    <td>{item.endDate}</td>
-                  </tr>
+                <tr
+                  onClick={(e) => {
+                    e.preventDefault();
+                    history.push(`/dashboard/بيانات-الفاتورة/${item.id}`);
+                  }}
+                >
+                  <td>{item.id}</td>
+                  <td>{String(item.name)}</td>
+                  <td>{String(item.phoneNum)}</td>
+                  <td>
+                    {String(item.numOfLicense)
+                      .toUpperCase()
+                      .split(" ")
+                      .join(" - ")}
+                  </td>
+                  <td>{item.nameService}</td>
+                  <td> {Number(item.totalCost)}</td>
+                  <td>{Number(item.cost) - Number(item.totalCost)}</td>
+                  <td>{Number(item.cost)}</td>
+                  <td>{whatTheState(item.BillState)}</td>
+                  <td>{item.branch_id}</td>
+                  <td>{item.by}</td>
+                  <td>{item.StartDate}</td>
+                  <td>
+                    {!(whatTheState(item.BillState) === "منتهية")
+                      ? " -- "
+                      : String(item.endDate).split(" ")[0]}
+                  </td>
+                </tr>
                 // </Link>
               );
             })}

@@ -9,32 +9,35 @@ function Edit_services({
   setActive,
 }) {
   // states
+  const [id, setId] = useState(undefined);
   const [message, setMessage] = useState("");
   const [stateEdit, setStateEdit] = useState(true);
-  const [checkSelect, setCheckSelect] = useState([]);
+  const [comp, setComp] = useState(false);
+  const [body, setBody] = useState(false);
+  const [drive, setDrive] = useState(false);
+  const [down, setDown] = useState(false);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
-  const [id, setId] = useState(undefined);
   const [newServices, setNewServices] = useState({});
-
-  // Functions
-  const handleCheck = (d) => {
-    setCheckSelect([...checkSelect, d.target.value]);
-  };
 
   const handleSetNewServices = (e) => {
     e.preventDefault();
     if (
-      !(id === undefined) &&
-      !(price === "") &&
-      !(title.trim() === "") &&
-      checkSelect[0]
+      !(price === "") ||
+      !(title.trim() === "") ||
+      body ||
+      drive ||
+      comp ||
+      down
     ) {
+      const item = services.filter((i) => {
+        return i.id === Number(id);
+      })[0];
       setNewServices({
         id,
-        type: [...new Set(checkSelect)],
-        price,
-        name: title,
+        price: price === "" ? item.Price : price,
+        name: title === "" ? item.name : title,
+        type:["فحص اسفل السيارة"],
       });
     } else {
       setMessage("الرجاء التأكد من المدخلات او من شبكة الانترنت لديك");
@@ -66,6 +69,13 @@ function Edit_services({
           setMessage("تم تعديل الخدمة بنجاح");
           setStateEdit(true);
           setActive(active + 1);
+          setBody(false);
+          setDrive(false);
+          setDown(false);
+          setComp(false);
+          setTimeout(() => {
+            setMessage("");
+          }, 3000);
         }
       } catch (err) {
         console.log(err);
@@ -138,7 +148,7 @@ function Edit_services({
                   type="checkbox"
                   value={"اسفل-السيارة"}
                   id="selectCheck"
-                  onChange={handleCheck}
+                  onChange={() => setDown(!down)}
                 />
                 <label className="form-check-label" htmlFor="selectCheck">
                   فحص اسفل السيارة
@@ -150,7 +160,7 @@ function Edit_services({
                   type="checkbox"
                   value={"كمبيوتر"}
                   id="selectCheck"
-                  onChange={handleCheck}
+                  onChange={() => setComp(!comp)}
                 />
                 <label className="form-check-label" htmlFor="selectCheck">
                   فحص كمبيوتر
@@ -162,7 +172,7 @@ function Edit_services({
                   type="checkbox"
                   value={"جسم-المركبة"}
                   id="selectCheck"
-                  onChange={handleCheck}
+                  onChange={() => setBody(!body)}
                 />
                 <label className="form-check-label" htmlFor="selectCheck">
                   فحص جسم المركبة
@@ -174,7 +184,7 @@ function Edit_services({
                   type="checkbox"
                   value={"ميداني"}
                   id="selectCheck"
-                  onChange={handleCheck}
+                  onChange={() => setDrive(!drive)}
                 />
                 <label className="form-check-label" htmlFor="selectCheck">
                   فحص ميداني

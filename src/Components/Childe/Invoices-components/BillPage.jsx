@@ -7,6 +7,8 @@ import { DeleteBill } from "../../../Function/Cards";
 // import Lib
 import { useLocation, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 function BillPage({ user }) {
   const [invoices, setInvoices] = useState([]);
   const [stateFetch, setStateFetch] = useState(false);
@@ -199,8 +201,20 @@ year: "2011" */}
                       ) : (
                         ""
                       )}
-                      {invoices[0].BillState === "Finished" ? (
-                        <button className="min mx-2">طباعة </button>
+                      {(invoices[0].BillState === "Finished") ? (
+                        <button
+                          className="min mx-2"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const doc = new jsPDF("l","pt")
+                            html2canvas(<h1>I Love Youe</h1>).then(t=>{
+                              doc.addImage(t.toDataURL("image/png","PNG"))
+                            })
+                            doc.save("Dow.pdf")
+                          }}
+                        >
+                          طباعة{" "}
+                        </button>
                       ) : (
                         ""
                       )}

@@ -1,5 +1,80 @@
 import Lable from "../../Form_invoices-components/Lable";
-function Send({ statePage, setStatePage ,snap, setSnap, control, setTimer , user}) {
+import { useState, useEffect } from "react/cjs/react.development";
+
+function Send({
+  statePage,
+  setStatePage,
+  snap,
+  setSnap,
+  control,
+  setTimer,
+  user,
+  id,
+  code,
+}) {
+  const [check, setCheck] = useState({});
+  const [message, setMessage] = useState("");
+  const [Code, setCode] = useState("");
+  const [disA, setDisA] = useState("");
+  const [disB, setDisB] = useState("");
+  const [search, setSearch] = useState("");
+  const [content, setContent] = useState("");
+
+  useEffect(async () => {
+    if (Boolean(check.id)) {
+      try {
+        let res = await fetch(
+          "https://peaceful-depths-13311.herokuapp.com/add-computer-check",
+          {
+            method: "POST",
+            body: JSON.stringify(check),
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-tokens": user.token,
+            },
+          }
+        );
+        let resJson = await res.json();
+        if (resJson.Message === "This has check before  :)") {
+          setMessage("تم اجراء هذا الفحص من قبل");
+          console.log(resJson);
+          setTimeout(() => {
+            setSnap(snap + 1);
+            setTimer(false);
+            control(false);
+          }, 3000);
+        } else if (resJson.success) {
+          setMessage("تم تسجيل بيانات الفحص بنجاح .");
+          console.log(resJson);
+          setTimeout(() => {
+            setSnap(snap + 1);
+            setTimer(false);
+            control(false);
+          }, 3000);
+        }
+      } catch (err) {
+        console.log(err);
+        setMessage("تحقق من جودة الانترنت لديك.");
+      }
+    }
+  }, [check]);
+  let CODE = code.filter((e) => {
+    return search == e.en_code;
+  })[0];
+
+  const handleData = () => {
+    console.log({
+      id: Number(id),
+      computer_check: {
+        data: {
+          disA: CODE.ar_des,
+          disB: CODE.en_des,
+          Code: CODE.en_code,
+        },
+        by: user.name,
+      },
+    });
+  };
   return (
     <dic className="content-computer w-100 ">
       <div className="check mt-4 justify-content-around d-flex">
@@ -12,8 +87,8 @@ function Send({ statePage, setStatePage ,snap, setSnap, control, setTimer , user
           <input
             type="text"
             className="form-control text-center"
-            // value={input}
-            // onChange={({ target }) => setInput(target.value)}
+            value={search}
+            onChange={({ target }) => setSearch(target.value)}
           />
         </div>
         <textarea
@@ -22,6 +97,9 @@ function Send({ statePage, setStatePage ,snap, setSnap, control, setTimer , user
           id="computer-desc"
           name="desc"
           disabled="true"
+          value={
+            CODE ? `${CODE.en_des} | ${CODE.ar_des}` : "Not-Found | لا يوجد"
+          }
         ></textarea>
       </div>
       <div className="buttons mt-5 text-center">
@@ -32,13 +110,21 @@ function Send({ statePage, setStatePage ,snap, setSnap, control, setTimer , user
           className="save mx-2"
           onClick={(e) => {
             e.preventDefault();
-            setSnap(snap + 1);
-            setTimer(false);
-            control(false);
+            handleData();
           }}
         >
           ارسال
         </button>
+      </div>
+      <div
+        className={`message my-3 me-2 ${
+          message === "تم اجراء هذا الفحص من قبل" ||
+          message === "تحقق من جودة الانترنت لديك."
+            ? "text-danger"
+            : "text-success"
+        }`}
+      >
+        {message}
       </div>
     </dic>
   );

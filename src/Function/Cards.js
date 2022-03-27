@@ -23,7 +23,6 @@ export const DeleteBill = async (user, id) => {
   }
 };
 export const FinishBill = async (id, user) => {
-  console.log(user.token);
   try {
     let res = await fetch(
       "https://peaceful-depths-13311.herokuapp.com/finsh-card",
@@ -42,3 +41,4 @@ export const FinishBill = async (id, user) => {
     console.log(err);
   }
 };
+

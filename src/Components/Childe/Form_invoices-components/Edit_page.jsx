@@ -31,10 +31,12 @@ function Edit_page({ setEditPage, editPage }) {
       );
       let resJson = await res.json();
       setServices(resJson["ALL Services"]);
-      
+      console.log(resJson);
       setStateFetch(true);
     } catch (err) {
       console.log(err);
+      setStateFetch(true);
+
     }
   }, [active]);
   return (

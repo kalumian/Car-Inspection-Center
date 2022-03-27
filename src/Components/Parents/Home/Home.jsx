@@ -8,9 +8,44 @@ import Notifications from "../../Childe/Home-components/Notifications";
 // Import Data Fromt useContext
 import { useContext } from "react";
 import { DataContext } from "../../../DataContext";
-
+import { useState, useEffect } from "react";
+import Loader from "../Loader/Loader";
 function Home() {
   const { user } = useContext(DataContext);
+  const [notification, setNotification] = useState([]);
+  const [stateFetch, setStateFetch] = useState(false);
+  const [notificationFinde, setNotificationFinde] = useState(false);
+  useEffect(async () => {
+    setStateFetch(false);
+    try {
+      let res = await fetch(
+        "https://peaceful-depths-13311.herokuapp.com/notification",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-tokens": user.token,
+          },
+        }
+      );
+      let resJson = await res.json();
+      if (resJson.success) {
+        const Notification = resJson["All notification"].map((i) => {
+          const date = i.notification.split(",")[0];
+          const content = i.notification.split(",")[1];
+          const id = i.id;
+          return { content, id, date };
+        });
+        setNotification(Notification.reverse());
+        setStateFetch(true);
+        setNotificationFinde(true);
+      }
+    } catch (err) {
+      console.log(err);
+      setStateFetch(true);
+    }
+  }, []);
+
   return (
     <>
       {user.type === "المشرف" ? (
@@ -37,7 +72,11 @@ function Home() {
               />
             </div> */}
             {/* قائمة الاشعارات */}
-            <Notifications />
+            {stateFetch ? (
+              <Notifications notificationFinde={notificationFinde} notification={notification}/>
+            ) : (
+              <Loader />
+            )}
           </div>
         </div>
       ) : (
