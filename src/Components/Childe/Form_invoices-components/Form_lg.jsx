@@ -58,8 +58,8 @@ function Form_lg({ setEditPage, editPage }) {
         if (resJson.success === true) {
           setActiveButton(false);
           setMessage("تم اضافة الفاتورة بنجاح.");
-          // setCard(init);
-          // setInput(init);
+          setCard(init);
+          setInput(init);
           setTimeout(() => {
             setActiveButton(true);
           }, 4000);
@@ -72,6 +72,7 @@ function Form_lg({ setEditPage, editPage }) {
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
+    setMessage("")
   };
   // Functions
   const onSubmit = (e) => {

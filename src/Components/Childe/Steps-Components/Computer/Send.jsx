@@ -14,11 +14,7 @@ function Send({
 }) {
   const [check, setCheck] = useState({});
   const [message, setMessage] = useState("");
-  const [Code, setCode] = useState("");
-  const [disA, setDisA] = useState("");
-  const [disB, setDisB] = useState("");
   const [search, setSearch] = useState("");
-  const [content, setContent] = useState("");
 
   useEffect(async () => {
     if (Boolean(check.id)) {
@@ -63,7 +59,7 @@ function Send({
   })[0];
 
   const handleData = () => {
-    console.log({
+    setCheck({
       id: Number(id),
       computer_check: {
         data: {
@@ -98,7 +94,7 @@ function Send({
           name="desc"
           disabled="true"
           value={
-            CODE ? `${CODE.en_des} | ${CODE.ar_des}` : "Not-Found | لا يوجد"
+            CODE ? `${CODE.en_des} | ${CODE.ar_des}` : "وصف كود المشكلة(نص غير قابل للتعديل)"
           }
         ></textarea>
       </div>

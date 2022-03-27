@@ -1,11 +1,65 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import Select from "../Body/Select";
+import { useState, useEffect } from "react";
 import Body_Steps_Section from "./Body_Steps_Section";
 
-function Body({ snap, setSnap, control, setTimer , user}) {
+function Body({ snap, setSnap, control, setTimer, user, id }) {
   //  Hooks
   const [input, setInput] = useState([]);
+  const [check, setCheck] = useState({});
+  const [message, setMessage] = useState("");
+
+  const handleData = () => {
+    if (input.length === 14) {
+      console.log({
+        id: Number(id),
+        body_check: { data: input, by: user.name },
+      });
+    } else {
+      setMessage("تأكد من الانتهاء من جميع اجراءات الفحص");
+      setTimeout(() => {
+        setMessage("");
+      }, 4000);
+    }
+  };
+
+  useEffect(async () => {
+    if (check.body_check) {
+      try {
+        let res = await fetch(
+          "https://peaceful-depths-13311.herokuapp.com/add-body-check",
+          {
+            method: "POST",
+            body: JSON.stringify(check),
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-tokens": user.token,
+            },
+          }
+        );
+        let resJson = await res.json();
+        if (resJson.Message === "This has check before  :)") {
+          setMessage("تم اجراء هذا الفحص من قبل");
+          console.log(resJson);
+          setTimeout(() => {
+            setSnap(snap + 1);
+            setTimer(false);
+            control(false);
+          }, 3000);
+        } else if (resJson.success) {
+          setMessage("تم تسجيل بيانات الفحص بنجاح .");
+          console.log(resJson);
+          setTimeout(() => {
+            setSnap(snap + 1);
+            setTimer(false);
+            control(false);
+          }, 3000);
+        }
+      } catch (err) {
+        console.log(err);
+        setMessage("تحقق من جودة الانترنت لديك.");
+      }
+    }
+  }, [check]);
+
   const handleInputs = (data) => {
     setInput({
       ...input,
@@ -75,17 +129,20 @@ function Body({ snap, setSnap, control, setTimer , user}) {
           type={input.car_type}
         />
       </div>
-      <button
-        className="save"
-        onClick={(e) => {
-          e.preventDefault();
-          setSnap(snap + 1);
-          setTimer(false)
-          control(false);
-        }}
-      >
+      <button className="save" onClick={handleData}>
         حفظ
       </button>
+      <div
+        className={`message my-3 me-2 ${
+          message === "تم اجراء هذا الفحص من قبل" ||
+          message === "تحقق من جودة الانترنت لديك." ||
+          message === "تأكد من الانتهاء من جميع اجراءات الفحص"
+            ? "text-danger"
+            : "text-success"
+        }`}
+      >
+        {message}
+      </div>
     </div>
   );
 }
