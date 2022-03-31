@@ -9,8 +9,10 @@ import Loader from "../Loader/Loader";
 
 // Import Lib
 import { useState, useEffect } from "react";
+import { GetUser } from "../../../Function/Generel";
 
-function Users({ user }) {
+function Users() {
+  const user = GetUser()
   const [users, setUsers] = useState([]);
   const [stateFetch, setStateFetch] = useState(true);
   const [active, setActive] = useState(1);

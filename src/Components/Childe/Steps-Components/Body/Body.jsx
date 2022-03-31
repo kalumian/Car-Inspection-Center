@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import Body_Steps_Section from "./Body_Steps_Section";
-
 function Body({ snap, setSnap, control, setTimer, user, id }) {
   //  Hooks
   const [input, setInput] = useState([]);
   const [check, setCheck] = useState({});
   const [message, setMessage] = useState("");
+  const [typeOfCar, setTypeOfCar] = useState("");
 
   const handleData = () => {
     setCheck({
@@ -63,63 +63,77 @@ function Body({ snap, setSnap, control, setTimer, user, id }) {
     <div className="body-step text-center content">
       <div className="body-content">
         <header>
-          <Body_Steps_Section
-            name="car-type"
-            select="تحديد نوع السيارة"
-            handleInputs={handleInputs}
-            options={["HATCHBACK", "SEDAN", "SUV", "Crossover"]}
-            id="car_type"
-            header={true}
-          />
+          <select
+            className="form-select"
+            onChange={(e) => {
+              setTypeOfCar(e.target.value);
+            }}
+            name={"form-select-type-of-car"}
+            aria-label="Default select example"
+          >
+            <option selected value={"0"}>
+              تحديد نوع السيارة
+            </option>
+            <option value={"Crossover"}>Crossover</option>
+            <option value={"SUV"}>SUV</option>
+            <option value={"SEDAN"}>SEDAN</option>
+          </select>
         </header>
         <Body_Steps_Section
+          typeOfCar={typeOfCar}
           name="the_front"
           handleInputs={handleInputs}
           id="the_front"
           select="الجهة الأمامية"
-          type={input.car_type}
+          type={"front"}
         />
         <Body_Steps_Section
+          typeOfCar={typeOfCar}
           name="the_back"
           id="the_back"
           select="الجهة الخلفية"
           handleInputs={handleInputs}
-          type={input.car_type}
+          type={"behinde"}
         />
         <Body_Steps_Section
+          typeOfCar={typeOfCar}
           name="the_top"
           id="the_top"
           select="الجهة العلوية"
           handleInputs={handleInputs}
-          type={input.car_type}
+          type={"top"}
         />
         <Body_Steps_Section
+          typeOfCar={typeOfCar}
           name="the_left"
           handleInputs={handleInputs}
           id="the_left"
           select="الجهة الجانبية اليسرى"
-          type={input.car_type}
+          type={"left"}
         />
         <Body_Steps_Section
+          typeOfCar={typeOfCar}
           name="the_right"
           id="the_right"
           handleInputs={handleInputs}
           select="الجهة الجانبية اليمنى"
-          type={input.car_type}
+          type={"right"}
         />
         <Body_Steps_Section
+          typeOfCar={typeOfCar}
           name="the_left_base"
           id="the_left_base"
           handleInputs={handleInputs}
           select="القواعد اليسرى"
-          type={input.car_type}
+          type={"left-between"}
         />
         <Body_Steps_Section
+          typeOfCar={typeOfCar}
           name="the_right_base"
           id="the_right_base"
           handleInputs={handleInputs}
           select="القواعد اليمنى"
-          type={input.car_type}
+          type={"right-between"}
         />
       </div>
       <button className="save" onClick={handleData}>

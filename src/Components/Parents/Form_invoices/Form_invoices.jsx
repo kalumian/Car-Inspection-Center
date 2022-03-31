@@ -4,12 +4,16 @@ import Header from "../../Childe/General-components/Header/Header";
 import Form from "../../Childe/Form_invoices-components/Forms";
 
 import { useState } from "react";
+import { GetUser } from "../../../Function/Generel";
 
-function Form_invoices({user}) {
+function Form_invoices() {
+  const user = GetUser() 
   // Variables
   const [editPage, setEditPage] = useState(false);
 
   // Content
+  console.log(user);
+
   return (
     <div className="d-flex wrapper flex-row-reverse">
       <Sidebar user={user} />

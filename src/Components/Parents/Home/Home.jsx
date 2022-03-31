@@ -6,15 +6,15 @@ import Error_Page from "../Error_Page/Error_Page";
 import Notifications from "../../Childe/Home-components/Notifications";
 
 // Import Data Fromt useContext
-import { useContext } from "react";
-import { DataContext } from "../../../DataContext";
 import { useState, useEffect } from "react";
 import Loader from "../Loader/Loader";
+import { GetUser } from "../../../Function/Generel";
 function Home() {
-  const { user } = useContext(DataContext);
   const [notification, setNotification] = useState([]);
   const [stateFetch, setStateFetch] = useState(false);
   const [notificationFinde, setNotificationFinde] = useState(false);
+
+  const user = GetUser();
   useEffect(async () => {
     setStateFetch(false);
     try {
@@ -73,7 +73,10 @@ function Home() {
             </div> */}
             {/* قائمة الاشعارات */}
             {stateFetch ? (
-              <Notifications notificationFinde={notificationFinde} notification={notification}/>
+              <Notifications
+                notificationFinde={notificationFinde}
+                notification={notification}
+              />
             ) : (
               <Loader />
             )}

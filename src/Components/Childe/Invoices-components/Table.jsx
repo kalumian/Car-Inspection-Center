@@ -68,6 +68,7 @@ function Table({ invoices, input }) {
                 e.nameService
               );
             })
+            .reverse()
             .map((item) => {
               return (
                 // <Link to={`/dashboard/بيانات-الفاتورة/${item.id}`}>

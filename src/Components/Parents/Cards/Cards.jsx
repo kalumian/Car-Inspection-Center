@@ -7,10 +7,12 @@ import Loader from "../Loader/Loader";
 // Lib
 import { DataContext } from "../../../DataContext";
 import { useState, useEffect } from "react";
+import { GetUser } from "../../../Function/Generel";
 const cheking = ["اسفل-السيارة", "ميداني", "كمبيوتر", "جسم-المركبة"];
-function Cards({ user }) {
+function Cards() {
   const [cards, setCards] = useState([]);
   const [stateFetch, setStateFetch] = useState(false);
+  const user = GetUser()
   useEffect(async () => {
     try {
       let res = await fetch(
@@ -52,6 +54,7 @@ function Cards({ user }) {
       console.log(err);
     }
   }, []);
+  console.log(user);
   return (
     <>
       {user.type === "الفني" || user.type === "المشرف" ? (

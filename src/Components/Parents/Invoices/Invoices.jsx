@@ -9,6 +9,7 @@ import react, { useState, useEffect } from "react";
 // Import Functions
 import { WhatThisAccount } from "../../../Function/UsersControl";
 import Loader from "../Loader/Loader";
+import { GetUser } from "../../../Function/Generel";
 
 const init = {
   serachWithName: "",
@@ -19,7 +20,8 @@ const init = {
   serachWithBranch: "",
   serachWithState: "",
 };
-function Invoices({ user }) {
+function Invoices() {
+  const user = GetUser()
   const [invoices, setInvoices] = useState([]);
   const [stateFetch, setStateFetch] = useState(true);
   const [branches, setBranches] = useState([]);

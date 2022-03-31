@@ -4,14 +4,14 @@ import Lable from "../Form_invoices-components/Lable";
 import Option from "./Option";
 import FormEdit from "./FormEdit";
 import Loader from "../../Parents/Loader/Loader";
+import { GetUser } from "../../../Function/Generel";
 
 // Import From Lib
-import { useState, useEffect, useContext } from "react/cjs/react.development";
+import { useState, useEffect } from "react/cjs/react.development";
 
 // Import DataContext
-import { DataContext } from "../../../DataContext";
 function Edit({ users }) {
-  const { user } = useContext(DataContext);
+  const user = GetUser();
 
   // State
   const [editState, setEditState] = useState(false);

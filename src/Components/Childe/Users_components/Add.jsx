@@ -3,14 +3,13 @@ import Input_Default from "../Users_components/Input_Default";
 import Lable from "../Form_invoices-components/Lable";
 
 // Import From Lib
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 
 // Import DataContext
-import { DataContext } from "../../../DataContext";
+import { GetUser } from "../../../Function/Generel";
 
 function Add() {
-  const { user } = useContext(DataContext);
-
+  const user = GetUser();
   // States & Fucnctions
   const [name, setName] = useState("");
   const [identity, setIdentity] = useState("");

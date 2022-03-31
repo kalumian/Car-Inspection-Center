@@ -4,8 +4,10 @@ import Header from "../../Childe/General-components/Header/Header";
 import Section from "../../Childe/Web_setting_components/Section";
 import Branch from "../../Childe/Web_setting_components/Branch";
 import { useState } from "react";
+import { GetUser } from "../../../Function/Generel";
 
-function Web_Setting({ user }) {
+function Web_Setting() {
+  const user = GetUser()
   // Content
   return (
     <div className="d-flex wrapper flex-row-reverse">

@@ -6,12 +6,12 @@ import { useEffect, useContext, useState } from "react";
 
 // Impoert Functions
 import { getYears, GetFullDateString } from "../../../Function/Times";
-import { DataContext } from "../../../DataContext";
 
 // Import Json
 import { factory } from "../../../Json/factory.json";
 import { types } from "../../../Json/type.json";
 import Services_section from "./Services_section";
+import { GetUser } from "../../../Function/Generel";
 
 const init = {
   invoices_customer_VIN: "",
@@ -36,7 +36,7 @@ function Form_lg({ setEditPage, editPage }) {
   //  Hooks
   const [card, setCard] = useState({});
   const [message, setMessage] = useState("");
-  const { user } = useContext(DataContext);
+  const  user  = GetUser();
   const [input, setInput] = useState(init);
   const [activeButton, setActiveButton] = useState(true);
   const [cost, setCost] = useState();
@@ -347,11 +347,6 @@ function Form_lg({ setEditPage, editPage }) {
           onChange={handleChange}
         ></textarea>
       </div>
-      <div className="d-flex justify-content-center">
-        <button className="w-30 btn btn-lg primary-bg" type="submit">
-          انشاء
-        </button>
-      </div>
       <div
         className={`message my-3 me-2 ${
           message === "تأكد من المدخلات ومن شبكة الانترنت لديك"
@@ -360,6 +355,11 @@ function Form_lg({ setEditPage, editPage }) {
         }`}
       >
         {message}
+      </div>
+      <div className="d-flex justify-content-center">
+        <button className="w-30 btn btn-lg primary-bg" type="submit">
+          انشاء
+        </button>
       </div>
     </form>
   );

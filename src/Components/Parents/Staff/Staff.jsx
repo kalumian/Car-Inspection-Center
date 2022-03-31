@@ -9,8 +9,10 @@ import Table from "../../Childe/Staff-Components/Table";
 import Loader from "../Loader/Loader";
 // Import From Lib
 import { useState, useEffect } from "react";
+import { GetUser } from "../../../Function/Generel";
 
-function Staff({ user }) {
+function Staff() {
+  const user = GetUser()
   // State
   const [users, setUsers] = useState([]);
   const [usersState, setUsersState] = useState(false);

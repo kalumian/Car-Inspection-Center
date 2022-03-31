@@ -13,10 +13,12 @@ import Timer from "../../Childe/Steps-Components/Timer/Timer";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react/cjs/react.development";
 import { FinishBill } from "../../../Function/Cards";
+import { GetUser } from "../../../Function/Generel";
 
-function Steps({ user }) {
+function Steps() {
   const location = useLocation();
   const history = useHistory();
+  const user = GetUser();
   // State
   const [steps, setSteps] = useState("");
   const [fetchState, setFetchState] = useState(false);
@@ -75,7 +77,6 @@ function Steps({ user }) {
       console.log(err);
     }
   }, []);
-
   // Fumction
   return (
     <div className="container-steps text-center">
@@ -244,9 +245,8 @@ function Steps({ user }) {
                     className="min mb-2"
                     onClick={() => {
                       if (card.typeService.length === snap) {
-                        FinishBill(id, user)
+                        FinishBill(id, user);
                         history.push("/dashboard/قائمة-الكروت");
-                        console.log("تم الفحص");
                       } else {
                         setMessage("لا يمكن الانهاء  قبل اجراء جميع الفحوص");
                         setTimeout(() => {

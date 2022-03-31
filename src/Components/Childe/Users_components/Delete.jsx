@@ -1,15 +1,14 @@
 // Import From Lib
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
+import { GetUser } from "../../../Function/Generel";
 
 // Import Components
 import Option from "./Option";
 
 // Import Context
-import { DataContext } from "../../../DataContext";
 
 function Delete({ users, setActive, active }) {
-  const { user } = useContext(DataContext);
-
+  const user = GetUser();
   // State
   const [message, setMessage] = useState("");
   const [id, setId] = useState(undefined);

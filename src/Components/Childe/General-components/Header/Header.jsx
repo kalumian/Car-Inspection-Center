@@ -4,12 +4,13 @@ import { useState } from "react";
 // Import Data Fromt useContext
 import { useContext } from "react";
 import { DataContext } from "../../../../DataContext";
+import { GetUser } from "../../../../Function/Generel";
 
 // import Function
 import { GettoDayArabic, GetHours, GetMin } from "../../../../Function/Times";
 function Header() {
   // Import User
-  const { user } = useContext(DataContext);
+  const user = GetUser()
   // useState
   const [date, setDate] = useState(new Date());
 

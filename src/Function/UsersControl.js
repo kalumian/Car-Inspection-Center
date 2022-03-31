@@ -7,7 +7,7 @@ export const CheckAccount = (user) => {
 
 // Control User / Default Links
 export const DefaultLinks = (user) => {
-  const Type = user.user.type;
+  const Type = user.type;
   if (CheckAccount(Type)) {
     return Type === "الاستقبال"
       ? "/dashboard/فواتير"

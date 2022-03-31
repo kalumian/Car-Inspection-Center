@@ -7,9 +7,10 @@ import Add_services from "./Add_services";
 import Delete_services from "./Delete_services";
 import Loader from "../../Parents/Loader/Loader";
 import { DataContext } from "../../../DataContext";
+import { GetUser } from "../../../Function/Generel";
 
 function Edit_page({ setEditPage, editPage }) {
-  const { user } = useContext(DataContext);
+  const user = GetUser();
   // State
   const [services, setServices] = useState([]);
   const [stateFetch, setStateFetch] = useState(true);
@@ -36,7 +37,6 @@ function Edit_page({ setEditPage, editPage }) {
     } catch (err) {
       console.log(err);
       setStateFetch(true);
-
     }
   }, [active]);
   return (
@@ -114,7 +114,6 @@ function Edit_page({ setEditPage, editPage }) {
             user={user}
             setActive={setActive}
             active={active}
-
           />
         ) : (
           <></>
